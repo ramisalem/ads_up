@@ -1,0 +1,30 @@
+// locales/en.ts
+export default {
+    'hello': 'مرحبا',
+    'hello.world': 'مرحبا بكم ',
+    'welcome': 'مرحبا {name}!',
+    'client': 'صفحة العميل',
+    'auth': 'لوحة تحكم تطبيق ADSUP',
+    'auth-page': 'مرحبا بك من جديد',
+    'sign': 'تسجيل الدخول',
+    'logout': 'تسجيل الخروج',
+    'settings': "الاعدادات",
+    "welcome-back": "مرحبا بعودتك",
+    "ask.register": "ليس لديك حساب قم بالتسجيل",
+    "server": "السيرفر",
+    'admin': "المدير",
+    'password': "كلمة المرور",
+    'server-comp': "أدوات السيرفر",
+    'advertisment': "الاعلانات",
+    'showmenu': 'اخفاء القائمة',
+    'sidebar': {
+        'home': "الرئيسية",
+        "advertisment": "الاعلانـات",
+        "payments": "المدفوعات",
+        "users": "إدارة المستخدمين",
+        "admin": "إدارة المديرين",
+        'settings': 'الاعدادات',
+    },
+    'switchLocale': "تغيير اللغة",
+
+} as const

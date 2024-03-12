@@ -7,7 +7,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   prefix: "",
   theme: {
     container: {
@@ -18,6 +18,11 @@ const config = {
       },
     },
     extend: {
+      gridTemplateColumns: {
+        "13": "repeat(13, minmax(0, 1fr))",
+        "sidebar": "230px auto", //for sidebar layout
+        "sidebar-collapsed": "64px auto", //for collapsed sidebar
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
