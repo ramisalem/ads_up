@@ -2,6 +2,7 @@
 import Link from "next/link";
 import NavLinks from "@/components/dashboard/nav-links";
 import ADSUPLogo from "@/components/dashboard/adsup-logo";
+import { LogoutButton } from "../auth/logout-button";
 // import {
 //   ArrowDownLeftIcon,
 //   ArrowLeftCircleIcon,
@@ -29,17 +30,17 @@ type props = {
   setCollapsed(collapsed: boolean): void;
 };
 export default function SideNav({ collapsed, setCollapsed }: props) {
-  const [errorMessage, dispatch] = useFormState(logout, null);
+  // const [errorMessage, dispatch] = useFormState(logout, null);
   const t = useI18n();
   const lng = useCurrentLocale();
   return (
     // <div className=" mx-3 left-0 h-[90%] flex-col   items-center gap-1  overflow-hidden md:flex-none md:justify-start md:p-2 md:px-3">
-    <div className="fixed top-5  flex-row mt-3 space-x-1 space-y-1 ml-2 hidden md:block md:h-0 md:flex-col ">
+    <div className="md:absolute top-5  flex-row mt-3 space-x-1 space-y-1 mx-2 hidden md:block md:h-0 md:flex-col ">
       <div
         className={clsx(
-          " flex items-start justify-center w-full rounded-md   mt-5 text-sm font-medium hover:text-blue-600   md:justify-start",
+          " flex items-start justify-center md:w-full rounded-md   mt-5 text-sm font-medium hover:text-blue-600   md:justify-start",
           {
-            "hidden h-[40px] w-10 mt-5 md:block ": !collapsed,
+            "hidden h-[40px] md:w-10 mt-5 md:block ": !collapsed,
           }
         )}>
         <button
@@ -69,14 +70,14 @@ export default function SideNav({ collapsed, setCollapsed }: props) {
               "h-[40px] w-10  ": !collapsed,
             }
           )}>
-          <form action={dispatch}>
-            <button className="flex space-x-2    ">
+          <LogoutButton>
+            <button className="flex space-x-2 flex-row items-center justify-center   ">
               <PowerIcon className="w-5" />
               {collapsed && (
                 <div className="hidden md:block">{t("logout")}</div>
               )}
             </button>
-          </form>
+          </LogoutButton>
         </div>
       </div>
     </div>

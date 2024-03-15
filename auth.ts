@@ -55,7 +55,7 @@ export const {
     //   return true;
     // },
     async session({ token, session, user }) {
-      console.log('sessionCallback')
+
       //console.log({ user_in_session: token })
       if (token.sub && session.user) {
         session.user.id = token.sub;
@@ -79,7 +79,7 @@ export const {
       return session;
     },
     async jwt({ token, user }) {
-      console.log('in token callback');
+
       return { ...token, ...user };
       // if (!token.sub) return token;
 
@@ -100,7 +100,7 @@ export const {
       // return token;
     }
   },
-  //adapter: PrismaAdapter(db),
+
   session: { strategy: "jwt" },
   ...authConfig,
 });

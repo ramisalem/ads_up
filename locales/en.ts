@@ -16,14 +16,17 @@ export default {
     'password': "Password",
     'server-comp': "Server Component",
     'advertisment': "Advertisment",
+    'helpcenter': "Help Center",
     'showmenu': "Hide Menu",
     "sidebar": {
         "home": "Dashboard ",
         "advertisment": "Advertisment",
         "users": "Users Management",
-        "payments": "payments",
+        "client": "User",
         "admin": "Admin",
         'settings': "Settings",
+        'coupons': 'Coupons',
+        'helpcenter': 'Help Center',
     },
     'switchLocale': "Change language",
 } as const

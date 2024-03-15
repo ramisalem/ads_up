@@ -20,8 +20,11 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { register } from "@/actions/auth/register";
+import { useI18n, useCurrentLocale } from "@/locales/client";
 
 export const RegisterForm = () => {
+  const t = useI18n();
+  const local = useCurrentLocale();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -51,7 +54,7 @@ export const RegisterForm = () => {
     <CardWrapper
       headerLabel="Create an account"
       backButtonLabel="Already have an account?"
-      backButtonHref="/auth/login"
+      backButtonHref={`/${local}/auth/login`}
       showSocial>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -83,7 +86,7 @@ export const RegisterForm = () => {
                     <Input
                       {...field}
                       disabled={isPending}
-                      placeholder="john.doe@example.com"
+                      placeholder="sad.2000@yahoo.com"
                       type="email"
                     />
                   </FormControl>

@@ -72,7 +72,7 @@ const SettingsPage = () => {
   };
 
   return (
-    <Card className="md:w-[600px] ">
+    <Card className="md:w-[600px]   w-auto h-auto">
       <CardHeader>
         <p className="text-2xl font-semibold text-center">⚙️ {t("settings")}</p>
       </CardHeader>

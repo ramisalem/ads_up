@@ -21,7 +21,7 @@ export default function MainLayout({
       <Navbar />
       <div
         className={clsx(
-          "grid transition-[grid-template-column] max-h-full duration-300 ease-in-out md:flex-row md:overflow-hidden",
+          "grid md:transition-[grid-template-column] max-h-full md:min-w-fit duration-300 ease-in-out md:flex-row md:overflow-hidden",
           {
             "grid-cols-sidebar": collapsed,
             "grid-cols-sidebar-collapsed": !collapsed,
@@ -34,7 +34,7 @@ export default function MainLayout({
           />
         </div>
 
-        <div className="flex flex-shrink md:flex-none  md:overflow-y-auto md:p-12">
+        <div className="flex flex-shrink-1 mt-3 md:flex-none  md:overflow-y-auto md:p-6">
           {children}
         </div>
       </div>

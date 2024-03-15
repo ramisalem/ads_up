@@ -6,6 +6,37 @@ export type SideNavItem = {
     submenu?: boolean;
     subMenuItems?: SideNavItem[];
 };
+export type Tickets = {
+    uuid: string,
+    title: string,
+    description: string,
+    status: "pending" | "processing" | "success" | "failed",
+    createdBy: 'User',
+    createdAt: string,
+    updatedAt: string,
+
+}
+
+export type AdvType = {
+    id: number,
+    title: string,
+    description: string,
+    video: string,
+    audio: string,
+    pdf: string,
+    thumbnail: string,
+    status: string,
+    createdAt: string,
+    updatedAt: string,
+    starOfMonth: boolean,
+    paid: boolean,
+    views: number,
+    listens: number,
+    age: number,
+    gender: string,
+    categoryId: number,
+    subcategoryId: number,
+}
 
 export const AdvSchema = z.object({
     id: z.number(),
@@ -13,6 +44,7 @@ export const AdvSchema = z.object({
     description: z.string(),
     video: z.string(),
     audio: z.string(),
+    pdf: z.string(),
     thumbnail: z.string(),
     status: z.string(),
     createdAt: z.string(),

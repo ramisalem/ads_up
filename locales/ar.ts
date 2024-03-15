@@ -16,14 +16,17 @@ export default {
     'password': "كلمة المرور",
     'server-comp': "أدوات السيرفر",
     'advertisment': "الاعلانات",
+    'helpcenter': 'مركز المساعدة',
     'showmenu': 'اخفاء القائمة',
     'sidebar': {
         'home': "الرئيسية",
         "advertisment": "الاعلانـات",
-        "payments": "المدفوعات",
+        "client": "المستخدم",
         "users": "إدارة المستخدمين",
         "admin": "إدارة المديرين",
         'settings': 'الاعدادات',
+        'coupons': 'الكوبونات',
+        'helpcenter': 'طلبات المساعدة',
     },
     'switchLocale': "تغيير اللغة",
 

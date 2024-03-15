@@ -1,9 +1,10 @@
 "use server";
 
-import { AdvSchema } from "@/constants/types";
+import { AdvType } from "@/constants/types";
 
 export const getAllStory = async () => {
-    let data;
+    console.log('in get stories');
+    let data: [AdvType] | undefined;
     let isError = false;
     let error = "";
     try {
@@ -13,7 +14,12 @@ export const getAllStory = async () => {
                 "Content-Type": "application/json",
             }
         });
-        data = await AdvSchema.parse(response.json());
+        const res = await response.json()
+        console.log(res)
+        const { stories } = res.data;
+        //console.log(stories)
+        data = stories;
+        console.log('this is data that will return')
         console.log(data)
 
     } catch (e) {
