@@ -17,6 +17,7 @@ export default {
     'server-comp': "أدوات السيرفر",
     'advertisment': "الاعلانات",
     'helpcenter': 'مركز المساعدة',
+    'coupon': "الكوبونات",
     'showmenu': 'اخفاء القائمة',
     'sidebar': {
         'home': "الرئيسية",

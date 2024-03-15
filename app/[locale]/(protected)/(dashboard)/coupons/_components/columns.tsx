@@ -8,48 +8,57 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Tickets } from "@/constants/types";
+import { Coupons } from "@/constants/types";
 import { MinusCircleIcon } from "@heroicons/react/24/outline";
 import { ColumnDef } from "@tanstack/react-table";
-export const columns: ColumnDef<Tickets>[] = [
+export const columns: ColumnDef<Coupons>[] = [
   {
-    accessorKey: "title",
-    header: "Title",
+    accessorKey: "code",
+    header: "Code",
   },
   {
     accessorKey: "description",
     header: "Description",
   },
   {
+    accessorKey: "usage",
+    header: "Usage",
+  },
+  {
+    accessorKey: "precentage",
+    header: "Precentage",
+  },
+  {
+    accessorKey: "price",
+    header: "Price",
+  },
+  {
     accessorKey: "status",
     header: "Status",
   },
   {
-    accessorKey: "createdBy",
-    header: "Created By",
-  },
-  {
-    accessorKey: "createdAt",
-    header: "Created At",
+    accessorKey: "start",
+    header: "Start",
     cell: ({ row }) => {
-      let newDate = new Date(row.getValue("createdAt"));
+      let newDate = new Date(row.getValue("start"));
       let formatted = newDate.toLocaleDateString();
       return <div className="text-center font-medium">{formatted}</div>;
     },
   },
   {
-    accessorKey: "updatedAt",
-    header: "Updated At",
+    accessorKey: "end",
+    header: "End",
     cell: ({ row }) => {
-      let newDate = new Date(row.getValue("updatedAt"));
+      let newDate = new Date(row.getValue("end"));
       let formatted = newDate.toLocaleDateString();
       return <div className="text-center font-medium">{formatted}</div>;
     },
   },
+
   {
     id: "actions",
     cell: ({ row }) => {
-      const ticket = row.original;
+      const coupon = row.original;
 
       return (
         <DropdownMenu>
@@ -60,17 +69,17 @@ export const columns: ColumnDef<Tickets>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            {/* <DropdownMenuLabel>Actions</DropdownMenuLabel> */}
             <DropdownMenuItem
               onClick={() => {
-                navigator.clipboard.writeText(ticket.uuid);
-                console.log({ ticket });
+                navigator.clipboard.writeText(coupon.uuid);
+                console.log({ coupon });
               }}>
-              Copy Ticket ID
+              Copy Coupon ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View Ticket</DropdownMenuItem>
-            <DropdownMenuItem>Delete Ticket</DropdownMenuItem>
+            <DropdownMenuItem>View Coupon</DropdownMenuItem>
+            <DropdownMenuItem>Delete Coupon</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

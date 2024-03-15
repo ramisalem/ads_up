@@ -23,7 +23,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
-export function DataTable<TData, TValue>({
+export function CouponsDataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -35,16 +35,16 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="md:w-[980px]">
+    <div className="container mx-auto p-4">
       <h1 className={`${lusitana.className} mb-8 text-xl md:text-2xl`}>
-        all tickets
+        all Coupons
       </h1>
-      <Search placeholder="Search tickets..." />
-      <div className="mt-6 flow-root w-full">
+      <Search placeholder="Search coupons..." />
+      <div className="mt-6 flow-root w-auto">
         <div className="overflow-x-auto">
           <div className="inline-block md:min-w-full align-middle">
-            <div className="overflow-hidden w-full rounded-md bg-gray-400 p-2 md:pt-0">
-              <Table className=" mb-2 w-full justify-stretch rounded-md bg-white p-4">
+            <div className="overflow-hidden md:w-full rounded-md p-2 md:pt-0">
+              <Table className=" mb-2 min-w-full justify-stretch rounded-md bg-white p-4">
                 <TableHeader className=" md:contents md:content-stretch justify-stretch md:min-w-full border-b pb-4 hover:bg-slate-200">
                   {table.getHeaderGroups().map((headerGroup) => (
                     <TableRow

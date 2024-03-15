@@ -17,6 +17,7 @@ export default {
     'server-comp': "Server Component",
     'advertisment': "Advertisment",
     'helpcenter': "Help Center",
+    'coupon': "Coupons ",
     'showmenu': "Hide Menu",
     "sidebar": {
         "home": "Dashboard ",

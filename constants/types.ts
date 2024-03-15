@@ -10,32 +10,49 @@ export type Tickets = {
     uuid: string,
     title: string,
     description: string,
-    status: "pending" | "processing" | "success" | "failed",
-    createdBy: 'User',
+    status: "Opened" | "Closed",
+    createdBy: string,
     createdAt: string,
     updatedAt: string,
+    // uuid: String,
+    // title: String
+    // description: String 
+    // status: String (Opened/Closed)
+    // createdBy: String
+}
+export type Metadata = {
+    aboutAr: String,
+    aboutEn: String,
+    termsAndConditionsAr: String,
+    termsAndConditionsEn: String,
+    privacyPolicyAr: String,
+    privacyPolicyEn: String,
 
 }
 
 export type AdvType = {
-    id: number,
-    title: string,
-    description: string,
-    video: string,
-    audio: string,
-    pdf: string,
-    thumbnail: string,
-    status: string,
-    createdAt: string,
-    updatedAt: string,
-    starOfMonth: boolean,
-    paid: boolean,
-    views: number,
-    listens: number,
-    age: number,
-    gender: string,
-    categoryId: number,
-    subcategoryId: number,
+    uuid: String,
+    title: String,
+    categoryId: String,   // (UUID)
+    description: String,
+    price: number,
+    link?: String, //(Optional)
+    images: string, //[]to be discuss later
+    location: String, // (UUID)
+    start: string,//(Timestamp in UTC zone )
+    end: string, // (Timestamp in UTC zone )
+    status: 'Pending' | 'Published' | 'Deleted' | 'Hidden',
+}
+export type Coupons = {
+    uuid: string,// (UUID)
+    code: string,
+    description: String,
+    start: string, //Long (Timestamp in UTC zone )
+    end: string,//Long (Timestamp in UTC zone )
+    usage: number, //long
+    percentage: number, //float
+    price: number,//Float
+    status: 'Activated' | 'Deactivated',
 }
 
 export const AdvSchema = z.object({
