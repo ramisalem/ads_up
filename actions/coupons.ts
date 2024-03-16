@@ -3,8 +3,10 @@ import { Coupons } from "@/constants/types";
 
 export const getCoupons = async (): Promise<Coupons[]> => {
     const res = await fetch(
-        "https://65f372c4105614e654a089c4.mockapi.io/api/v1/tickets"
+        "https://wy8r3.wiremockapi.cloud/api/v1/coupons",
+
     );
     const data = await res.json();
+    console.log(data)
     return data;
 }

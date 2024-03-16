@@ -4,7 +4,7 @@
  * @type {string[]}
  */
 export const publicRoutes = [
-  "/", "/ar", "/en",
+  "/", "/ar", "/en", "/coupons", "/helpcenter",
   "/auth/new-verification"
 ];
 

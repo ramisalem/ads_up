@@ -5,6 +5,7 @@
 import clsx from "clsx";
 import { useState } from "react";
 import { Navbar } from "./_components/navbar";
+import HeaderMobile from "@/components/dashboard/header-mobile";
 import SideNav from "@/components/dashboard/sidebar";
 
 //import { I18nProviderClient } from "@/locales/client";
@@ -17,8 +18,9 @@ export default function MainLayout({
   const [collapsed, setSidebarCollapsed] = useState(false);
 
   return (
-    <div className="min-h-screen min-w-fit">
+    <div className="min-h-screen ">
       <Navbar />
+      <HeaderMobile />
       <div
         className={clsx(
           "md:grid transition-[grid-template-column] max-h-fit duration-300 ease-in-out md:grid-cols-[1fr,minmax(0, 1fr)]",

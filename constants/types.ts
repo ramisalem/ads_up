@@ -46,7 +46,7 @@ export type AdvType = {
 export type Coupons = {
     uuid: string,// (UUID)
     code: string,
-    description: String,
+    description: string,
     start: string, //Long (Timestamp in UTC zone )
     end: string,//Long (Timestamp in UTC zone )
     usage: number, //long

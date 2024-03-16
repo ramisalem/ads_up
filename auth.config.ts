@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import type { NextAuthConfig } from "next-auth";
+import type { NextAuthConfig, User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Github from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
@@ -18,7 +18,7 @@ export default {
     //   clientSecret: process.env.GITHUB_CLIENT_SECRET,
     // }),
     Credentials({
-      async authorize(credentials, request) {
+      async authorize(credentials, request): Promise<User | null | any> {
 
         const validatedFields = LoginSchema.safeParse(credentials);
 

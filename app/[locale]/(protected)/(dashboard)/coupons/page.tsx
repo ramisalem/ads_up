@@ -9,10 +9,12 @@ export default async function Page() {
   const data = await getCoupons();
   const t = await getI18n();
   return (
-    <div className="flex flex-wrap md:container border-radius mx-auto  rounded-lg bg-slate-100  py-4 md:flex-col">
+    <div className="container border-radius md:mx-4 my-6  md:w-full  items-start rounded-lg bg-slate-50 px-6 py-4 md:flex-col">
       <p className="text">{t("coupon")}</p>
-
-      <CouponsDataTable columns={columns} data={data} />
+      {/* <div className="flex flex-auto w-full"> */}
+      <span>
+        <CouponsDataTable columns={columns} data={data} />
+      </span>
     </div>
   );
 }

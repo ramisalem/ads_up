@@ -36,4 +36,4 @@ export const SIDENAVITEMS: SideNavItem[] = [
     // { name: "users", href: `/users`, icon: UserGroupIcon },
     // { name: "users", href: `/users`, icon: UserGroupIcon },
     // { name: "users", href: `/users`, icon: UserGroupIcon },
-];
+] as const;

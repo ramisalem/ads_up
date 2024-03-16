@@ -13,8 +13,8 @@ export const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="relative bg-secondary flex flex-row w-full justify-between items-center p-3  rounded-xl  shadow-sm">
-      <div className="flex items-center gap-4 justify-between">
+    <nav className="relative pr-12 md:pr-0 bg-secondary flex flex-row md:w-full justify-between md:items-center  rounded-xl  shadow-sm">
+      <div className="flex items-center gap-4 justify-between ">
         <ADSUPLogo />
       </div>
       <div className="flex flex-wrap justify-center items-center">

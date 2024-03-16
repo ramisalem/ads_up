@@ -35,7 +35,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="md:w-[980px]">
+    <div className="flex w-auto flex-col mx-auto  md:p-4">
       <h1 className={`${lusitana.className} mb-8 text-xl md:text-2xl`}>
         all tickets
       </h1>

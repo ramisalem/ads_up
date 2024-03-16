@@ -12,7 +12,7 @@ interface UserResponse {
 export const login = async (email: string, password: string) => {
   try {
     //const user = await db.user.findUnique({ where: { email } });
-    const authResponse = await fetch("http://localhost:3001/api/v1/users/login", {
+    const authResponse = await fetch("https://dev.deemat.net/api/v1/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
