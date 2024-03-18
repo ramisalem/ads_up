@@ -6,7 +6,7 @@ const locales = ["en", "ar"];
 export default function LocaleSwitcher() {
   const t = useI18n();
   const locale = useCurrentLocale();
-  const localesName = {
+  const localesName: { [key: string]: string } = {
     en: "English",
     ar: "عربي",
   };
@@ -15,7 +15,7 @@ export default function LocaleSwitcher() {
   }, [locale]);
   return (
     <LocaleSwitcherSelect defaultValue={locale} label={t("switchLocale")}>
-      {locales.map((cur: string) => (
+      {locales.map((cur) => (
         <option key={cur} value={cur}>
           {localesName[cur]}
         </option>

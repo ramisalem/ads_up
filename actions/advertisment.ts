@@ -3,7 +3,7 @@
 import { AdvType } from "@/constants/types";
 
 export const getAllAds = async (): Promise<AdvType[] | string | undefined | any> => {
-    console.log('in get stories');
+    console.log('in get ads');
     let data: [AdvType] | undefined;
     let isError = false;
     let error = "";

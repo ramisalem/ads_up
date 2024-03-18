@@ -38,7 +38,7 @@ export default auth(async (req) => {
 
   if (isApiAuthRoute) {
 
-    return null;
+    return;
   }
 
   if (isAuthRoute) {

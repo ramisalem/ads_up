@@ -12,26 +12,31 @@ import { Coupons } from "@/constants/types";
 import { MinusCircleIcon } from "@heroicons/react/24/outline";
 import { ColumnDef } from "@tanstack/react-table";
 export const columns: ColumnDef<Coupons>[] = [
+  // {
+  //   accessorKey: "id",
+  //   header: "Id",
+  // },
   {
     accessorKey: "code",
     header: "Code",
-  },
-  {
-    accessorKey: "description",
-    header: "Description",
   },
   {
     accessorKey: "usage",
     header: "Usage",
   },
   {
-    accessorKey: "precentage",
-    header: "Precentage",
+    accessorKey: "description",
+    header: "Description",
   },
   {
     accessorKey: "price",
     header: "Price",
   },
+  {
+    accessorKey: "precentage",
+    header: "Precentage",
+  },
+
   {
     accessorKey: "status",
     header: "Status",
@@ -41,6 +46,7 @@ export const columns: ColumnDef<Coupons>[] = [
     header: "Start",
     cell: ({ row }) => {
       let newDate = new Date(row.getValue("start"));
+
       let formatted = newDate.toLocaleDateString();
       return <div className="text-center font-medium">{formatted}</div>;
     },
@@ -73,7 +79,7 @@ export const columns: ColumnDef<Coupons>[] = [
             <DropdownMenuItem
               onClick={() => {
                 navigator.clipboard.writeText(coupon.uuid);
-                console.log({ coupon });
+                console.log(coupon.uuid);
               }}>
               Copy Coupon ID
             </DropdownMenuItem>

@@ -1,10 +1,11 @@
 import { db } from "@/lib/db";
 import { jwtDecode } from 'jwt-decode';
+import { User } from "next-auth";
 //import {cookie} from 'next-cookie';
 interface UserResponse {
   name: string,
   email: string,
-  id: string | number,
+  id: string | number | any,
   password: string,
   emailVerified: boolean,
   isTwoFactorEnabled: boolean,
@@ -25,6 +26,7 @@ export const login = async (email: string, password: string) => {
     const decodedToken = jwtDecode<{ sub: string; exp: number, userId: number, token: string }>(
       token
     )
+    console.log('decoded token');
     console.log(decodedToken);
     // if (token) {
     //   const user = await getUserByEmail(email, password, token)
@@ -40,7 +42,7 @@ export const login = async (email: string, password: string) => {
     return null;
   }
 };
-export const getUserByEmail = async (email: string, password: string, token: string) => {
+export const getUserByEmail = async (token: string, email?: string, password?: string) => {
   try {
     //const user = await db.user.findUnique({ where: { email } });
     const response = await fetch(`http://localhost:3001/api/v1/users/${email}`, {
@@ -61,11 +63,11 @@ export const getUserByEmail = async (email: string, password: string, token: str
   }
 };
 
-export const getUserById = async (id: string) => {
+export const getUserById = async (id: string | number | any): Promise<UserResponse | null> => {
   try {
     //const user = await db.user.findUnique({ where: { id } });
     console.log(`in get user by id ${id}`)
-    const user = await fetch(`http://localhost:3001/api/v1/users/?id=${id}`, {
+    const user = <UserResponse><unknown>await fetch(`http://localhost:3001/api/v1/users/?id=${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"

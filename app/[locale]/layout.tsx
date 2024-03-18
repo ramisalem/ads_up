@@ -25,10 +25,10 @@ export default async function RootLayout({
     <SessionProvider session={session}>
       <html lang={locale}>
         <body className={inter.className}>
-          <I18nProviderClient locale={locale}>
-            <Toaster />
-            {children}
-          </I18nProviderClient>
+          {/* <I18nProviderClient locale={locale}> */}
+          <Toaster />
+          {children}
+          {/* </I18nProviderClient> */}
         </body>
       </html>
     </SessionProvider>

@@ -1,11 +1,11 @@
 // locales/en.ts
 export default {
-    'hello': 'مرحبا',
-    'hello.world': 'مرحبا بكم ',
-    'welcome': 'مرحبا {name}!',
+
+    'welcome': 'مرحبا !',
     'client': 'صفحة العميل',
     'auth': 'لوحة تحكم تطبيق ADSUP',
     'auth-page': 'مرحبا بك من جديد',
+    'home': 'الصفحة الرئيسية',
     'sign': 'تسجيل الدخول',
     'logout': 'تسجيل الخروج',
     'settings': "الاعدادات",

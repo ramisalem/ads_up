@@ -8,7 +8,7 @@ import { Navbar } from "./_components/navbar";
 import HeaderMobile from "@/components/dashboard/header-mobile";
 import SideNav from "@/components/dashboard/sidebar";
 
-//import { I18nProviderClient } from "@/locales/client";
+import { I18nProviderClient } from "@/locales/client";
 
 export default function MainLayout({
   children,

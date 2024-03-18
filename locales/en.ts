@@ -1,9 +1,9 @@
 // locales/en.ts
 export default {
-    'hello': 'Hello',
-    'hello.world': 'Hello world!',
-    'welcome': 'Hello name',
+
+    'welcome': 'Hello ',
     'client': 'Client component',
+    'home': 'Dasboard Page',
     'auth': 'ADSUP Dashboard',
     'auth-page': 'Welcome back',
     'sign': 'Sign In ',

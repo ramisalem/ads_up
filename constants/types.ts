@@ -31,7 +31,7 @@ export type Metadata = {
 }
 
 export type AdvType = {
-    uuid: String,
+    uuid: string | any,
     title: String,
     categoryId: String,   // (UUID)
     description: String,
