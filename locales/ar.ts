@@ -2,10 +2,11 @@
 export default {
 
     'welcome': 'مرحبا !',
-    'client': 'صفحة العميل',
+    'client': 'معلومات المستخدم',
     'auth': 'لوحة تحكم تطبيق ADSUP',
     'auth-page': 'مرحبا بك من جديد',
     'home': 'الصفحة الرئيسية',
+    'header.sign': 'تسجيل الدخول',
     'sign': 'تسجيل الدخول',
     'logout': 'تسجيل الخروج',
     'settings': "الاعدادات",
@@ -18,6 +19,9 @@ export default {
     'advertisment': "الاعلانات",
     'helpcenter': 'مركز المساعدة',
     'coupon': "الكوبونات",
+    'header.add-coupn': "اضافة كوبون جديد",
+    'add-coupn': "اضافة كوبون جديد",
+    "go-back": "رجوع",
     'showmenu': 'اخفاء القائمة',
     'sidebar': {
         'home': "الرئيسية",

@@ -11,6 +11,7 @@ import {
 import { Tickets } from "@/constants/types";
 import { MinusCircleIcon } from "@heroicons/react/24/outline";
 import { ColumnDef } from "@tanstack/react-table";
+import { format } from "date-fns";
 export const columns: ColumnDef<Tickets>[] = [
   {
     accessorKey: "title",
@@ -33,7 +34,7 @@ export const columns: ColumnDef<Tickets>[] = [
     header: "Created At",
     cell: ({ row }) => {
       let newDate = new Date(row.getValue("createdAt"));
-      let formatted = newDate.toLocaleDateString();
+      let formatted = newDate.toUTCString(); // format(newDate, "PPP");
       return <div className="text-center font-medium">{formatted}</div>;
     },
   },
@@ -42,7 +43,7 @@ export const columns: ColumnDef<Tickets>[] = [
     header: "Updated At",
     cell: ({ row }) => {
       let newDate = new Date(row.getValue("updatedAt"));
-      let formatted = newDate.toLocaleDateString();
+      let formatted = newDate.toUTCString(); // format(newDate, "PPP");
       return <div className="text-center font-medium">{formatted}</div>;
     },
   },

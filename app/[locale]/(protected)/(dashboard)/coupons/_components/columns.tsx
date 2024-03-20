@@ -11,9 +11,10 @@ import {
 import { Coupons } from "@/constants/types";
 import { MinusCircleIcon } from "@heroicons/react/24/outline";
 import { ColumnDef } from "@tanstack/react-table";
+import { format } from "date-fns";
 export const columns: ColumnDef<Coupons>[] = [
   // {
-  //   accessorKey: "id",
+  //   accessorKey: "uuid",
   //   header: "Id",
   // },
   {
@@ -43,22 +44,22 @@ export const columns: ColumnDef<Coupons>[] = [
   },
   {
     accessorKey: "start",
-    header: "Start",
-    cell: ({ row }) => {
-      let newDate = new Date(row.getValue("start"));
+    header: "Start Date",
+    // cell: ({ row }) => {
+    //   let newDate = new Date(row.getValue("start"));
 
-      let formatted = newDate.toLocaleDateString();
-      return <div className="text-center font-medium">{formatted}</div>;
-    },
+    //   let formatted = format(newDate, "PPP");
+    //   return <div className="text-center font-medium">{formatted}</div>;
+    // },
   },
   {
     accessorKey: "end",
-    header: "End",
-    cell: ({ row }) => {
-      let newDate = new Date(row.getValue("end"));
-      let formatted = newDate.toLocaleDateString();
-      return <div className="text-center font-medium">{formatted}</div>;
-    },
+    header: "End Date",
+    // cell: ({ row }) => {
+    //   let newDate = new Date(row.getValue("end"));
+    //   let formatted = format(newDate, "PPP"); // newDate.toLocaleDateString();
+    //   return <div className="text-center font-medium">{formatted}</div>;
+    // },
   },
 
   {

@@ -4,12 +4,12 @@ import * as z from "zod";
 import bcrypt from "bcryptjs";
 
 //import { update } from "@/auth";
-import { db } from "@/lib/db";
+
 import { SettingsSchema } from "@/schemas";
 import { getUserByEmail, getUserById } from "@/data/auth/user";
 import { currentUser } from "@/lib/auth";
-import { generateVerificationToken } from "@/lib/tokens";
-import { sendVerificationEmail } from "@/lib/mail";
+// import { generateVerificationToken } from "@/lib/tokens";
+// import { sendVerificationEmail } from "@/lib/mail";
 
 export const settings = async (
   values: z.infer<typeof SettingsSchema>
@@ -40,13 +40,7 @@ export const settings = async (
       return { error: "Email already in use!" }
     }
 
-    const verificationToken = await generateVerificationToken(
-      values.email
-    );
-    await sendVerificationEmail(
-      verificationToken.email,
-      verificationToken.token,
-    );
+
 
     return { success: "Verification email sent!" };
   }
@@ -69,12 +63,12 @@ export const settings = async (
     values.newPassword = undefined;
   }
 
-  const updatedUser = await db.user.update({
-    where: { id: dbUser.id },
-    data: {
-      ...values,
-    }
-  });
+  // const updatedUser = await db.user.update({
+  //   where: { id: dbUser.id },
+  //   data: {
+  //     ...values,
+  //   }
+  // });
 
   // update({
   //   user: {

@@ -1,6 +1,54 @@
 import * as z from "zod";
 import { UserRole } from "@prisma/client";
 
+
+const CouponStatus = z.enum(['Activated', 'Deactivated']);
+export const CupounsSchema = z.object({
+  uuid: z.optional(z.string().uuid({ message: "Invalid UUID" })),
+  code: z.string({
+    required_error: "Code is required",
+    invalid_type_error: "code must be string",
+  }
+  ),
+  description: z.string({
+    required_error: "Description is required",
+  }),
+  start: z.date({
+    required_error: 'start date is required',
+
+  }),  // Long (Timestamp in UTC zone )
+  end: z.date({
+    required_error: 'end date is required',
+
+  }), //Long (Timestamp in UTC zone )
+  usage: z.optional(z.number({
+    required_error: "Usage is required",
+    description: "blaaaaaaa blaaa",
+  })),
+  percentage: z.optional(z.number({
+    required_error: "precentage is required",
+    invalid_type_error: "it must be float number",
+  }),),
+  price: z.optional(z.number()),
+}).refine((data) => {
+  if (data.end < data.start) {
+    return false;
+  }
+  return true;
+}, {
+  message: "End date must be after the Start date",
+  path: ["end"]
+})
+
+export const MetaDataSchema = z.object({
+  aboutAr: z.string(),
+  aboutEn: z.string(),
+  termsAndConditionsAr: z.string(),
+  termsAndConditionsEn: z.string(),
+  privacyPolicyAr: z.string(),
+  privacyPolicyEn: z.string(),
+});
+
 export const SettingsSchema = z.object({
   name: z.optional(z.string()),
   isTwoFactorEnabled: z.optional(z.boolean()),

@@ -71,11 +71,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <CardWrapper
-      headerLabel={t("welcome-back")}
-      backButtonLabel={t("ask.register")}
-      backButtonHref={`/${locale}/auth/register`}
-      showSocial>
+    <CardWrapper headerLabel={t("welcome-back")}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-4">
@@ -132,15 +128,7 @@ export const LoginForm = () => {
                           type="password"
                         />
                       </FormControl>
-                      <Button
-                        size="sm"
-                        variant="link"
-                        asChild
-                        className="px-0 font-normal">
-                        <Link href={`/${locale}/auth/reset`}>
-                          Forgot password?
-                        </Link>
-                      </Button>
+
                       <FormMessage />
                     </FormItem>
                   )}

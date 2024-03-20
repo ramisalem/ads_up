@@ -2,10 +2,11 @@
 export default {
 
     'welcome': 'Hello ',
-    'client': 'Client component',
+    'client': 'User Info',
     'home': 'Dasboard Page',
     'auth': 'ADSUP Dashboard',
     'auth-page': 'Welcome back',
+    'header.sign': 'Sign In ',
     'sign': 'Sign In ',
     'logout': 'Log Out',
     'settings': "Settings",
@@ -18,6 +19,9 @@ export default {
     'advertisment': "Advertisment",
     'helpcenter': "Help Center",
     'coupon': "Coupons ",
+    'header.add-coupn': "Add New Coupon",
+    'add-coupn': "Add New Coupon",
+    "go-back": "Back",
     'showmenu': "Hide Menu",
     "sidebar": {
         "home": "Dashboard ",
