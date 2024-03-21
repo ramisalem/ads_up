@@ -37,9 +37,9 @@ export function DataTable<TData, TValue>({
   return (
     <div className="flex w-auto flex-col mx-auto  md:p-4">
       <h1 className={`${lusitana.className} mb-8 text-xl md:text-2xl`}>
-        all tickets
+        all Reported Ads
       </h1>
-      <Search placeholder="Search Ads Report..." />
+      <Search placeholder="Search Ads...  i will add filter later" />
       <div className="mt-6 flow-root w-full">
         <div className="overflow-x-auto">
           <div className="inline-block md:min-w-full align-middle">

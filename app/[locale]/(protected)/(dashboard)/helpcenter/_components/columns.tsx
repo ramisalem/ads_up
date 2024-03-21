@@ -11,7 +11,7 @@ import {
 import { Tickets } from "@/constants/types";
 import { MinusCircleIcon } from "@heroicons/react/24/outline";
 import { ColumnDef } from "@tanstack/react-table";
-import { format } from "date-fns";
+//import { format } from "date-fns";
 export const columns: ColumnDef<Tickets>[] = [
   {
     accessorKey: "title",
@@ -29,24 +29,24 @@ export const columns: ColumnDef<Tickets>[] = [
     accessorKey: "createdBy",
     header: "Created By",
   },
-  {
-    accessorKey: "createdAt",
-    header: "Created At",
-    cell: ({ row }) => {
-      let newDate = new Date(row.getValue("createdAt"));
-      let formatted = newDate.toUTCString(); // format(newDate, "PPP");
-      return <div className="text-center font-medium">{formatted}</div>;
-    },
-  },
-  {
-    accessorKey: "updatedAt",
-    header: "Updated At",
-    cell: ({ row }) => {
-      let newDate = new Date(row.getValue("updatedAt"));
-      let formatted = newDate.toUTCString(); // format(newDate, "PPP");
-      return <div className="text-center font-medium">{formatted}</div>;
-    },
-  },
+  // {
+  //   accessorKey: "createdAt",
+  //   header: "Created At",
+  //   cell: ({ row }) => {
+  //     let newDate = new Date(row.getValue("createdAt"));
+  //     let formatted = newDate.toUTCString(); // format(newDate, "PPP");
+  //     return <div className="text-center font-medium">{formatted}</div>;
+  //   },
+  // },
+  // {
+  //   accessorKey: "updatedAt",
+  //   header: "Updated At",
+  //   cell: ({ row }) => {
+  //     let newDate = new Date(row.getValue("updatedAt"));
+  //     let formatted = newDate.toUTCString(); // format(newDate, "PPP");
+  //     return <div className="text-center font-medium">{formatted}</div>;
+  //   },
+  // },
   {
     id: "actions",
     cell: ({ row }) => {

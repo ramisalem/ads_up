@@ -12,8 +12,8 @@ export type Tickets = {
     description: string,
     status: "Opened" | "Closed",
     createdBy: string,
-    createdAt: string,
-    updatedAt: string,
+    // createdAt: string,
+    // updatedAt: string,
     // uuid: String,
     // title: String
     // description: String 
@@ -32,13 +32,13 @@ export type Metadata = {
 
 export type AdvType = {
     uuid: string | any,
-    title: String,
-    categoryId: String,   // (UUID)
-    description: String,
+    title: string,
+    categoryId: string,   // (UUID)
+    description: string,
     price: number,
-    link?: String, //(Optional)
+    link?: string, //(Optional)
     images: string, //[]to be discuss later
-    location: String, // (UUID)
+    location: string, // (UUID)
     start: string,//(Timestamp in UTC zone )
     end: string, // (Timestamp in UTC zone )
     status: 'Pending' | 'Published' | 'Deleted' | 'Hidden',
@@ -55,23 +55,3 @@ export type Coupons = {
     status: 'Activated' | 'Deactivated',
 }
 
-export const AdvSchema = z.object({
-    id: z.number(),
-    title: z.string(),
-    description: z.string(),
-    video: z.string(),
-    audio: z.string(),
-    pdf: z.string(),
-    thumbnail: z.string(),
-    status: z.string(),
-    createdAt: z.string(),
-    updatedAt: z.string(),
-    starOfMonth: z.boolean(),
-    paid: z.boolean(),
-    views: z.number(),
-    listens: z.number(),
-    age: z.number(),
-    gender: z.string(),
-    categoryId: z.number(),
-    subcategoryId: z.number()
-});

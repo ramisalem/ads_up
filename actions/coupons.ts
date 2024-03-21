@@ -26,7 +26,7 @@ export const getCoupons = async (): Promise<any> => {
 export const addCoupon = async (values: z.infer<typeof CupounsSchema>,): Promise<any> => {
     let error;
     const validatedFields = CupounsSchema.safeParse(values);
-
+    console.log(validatedFields)
     if (!validatedFields.success) {
         return { error: "Invalid fields!" };
     }

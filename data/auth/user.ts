@@ -29,15 +29,7 @@ export const login = async (email: string, password: string) => {
     )
     console.log('decoded token');
     console.log(decodedToken);
-    // if (token) {
-    //   const user = await getUserByEmail(email, password, token)
-    //   console.log(user);
-    //   return user;
 
-    // }
-    //console.log(res)
-    //console.log(user);
-    //console.log({ res });
     return decodedToken;
   } catch {
     return null;
@@ -45,10 +37,7 @@ export const login = async (email: string, password: string) => {
 };
 export const getUserByEmail = async (token: string, email?: string, password?: string) => {
   try {
-    //const user = await db.user.findUnique({ where: { email } });
-    // console.log('in get user by email')
-    // console.log(`token ${token}`);
-    // console.log(`email ${email}`)
+
     const response = await fetch(`https://dev.deemat.net/api/v1/users/profile`, {
       method: "GET",
       headers: {
@@ -60,8 +49,7 @@ export const getUserByEmail = async (token: string, email?: string, password?: s
     const res = await response.json();
     //console.log({ res })
     const { user } = res;
-    //const user = res.data.filter((user) => user.email === email)
-    // console.log(res)
+
     return user;
   } catch (e) {
     console.log(e)

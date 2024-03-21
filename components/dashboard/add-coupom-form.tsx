@@ -18,6 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Calendar } from "@/components/ui/calendar";
+import { v4 as uuidv4 } from "uuid";
 
 import {
   Popover,
@@ -29,14 +30,15 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { addCoupon } from "@/actions/coupons";
-import { useI18n, useCurrentLocale } from "@/locales/client";
+import { useI18n } from "@/locales/client";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "@radix-ui/react-icons";
+
 export const AddCouponForm = () => {
   const t = useI18n();
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
 
-  const locale = useCurrentLocale();
+  // const locale = useCurrentLocale();
 
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
@@ -45,27 +47,28 @@ export const AddCouponForm = () => {
   const form = useForm<z.infer<typeof CupounsSchema>>({
     resolver: zodResolver(CupounsSchema),
     defaultValues: {
-      code: "21xx",
-      description: "blabla",
-      start: new Date("2023-12-20"),
-      end: new Date("2024-03-11"),
-      usage: 100,
-      percentage: 10.0,
-      price: 30,
+      code: "",
+      description: "",
+      start: new Date(),
+      end: new Date(),
+      usage: 0,
+      percentage: 0.0,
+      price: 0.0,
     },
   });
 
   const onSubmit = (values: z.infer<typeof CupounsSchema>) => {
-    console.log("in submit");
+    //console.log("in submit");
     setError("");
     setSuccess("");
-
+    values.uuid = uuidv4();
     startTransition(() => {
-      console.log(values);
+      // console.log(values);
       addCoupon(values)
         .then((data) => {
           console.log(data);
           if (data?.error) {
+            console.log("in error");
             form.reset();
             setError(data.error);
           }
