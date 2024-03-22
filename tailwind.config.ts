@@ -20,8 +20,8 @@ const config = {
     extend: {
       gridTemplateColumns: {
         "13": "repeat(13, minmax(0, 1fr))",
-        "sidebar": " 230px auto ", //for sidebar layout
-        "sidebar-collapsed": "64px auto", //for collapsed sidebar
+        "sidebar": " 130px auto ", //for sidebar layout
+        "sidebar-collapsed": "24px auto", //for collapsed sidebar
       },
       colors: {
         border: "hsl(var(--border))",

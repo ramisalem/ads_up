@@ -10,7 +10,7 @@ import { SideNavItem } from "@/constants/types";
 //import { Icon } from "@iconify/react";
 import { motion, useCycle } from "framer-motion";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
-
+import { useScopedI18nUntyped } from "@/locales/client";
 type MenuItemWithSubMenuProps = {
   item: SideNavItem;
   toggleOpen: () => void;
@@ -40,23 +40,24 @@ const HeaderMobile = () => {
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
   const [isOpen, toggleOpen] = useCycle(false, true);
+  const t = useScopedI18nUntyped("sidebar");
 
   return (
     <motion.nav
       initial={false}
       animate={isOpen ? "open" : "closed"}
       custom={height}
-      className={`fixed inset-0 z-50 w-full md:hidden ${
+      className={`fixed inset-0 z-50 w-[90%] md:hidden ${
         isOpen ? "" : "pointer-events-none"
       }`}
       ref={containerRef}>
       <motion.div
-        className="absolute inset-0 right-0 w-full bg-white"
+        className="absolute inset-0 right-0 w-[90%] bg-white"
         variants={sidebar}
       />
       <motion.ul
         variants={variants}
-        className="absolute grid w-full gap-3 px-10 py-16">
+        className="absolute grid w-[90%] gap-3 px-10 py-16">
         {SIDENAVITEMS.map((item, idx) => {
           const isLastItem = idx === SIDENAVITEMS.length - 1; // Check if it's the last item
 
@@ -72,7 +73,7 @@ const HeaderMobile = () => {
                     className={`flex w-full text-2xl ${
                       item.href === pathname ? "font-bold" : ""
                     }`}>
-                    {item.name}
+                    {t(`${item.name}`)}
                   </Link>
                 </MenuItem>
               )}
@@ -150,6 +151,7 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
 }) => {
   const pathname = usePathname();
   const [subMenuOpen, setSubMenuOpen] = useState(false);
+  const t = useScopedI18nUntyped("sidebar");
 
   return (
     <>
@@ -160,7 +162,7 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
           <div className="flex flex-row justify-between w-full items-center">
             <span
               className={`${pathname.includes(item.href) ? "font-bold" : ""}`}>
-              {item.name}
+              {t(`${item.name}`)}
             </span>
             <div className={`${subMenuOpen && "rotate-180"}`}>
               <ChevronDownIcon className="w-6" />
@@ -180,7 +182,7 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
                     className={` ${
                       subItem.href === pathname ? "font-bold" : ""
                     }`}>
-                    {subItem.name}
+                    {t(`${subItem.name}`)}
                   </Link>
                 </MenuItem>
               );

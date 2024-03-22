@@ -36,7 +36,7 @@ export default function MainLayout({
           />
         </div>
 
-        <div className="flex flex-shrink-1 mt-3 md:flex-none  md:overflow-y-auto md:p-6">
+        <div className="flex flex-shrink-1  md:flex-none md:mx-3  md:overflow-y-auto md:px-5">
           {children}
         </div>
       </div>

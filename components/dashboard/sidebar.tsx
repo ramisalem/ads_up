@@ -40,16 +40,16 @@ export default function SideNav({ collapsed, setCollapsed }: props) {
         className={clsx(
           " flex items-start justify-center md:w-full rounded-md   mt-5 text-sm font-medium hover:text-blue-600   md:justify-start",
           {
-            "hidden h-[40px] md:w-10 mt-5 md:block ": !collapsed,
+            "hidden h-[40px] md:w-10 mt-2 md:block ": !collapsed,
           }
         )}>
         <button
           className="  "
           onClick={(collapsed) => setCollapsed(!collapsed)}>
           {collapsed ? (
-            <ChevronLeftIcon className="p-0 w-6 m-4 rounded-full bg-blue-900  text-slate-50" />
+            <ChevronLeftIcon className="p-0 w-6 m-3 rounded-full bg-blue-900  text-slate-50" />
           ) : (
-            <ChevronRightIcon className="p-0 w-6 m-4 rounded-full bg-black text-slate-50 md:block" />
+            <ChevronRightIcon className="p-0 w-6 m-3 rounded-full bg-black text-slate-50 md:block" />
           )}
 
           {/* {collapsed && <div className="hidden md:block">{t("showmenu")}</div>} */}
@@ -65,7 +65,7 @@ export default function SideNav({ collapsed, setCollapsed }: props) {
         </div> */}
         <div
           className={clsx(
-            "  h-10 flex-wrap flex-col   gap-1  rounded-md bg-gray-50  text-sm font-medium hover:bg-sky-100 hover:text-blue-600  md:flex-none md:justify-start md:p-2 md:px-3 ",
+            "  h-10 flex-wrap flex-col  gap-1  rounded-md bg-gray-50  text-sm font-medium hover:bg-sky-100 hover:text-blue-600  md:flex-none md:justify-start md:p-2 md:px-3 ",
             {
               "h-[40px] w-10  ": !collapsed,
             }

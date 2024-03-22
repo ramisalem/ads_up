@@ -12,7 +12,7 @@ export default async function Advertisment() {
   const { data, error, isError } = await getAllAds();
   return (
     // <Suspense fallback={"Loading..."}>
-    <div className="container border-radius md:mx-2 my-6  md:w-full  items-start rounded-lg bg-slate-50 px-6 py-4 md:flex-col">
+    <div className="container border-radius  my-6  md:w-full  items-start rounded-lg bg-slate-50 px-3 py-4 md:flex-col">
       <p className="text">{t("advertisment")}</p>
       <span>
         {

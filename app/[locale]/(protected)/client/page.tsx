@@ -7,7 +7,12 @@ const ClientPage = () => {
   const user = useCurrentUser();
   const t = useI18n();
 
-  return <UserInfo label={t("client") + "📱"} user={user} />;
+  return (
+    <div className="">
+      {" "}
+      <UserInfo label={t("client") + "📱"} user={user} />
+    </div>
+  );
 };
 
 export default ClientPage;

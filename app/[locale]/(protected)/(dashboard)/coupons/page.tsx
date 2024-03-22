@@ -13,7 +13,7 @@ export default async function Page() {
   const t = await getI18n();
   return (
     // <Suspense fallback={"...loading"}>
-    <div className="container border-radius md:mx-4 my-6  md:w-full  items-start rounded-lg bg-slate-50 px-6 py-4 md:flex-col">
+    <div className="container border-radius my-6  md:w-full  items-start rounded-lg bg-slate-50 px-6 py-4 md:flex-col">
       <div className="flex flex-row items-center justify-between">
         <p className="text">{t("coupon")}</p>
         <AddCouponButton asChild={true}>

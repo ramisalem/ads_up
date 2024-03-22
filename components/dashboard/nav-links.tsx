@@ -45,7 +45,7 @@ const MenuItem = ({
           <button
             onClick={toggleSubMenu}
             className={clsx(
-              "flex h-10  items-center justify-between gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 ",
+              "flex h-10  items-center justify-between  rounded-md bg-gray-50 p-2 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 ",
               {
                 "bg-sky-100 text-blue-600": pathname.indexOf(item.href) !== -1,
                 "flex w-10  ": !isSidebarCollapsed,
@@ -69,7 +69,7 @@ const MenuItem = ({
           </button>
 
           {subMenuOpen && isSidebarCollapsed && (
-            <div className="my-2 ml-12   space-x-1  flex flex-col space-y-4">
+            <div className="my-2 ml-12  flex flex-col space-y-3">
               {item.subMenuItems?.map((subItem, idx) => {
                 //const SubLinkIcon = subItem.icon ;
                 return (
