@@ -4,10 +4,12 @@ import * as z from "zod";
 import { CupounsSchema } from "@/schemas";
 export const getCoupons = async (): Promise<any> => {
     let error;
-
+    let url = process.env.NODE_ENV === 'production' ? process.env.PROD_BASE_URL : process.env.DEV_BASE_URL;
+    console.log('in get coupons')
+    console.log(url);
     try {
         const res = await fetch(
-            "http://localhost:3000/api/coupons", {
+            `${url}coupons`, {
             method: "GET",
             next: { revalidate: 100 }
 
@@ -24,6 +26,7 @@ export const getCoupons = async (): Promise<any> => {
 }
 
 export const addCoupon = async (values: z.infer<typeof CupounsSchema>,): Promise<any> => {
+    console.log('in add coupons');
     let error;
     const validatedFields = CupounsSchema.safeParse(values);
     console.log(validatedFields)
@@ -31,15 +34,21 @@ export const addCoupon = async (values: z.infer<typeof CupounsSchema>,): Promise
         return { error: "Invalid fields!" };
     }
     try {
+        // const res = await fetch(
+        //     "https://wy8r3.wiremockapi.cloud/api/v1/coupons", {
+        //     method: "POST",
+
+        //     body: JSON.stringify(validatedFields)
+        // });
         const res = await fetch(
-            "https://wy8r3.wiremockapi.cloud/api/v1/coupons", {
+            "http://localhost:3000/api/coupons", {
             method: "POST",
 
             body: JSON.stringify(validatedFields)
         });
         const data = await res.json();
-        //console.log({ res })
-        console.log({ data })
+
+        //console.log('data from post', { data })
         return { success: 'Coupon added successfully' };
     } catch (e) {
         console.log(e);

@@ -33,5 +33,14 @@ export default {
         'coupons': 'Coupons',
         'helpcenter': 'Help Center',
     },
+    "pagination": {
+        "go-to-first-page": "Go to first page",
+        "go-to-prev-page": "Go to previous page",
+        "go-to-next-page": "Go to next page",
+        "go-to-last-page": "Go to last page",
+        "row-per-page": "Rows per page",
+        "page": "Page",
+        "of": "Of ",
+    },
     'switchLocale': "Change language",
 } as const

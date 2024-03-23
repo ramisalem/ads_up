@@ -1,8 +1,10 @@
 "use client";
 import {
   ColumnDef,
+  ColumnFiltersState,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
@@ -17,6 +19,9 @@ import {
 } from "@/components/ui/table";
 import Search from "@/components/dashboard/search";
 import { lusitana } from "@/components/fonts";
+import { DataTablePagination } from "@/components/dashboard/tables-components/data-table-pagination";
+import { DataTableToolbar } from "@/components/dashboard/tables-components/data-table-toolbar";
+import React from "react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -27,9 +32,17 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  );
   const table = useReactTable({
     data,
     columns,
+    state: {
+      columnFilters,
+    },
+    getFilteredRowModel: getFilteredRowModel(),
+    onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
@@ -39,7 +52,8 @@ export function DataTable<TData, TValue>({
       <h1 className={`${lusitana.className} mb-8 text-xl md:text-2xl`}>
         all Reported Ads
       </h1>
-      <Search placeholder="Search Ads...  i will add filter later" />
+      {/* <Search placeholder="Search Ads...  i will add filter later" /> */}
+      <DataTableToolbar table={table} type="ads" label="Filtered Ads ..." />
       <div className="mt-6 flow-root w-full">
         <div className="overflow-x-auto">
           <div className="inline-block md:min-w-full align-middle">
@@ -98,6 +112,7 @@ export function DataTable<TData, TValue>({
                 </TableBody>
               </Table>
             </div>
+            <DataTablePagination table={table} />
           </div>
         </div>
       </div>

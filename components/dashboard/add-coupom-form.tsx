@@ -2,7 +2,7 @@
 
 import * as z from "zod";
 import { useForm } from "react-hook-form";
-import { useState, useTransition } from "react";
+import { SetStateAction, useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
@@ -36,9 +36,9 @@ import { CalendarIcon } from "@radix-ui/react-icons";
 
 export const AddCouponForm = () => {
   const t = useI18n();
-  // const searchParams = useSearchParams();
+  const searchParams = useSearchParams();
 
-  // const locale = useCurrentLocale();
+  //const locale = useCurrentLocale();
 
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
@@ -47,38 +47,45 @@ export const AddCouponForm = () => {
   const form = useForm<z.infer<typeof CupounsSchema>>({
     resolver: zodResolver(CupounsSchema),
     defaultValues: {
-      code: "",
-      description: "",
-      start: new Date(),
-      end: new Date(),
+      uuid: uuidv4(),
+      code: "xx32jsncx",
+      description: "hiiii",
+      start: new Date("2023-12-01"),
+      end: new Date("2024-03-01"),
       usage: 0,
       percentage: 0.0,
       price: 0.0,
     },
   });
 
+  const onInvalid = (errors: any) => console.error(errors);
   const onSubmit = (values: z.infer<typeof CupounsSchema>) => {
-    //console.log("in submit");
+    // console.log("in submit form values ");
     setError("");
     setSuccess("");
     values.uuid = uuidv4();
     startTransition(() => {
       // console.log(values);
       addCoupon(values)
-        .then((data) => {
-          console.log(data);
-          if (data?.error) {
-            console.log("in error");
-            form.reset();
-            setError(data.error);
-          }
+        .then(
+          (data: {
+            error: SetStateAction<string | undefined>;
+            success: SetStateAction<string | undefined>;
+          }) => {
+            console.log(data);
+            if (data?.error) {
+              console.log("in error");
+              form.reset();
+              setError(data.error);
+            }
 
-          if (data?.success) {
-            console.log("in success");
-            form.reset();
-            setSuccess(data.success);
+            if (data?.success) {
+              console.log("in success");
+              form.reset();
+              setSuccess(data.success);
+            }
           }
-        })
+        )
         .catch(() => setError("Something went wrong"));
     });
   };
@@ -86,7 +93,9 @@ export const AddCouponForm = () => {
   return (
     <FormCardWrapper headerLabel="add-coupn">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form
+          onSubmit={form.handleSubmit(onSubmit, onInvalid)}
+          className="space-y-6">
           <div className="space-y-4">
             <>
               <FormField
@@ -126,6 +135,7 @@ export const AddCouponForm = () => {
                   </FormItem>
                 )}
               />
+
               <div className="flex flex-row flex-shrink-1 justify-between ">
                 <FormField
                   control={form.control}
@@ -243,7 +253,7 @@ export const AddCouponForm = () => {
                         <Input
                           {...field}
                           disabled={isPending}
-                          placeholder=""
+                          placeholder="0.0"
                           type="number"
                         />
                       </FormControl>
@@ -273,12 +283,13 @@ export const AddCouponForm = () => {
                 />
               </div>
             </>
+
+            <FormError message={error} />
+            <FormSuccess message={success} />
+            <Button disabled={isPending} type="submit" className="w-full">
+              confirm
+            </Button>
           </div>
-          <FormError message={error} />
-          <FormSuccess message={success} />
-          <Button disabled={isPending} type="submit" className="w-full">
-            confirm
-          </Button>
         </form>
       </Form>
     </FormCardWrapper>

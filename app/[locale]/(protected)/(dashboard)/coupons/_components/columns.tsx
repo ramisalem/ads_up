@@ -11,12 +11,13 @@ import {
 import { Coupons } from "@/constants/types";
 import { MinusCircleIcon } from "@heroicons/react/24/outline";
 import { ColumnDef } from "@tanstack/react-table";
+import { CouponStatuses } from "@/components/dashboard/tables-components/statuses";
 import { format } from "date-fns";
 export const columns: ColumnDef<Coupons>[] = [
-  // {
-  //   accessorKey: "uuid",
-  //   header: "Id",
-  // },
+  {
+    accessorKey: "title",
+    header: "title",
+  },
   {
     accessorKey: "code",
     header: "Code",
@@ -41,7 +42,29 @@ export const columns: ColumnDef<Coupons>[] = [
   {
     accessorKey: "status",
     header: "Status",
+    cell: ({ row }) => {
+      const status = CouponStatuses.find(
+        (status) => status.value === row.getValue("status")
+      );
+
+      if (!status) {
+        return null;
+      }
+
+      return (
+        <div className="flex w-[100px] items-center">
+          {status.icon && (
+            <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />
+          )}
+          <span>{status.label}</span>
+        </div>
+      );
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id));
+    },
   },
+
   {
     accessorKey: "start",
     header: "Start Date",

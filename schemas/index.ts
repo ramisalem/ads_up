@@ -33,7 +33,7 @@ export const CupounsSchema = z.object({
     required_error: "price is required",
     invalid_type_error: "it must be float number",
   }).multipleOf(0.00001).positive(),
-  status: CouponStatus
+  status: z.optional(CouponStatus),
 }).refine((data) => {
   if (data.end < data.start) {
     return false;

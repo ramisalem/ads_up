@@ -33,6 +33,15 @@ export default {
         'coupons': 'الكوبونات',
         'helpcenter': 'طلبات المساعدة',
     },
+    "pagination": {
+        "go-to-first-page": "الذهاب للصفحة الاولى",
+        "go-to-prev-page": "العودة للصفحة السابقه",
+        "go-to-next-page": "الانتقال للصفحة التالية",
+        "go-to-last-page": "الانتقال للصفحة الاخيره",
+        "row-per-page": 'عدد الصفوف بالصفحة',
+        "page": "صفحة رقم",
+        "of": "من ",
+    },
     'switchLocale': "تغيير اللغة",
 
 } as const
