@@ -34,7 +34,7 @@ import { useI18n } from "@/locales/client";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
-import { addNewCoupons, addNewCoupon } from "@/redux/slices/couponsSlice";
+import { addNewCoupon } from "@/redux/slices/couponsSlice";
 import { Coupons } from "@/constants/types";
 
 export const AddCouponForm = () => {

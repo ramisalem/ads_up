@@ -22,7 +22,7 @@ const initialState: ICoupons = {
     hasError: false,
 };
 
-export const getALLCoupons = createAsyncThunk<Coupons>('coupons/getAllCoupons', async (_date, { dispatch }) => {
+export const getALLCoupons = createAsyncThunk<any>('coupons/getAllCoupons', async (_data, { dispatch }) => {
     console.log('in get coupons action');
 
     const data = await getCoupons();
