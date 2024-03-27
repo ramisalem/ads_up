@@ -3,8 +3,8 @@ import { Coupons } from "@/constants/types";
 import * as z from "zod";
 import { CupounsSchema } from "@/schemas";
 
-export const getCoupons = async (): Promise<Coupons[] | string> => {
-  let error;
+export const getCoupons = async (): Promise<Coupons[]> => {
+  let error: any;
   let url =
     process.env.NODE_ENV === "production"
       ? process.env.PROD_BASE_URL
