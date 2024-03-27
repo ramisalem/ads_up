@@ -1,10 +1,4 @@
 import * as z from "zod";
-//import { UserRole } from "@prisma/client";
-
-// export const enum UserRole {
-//   ADMIN,
-//   USER
-// }
 
 export const UserRole = z.enum(['ADMIN', 'USER']);
 
@@ -39,7 +33,7 @@ export const CupounsSchema = z.object({
     required_error: "price is required",
     invalid_type_error: "it must be float number",
   }).multipleOf(0.00001).positive(),
-  status: z.optional(z.string()),
+  status: z.optional(CouponStatus),
 }).refine((data) => {
   if (data.end < data.start) {
     return false;

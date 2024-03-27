@@ -1,77 +1,83 @@
-"use server";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
-import { jwtDecode } from 'jwt-decode';
-import { User } from "next-auth";
-//import {cookie} from 'next-cookie';
 interface UserResponse {
-  name: string,
-  email: string,
-  id: string | number | any,
-  password: string,
-  emailVerified: boolean,
-  isTwoFactorEnabled: boolean,
+  name: string;
+  email: string;
+  id: string | number | any;
+  password: string;
+  emailVerified: boolean;
+  isTwoFactorEnabled: boolean;
 }
+
 export const login = async (email: string, password: string) => {
   try {
-    //const user = await db.user.findUnique({ where: { email } });
-    const authResponse = await fetch("https://dev.deemat.net/api/v1/users/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-    const res = await authResponse.json();
-
-    const { token } = res;
-    const decodedToken = jwtDecode<{ sub: string; exp: number, userId: number, token: string }>(
-      token
-    )
-    console.log('decoded token');
+    const authResponse = await axios.post(
+      "https://dev.deemat.net/api/v1/users/login",
+      { email, password },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const { token } = authResponse.data;
+    const decodedToken = jwtDecode<{
+      sub: string;
+      exp: number;
+      userId: number;
+      token: string;
+    }>(token);
+    console.log("decoded token");
     console.log(decodedToken);
 
     return decodedToken;
-  } catch {
-    return null;
-  }
-};
-export const getUserByEmail = async (token: string, email?: string, password?: string) => {
-  try {
-
-    const response = await fetch(`https://dev.deemat.net/api/v1/users/profile`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "authorization": `bearer ${token}`
-      },
-      // body: JSON.stringify({ email }),
-    });
-    const res = await response.json();
-    //console.log({ res })
-    const { user } = res;
-
-    return user;
-  } catch (e) {
-    console.log(e)
+  } catch (error) {
+    console.error("There was a problem with your Axios request:", error);
     return null;
   }
 };
 
-export const getUserById = async (id: string | number | any): Promise<UserResponse | null> => {
+export const getUserByEmail = async (
+  token: string,
+  email?: string,
+  password?: string
+) => {
   try {
-    //const user = await db.user.findUnique({ where: { id } });
-    console.log(`in get user by id ${id}`)
-    const user = <UserResponse><unknown>await fetch(`https://dev.deemat.net/api/v1/users/profile/?id=${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-        //"authorization": `bearer ${token}`
-      },
-      body: JSON.stringify({ id: id }),
-    });
-    console.log(`after get user`)
+    const response = await axios.get(
+      "https://dev.deemat.net/api/v1/users/profile",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `bearer ${token}`,
+        },
+      }
+    );
+    const { user } = response.data;
     return user;
-  } catch {
+  } catch (error) {
+    console.error("There was a problem with your Axios request:", error);
+    return null;
+  }
+};
+
+export const getUserById = async (
+  id: string | number | any
+): Promise<UserResponse | null> => {
+  try {
+    console.log(`in get user by id ${id}`);
+    const response = await axios.get(
+      `https://dev.deemat.net/api/v1/users/profile/?id=${id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(`after get user`);
+    return response.data;
+  } catch (error) {
+    console.error("There was a problem with your Axios request:", error);
     return null;
   }
 };

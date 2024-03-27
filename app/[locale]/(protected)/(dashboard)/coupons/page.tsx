@@ -20,7 +20,7 @@ export default function Page() {
     store.dispatch(getALLCoupons());
     initialized.current = true;
   }
-  //const name = useAppSelector(state => state.coupons.couponsList)
+
   const { couponsList, isLoading } = useAppSelector((state) => state.coupons);
   // const t = await getI18n();
   const t = useI18n();

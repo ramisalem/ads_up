@@ -1,4 +1,4 @@
-"use server";
+//import axios from "axios";
 import { Tickets } from "@/constants/types";
 import { revalidatePath } from 'next/cache'
 export const getTickets = async (): Promise<Tickets[] | any> => {

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Loader() {
+export default function Loadser() {
   return (
     <div role="status">
       <svg
