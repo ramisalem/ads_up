@@ -1,10 +1,16 @@
 import * as z from "zod";
-import { UserRole } from "@prisma/client";
+//import { UserRole } from "@prisma/client";
 
+// export const enum UserRole {
+//   ADMIN,
+//   USER
+// }
+
+export const UserRole = z.enum(['ADMIN', 'USER']);
 
 const CouponStatus = z.enum(['Activated', 'Deactivated']);
 export const CupounsSchema = z.object({
-  uuid: z.optional(z.string().uuid({ message: "Invalid UUID" })),
+  uuid: z.string().uuid({ message: "Invalid UUID" }),
   code: z.coerce.string({
     required_error: "Code is required",
     invalid_type_error: "code must be string",
@@ -33,7 +39,7 @@ export const CupounsSchema = z.object({
     required_error: "price is required",
     invalid_type_error: "it must be float number",
   }).multipleOf(0.00001).positive(),
-  status: z.optional(CouponStatus),
+  status: z.optional(z.string()),
 }).refine((data) => {
   if (data.end < data.start) {
     return false;
@@ -56,7 +62,7 @@ export const MetaDataSchema = z.object({
 export const SettingsSchema = z.object({
   name: z.optional(z.string()),
   isTwoFactorEnabled: z.optional(z.boolean()),
-  role: z.enum([UserRole.ADMIN, UserRole.USER]),
+  role: UserRole,//z.enum([UserRole.ADMIN, UserRole.USER]),
   email: z.optional(z.string().email()),
   password: z.optional(z.string().min(6)),
   newPassword: z.optional(z.string().min(6)),

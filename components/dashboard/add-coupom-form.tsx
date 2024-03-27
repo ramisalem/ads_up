@@ -33,13 +33,14 @@ import { addCoupon } from "@/actions/coupons";
 import { useI18n } from "@/locales/client";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "@radix-ui/react-icons";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
+import { addNewCoupons, addNewCoupon } from "@/redux/slices/couponsSlice";
+import { Coupons } from "@/constants/types";
 
 export const AddCouponForm = () => {
   const t = useI18n();
-  const searchParams = useSearchParams();
-
-  //const locale = useCurrentLocale();
-
+  const dispatch = useAppDispatch();
+  const { hasError, isLoading } = useAppSelector((state) => state.coupons);
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -48,10 +49,10 @@ export const AddCouponForm = () => {
     resolver: zodResolver(CupounsSchema),
     defaultValues: {
       uuid: uuidv4(),
-      code: "xx32jsncx",
+      code: "xx32x",
       description: "hiiii",
       start: new Date("2023-12-01"),
-      end: new Date("2024-03-01"),
+      end: new Date(),
       usage: 0,
       percentage: 0.0,
       price: 0.0,
@@ -64,29 +65,35 @@ export const AddCouponForm = () => {
     setError("");
     setSuccess("");
     values.uuid = uuidv4();
+    // values.status = "Activated";
     startTransition(() => {
       // console.log(values);
-      addCoupon(values)
-        .then(
-          (data: {
-            error: SetStateAction<string | undefined>;
-            success: SetStateAction<string | undefined>;
-          }) => {
-            console.log(data);
-            if (data?.error) {
-              console.log("in error");
-              form.reset();
-              setError(data.error);
-            }
+      // addCoupon(values)
+      //   .then(
+      //     (data: {
+      //       error: SetStateAction<string | undefined>;
+      //       success: SetStateAction<string | undefined>;
+      //     }) => {
+      //       console.log(data);
+      //       if (data?.error) {
+      //         console.log("in error");
+      //         form.reset();
+      //         setError(data.error);
+      //       }
 
-            if (data?.success) {
-              console.log("in success");
-              form.reset();
-              setSuccess(data.success);
-            }
-          }
-        )
-        .catch(() => setError("Something went wrong"));
+      //       if (data?.success) {
+      //         console.log("in success");
+      //         form.reset();
+      //         setSuccess(data.success);
+      //       }
+      //       }
+      //     )
+      //     .catch(() => setError("Something went wrong"));
+      dispatch(addNewCoupon(values as Coupons));
+      if (!hasError) {
+        form.reset();
+        setSuccess("success");
+      }
     });
   };
 

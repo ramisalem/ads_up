@@ -9,8 +9,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Tickets } from "@/constants/types";
-import { MinusCircleIcon } from "@heroicons/react/24/outline";
+
 import { ColumnDef } from "@tanstack/react-table";
+import { TicketStatuses } from "@/components/dashboard/tables-components/statuses";
+import { DotsHorizontalIcon, CrossCircledIcon } from "@radix-ui/react-icons";
+import { closeTickets } from "@/actions/helpcenter";
 //import { format } from "date-fns";
 export const columns: ColumnDef<Tickets>[] = [
   {
@@ -33,57 +36,65 @@ export const columns: ColumnDef<Tickets>[] = [
   {
     accessorKey: "status",
     header: "Status",
+    cell: ({ row }) => {
+      const status = TicketStatuses.find(
+        (status) => status.value === row.getValue("status")
+      );
+
+      if (!status) {
+        return null;
+      }
+
+      return (
+        <div className="flex w-[100px] items-center">
+          {status.icon && (
+            <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />
+          )}
+          <span>{status.label}</span>
+        </div>
+      );
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id));
+    },
   },
   {
     accessorKey: "createdBy",
     header: "Created By",
   },
-  // {
-  //   accessorKey: "createdAt",
-  //   header: "Created At",
-  //   cell: ({ row }) => {
-  //     let newDate = new Date(row.getValue("createdAt"));
-  //     let formatted = newDate.toUTCString(); // format(newDate, "PPP");
-  //     return <div className="text-center font-medium">{formatted}</div>;
-  //   },
-  // },
-  // {
-  //   accessorKey: "updatedAt",
-  //   header: "Updated At",
-  //   cell: ({ row }) => {
-  //     let newDate = new Date(row.getValue("updatedAt"));
-  //     let formatted = newDate.toUTCString(); // format(newDate, "PPP");
-  //     return <div className="text-center font-medium">{formatted}</div>;
-  //   },
-  // },
+
   {
     id: "actions",
     cell: ({ row }) => {
       const ticket = row.original;
+      if (row.getValue("status") === "Opened")
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <DotsHorizontalIcon className="h-4 w-4" />
+                <span className="sr-only">Open menu</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem
+                onClick={() => {
+                  // navigator.clipboard.writeText(ticket.uuid);
+                  console.log({ ticket });
 
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MinusCircleIcon className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => {
-                navigator.clipboard.writeText(ticket.uuid);
-                console.log({ ticket });
-              }}>
-              Copy Ticket ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View Ticket</DropdownMenuItem>
-            <DropdownMenuItem>Delete Ticket</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
+                  closeTickets(ticket.uuid);
+                }}>
+                Close Ticket
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              {/* <DropdownMenuItem>View Ticket</DropdownMenuItem>
+            <DropdownMenuItem>Delete Ticket</DropdownMenuItem> */}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+
+      return <CrossCircledIcon className="w-6 h-6 text-red-500" />;
     },
   },
 ];

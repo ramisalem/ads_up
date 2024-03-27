@@ -2,16 +2,17 @@
 import { Coupons } from "@/constants/types";
 import * as z from "zod";
 import { CupounsSchema } from "@/schemas";
-export const getCoupons = async (): Promise<any> => {
+import { revalidatePath } from "next/cache";
+export const getCoupons = async (): Promise<[Coupons] | any> => {
     let error;
     let url = process.env.NODE_ENV === 'production' ? process.env.PROD_BASE_URL : process.env.DEV_BASE_URL;
     console.log('in get coupons')
-    console.log(url);
+    //console.log(url);
     try {
         const res = await fetch(
             `${url}coupons`, {
             method: "GET",
-            next: { revalidate: 100 }
+            next: { revalidate: 1 }
 
         });
 
@@ -26,8 +27,10 @@ export const getCoupons = async (): Promise<any> => {
 }
 
 export const addCoupon = async (values: z.infer<typeof CupounsSchema>,): Promise<any> => {
-    console.log('in add coupons');
+    console.log('in add coupons server action');
+
     let error;
+    let url = process.env.NODE_ENV === 'production' ? process.env.PROD_BASE_URL : process.env.DEV_BASE_URL;
     const validatedFields = CupounsSchema.safeParse(values);
     console.log(validatedFields)
     if (!validatedFields.success) {
@@ -41,15 +44,15 @@ export const addCoupon = async (values: z.infer<typeof CupounsSchema>,): Promise
         //     body: JSON.stringify(validatedFields)
         // });
         const res = await fetch(
-            "http://localhost:3000/api/coupons", {
+            `${url}coupons`, {
             method: "POST",
-
+            next: { revalidate: 1 },
             body: JSON.stringify(validatedFields)
         });
         const data = await res.json();
-
+        revalidatePath('/')
         //console.log('data from post', { data })
-        return { success: 'Coupon added successfully' };
+        return { success: 'Coupon added successfully', data };
     } catch (e) {
         console.log(e);
         if (typeof e === "string") error = e;
@@ -57,5 +60,5 @@ export const addCoupon = async (values: z.infer<typeof CupounsSchema>,): Promise
         return error;
     }
 
-    //   console.log(validatedFields);
+
 }

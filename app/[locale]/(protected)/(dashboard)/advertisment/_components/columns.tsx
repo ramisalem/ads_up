@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { AdvType } from "@/constants/types";
 import { MinusCircleIcon } from "@heroicons/react/24/outline";
+import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 //import { format } from "date-fns";
@@ -90,7 +91,7 @@ export const columns: ColumnDef<AdvType>[] = [
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
               <span className="sr-only">Open menu</span>
-              <MinusCircleIcon className="h-4 w-4" />
+              <DotsHorizontalIcon className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">

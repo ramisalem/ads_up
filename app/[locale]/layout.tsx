@@ -4,6 +4,7 @@ import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import StoreProvider from "@/app/storeProvider";
 import { I18nProviderClient } from "../../locales/client";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +28,7 @@ export default async function RootLayout({
         <body className={inter.className}>
           {/* <I18nProviderClient locale={locale}> */}
           <Toaster />
-          {children}
+          <StoreProvider>{children}</StoreProvider>
           {/* </I18nProviderClient> */}
         </body>
       </html>

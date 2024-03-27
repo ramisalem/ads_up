@@ -8,7 +8,7 @@ let res = {
             "usage": 2,
             "description": "Harum sint qui quas repellendus est repudiandae. Saepe eum vero doloribus. Quasi inventore magnam est et pariatur.",
             "price": 1,
-            "precentage": 1,
+            "percentage": 1,
             "status": "ACTIVE",
             "start": "October 21, 2016",
             "end": "October 21, 2016"
@@ -19,7 +19,7 @@ let res = {
             "usage": 7,
             "description": "Rerum temporibus quam. Ut voluptatem quaerat porro. Temporibus incidunt quia. Dolorum omnis excepturi consequatur. Blanditiis cumque dolorem.",
             "price": 7,
-            "precentage": 0,
+            "percentage": 0,
             "status": "ACTIVE",
             "start": "October 21, 2016",
             "end": "October 21, 2016"
@@ -30,7 +30,7 @@ let res = {
             "usage": 9,
             "description": "Debitis dolor dicta quae. Voluptas in sunt quidem dolor ab reiciendis et. Est minus et et pariatur id ut nemo.",
             "price": 4,
-            "precentage": 3,
+            "percentage": 3,
             "status": "ACTIVE",
             "start": "October 21, 2016",
             "end": "October 21, 2016"
@@ -41,7 +41,7 @@ let res = {
             "usage": 9,
             "description": "Debitis dolor dicta quae. Voluptas in sunt quidem dolor ab reiciendis et. Est minus et et pariatur id ut nemo.",
             "price": 4,
-            "precentage": 3,
+            "percentage": 3,
             "status": "ACTIVE",
             "start": "October 21, 2016",
             "end": "October 21, 2016"
@@ -52,7 +52,7 @@ let res = {
             "usage": 9,
             "description": "Debitis dolor dicta quae. Voluptas in sunt quidem dolor ab reiciendis et. Est minus et et pariatur id ut nemo.",
             "price": 4,
-            "precentage": 3,
+            "percentage": 3,
             "status": "ACTIVE",
             "start": "October 21, 2016",
             "end": "October 21, 2016"
@@ -63,7 +63,7 @@ let res = {
             "usage": 9,
             "description": "Debitis dolor dicta quae. Voluptas in sunt quidem dolor ab reiciendis et. Est minus et et pariatur id ut nemo.",
             "price": 4,
-            "precentage": 3,
+            "percentage": 3,
             "status": "Deactivated",
             "start": "October 21, 2016",
             "end": "October 21, 2016"
@@ -74,7 +74,7 @@ let res = {
             "usage": 9,
             "description": "Debitis dolor dicta quae. Voluptas in sunt quidem dolor ab reiciendis et. Est minus et et pariatur id ut nemo.",
             "price": 4,
-            "precentage": 3,
+            "percentage": 3,
             "status": "Deactivated",
             "start": "October 21, 2016",
             "end": "October 21, 2016"
@@ -85,7 +85,7 @@ let res = {
             "usage": 9,
             "description": "Debitis dolor dicta quae. Voluptas in sunt quidem dolor ab reiciendis et. Est minus et et pariatur id ut nemo.",
             "price": 4,
-            "precentage": 3,
+            "percentage": 3,
             "status": "Deactivated",
             "start": "October 21, 2016",
             "end": "October 21, 2016"
@@ -98,12 +98,12 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-    console.log('in server post')
+    // console.log('in server post')
     const data = await req.json();
 
     const coupons = data ?? '';
-    console.log(coupons);
+    // console.log(coupons);
     res.coupons.push(coupons);
-    return Response.json(res);
+    return Response.json(data);
 
 }

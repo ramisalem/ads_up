@@ -13,6 +13,7 @@ import { MinusCircleIcon } from "@heroicons/react/24/outline";
 import { ColumnDef } from "@tanstack/react-table";
 import { CouponStatuses } from "@/components/dashboard/tables-components/statuses";
 import { format } from "date-fns";
+import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 export const columns: ColumnDef<Coupons>[] = [
   {
     accessorKey: "title",
@@ -35,8 +36,8 @@ export const columns: ColumnDef<Coupons>[] = [
     header: "Price",
   },
   {
-    accessorKey: "precentage",
-    header: "Precentage",
+    accessorKey: "percentage",
+    header: "Percentage",
   },
 
   {
@@ -95,7 +96,7 @@ export const columns: ColumnDef<Coupons>[] = [
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
               <span className="sr-only">Open menu</span>
-              <MinusCircleIcon className="h-4 w-4" />
+              <DotsHorizontalIcon className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -103,7 +104,7 @@ export const columns: ColumnDef<Coupons>[] = [
             <DropdownMenuItem
               onClick={() => {
                 navigator.clipboard.writeText(coupon.uuid);
-                console.log(coupon.uuid);
+                console.log(coupon);
               }}>
               Copy Coupon ID
             </DropdownMenuItem>

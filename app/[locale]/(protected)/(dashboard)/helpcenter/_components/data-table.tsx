@@ -17,7 +17,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Search from "@/components/dashboard/search";
+
 import { lusitana } from "@/components/fonts";
 import { DataTablePagination } from "@/components/dashboard/tables-components/data-table-pagination";
 import { DataTableToolbar } from "@/components/dashboard/tables-components/data-table-toolbar";
@@ -35,6 +35,7 @@ export function DataTable<TData, TValue>({
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
+
   const table = useReactTable({
     data,
     columns,

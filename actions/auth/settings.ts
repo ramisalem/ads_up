@@ -8,8 +8,7 @@ import bcrypt from "bcryptjs";
 import { SettingsSchema } from "@/schemas";
 import { getUserByEmail, getUserById } from "@/data/auth/user";
 import { currentUser } from "@/lib/auth";
-// import { generateVerificationToken } from "@/lib/tokens";
-// import { sendVerificationEmail } from "@/lib/mail";
+
 
 export const settings = async (
   values: z.infer<typeof SettingsSchema>
