@@ -56,6 +56,7 @@ export const AddCouponForm = () => {
       usage: 0,
       percentage: 0.0,
       price: 0.0,
+      status: "Activated",
     },
   });
 
@@ -65,7 +66,7 @@ export const AddCouponForm = () => {
     setError("");
     setSuccess("");
     values.uuid = uuidv4();
-    // values.status = "Activated";
+    values.status = "Activated";
     startTransition(() => {
       // console.log(values);
       // addCoupon(values)

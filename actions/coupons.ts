@@ -5,15 +5,15 @@ import { CupounsSchema } from "@/schemas";
 
 export const getCoupons = async (): Promise<Coupons[]> => {
     let error: any;
+
     let url =
         process.env.NODE_ENV === "production"
-            ? process.env.PROD_BASE_URL
-            : process.env.DEV_BASE_URL;
-    console.log("in get coupons");
-    console.log(url);
+            ? process.env.NEXT_PUBLIC_PROD_BASE_URL : process.env.NEXT_PUBLIC_DEV_BASE_URL;
+
+    //console.log('url in get coupons', process.env.NEXT_PUBLIC_DEV_BASE_URL);
     try {
-        const res = await axios.get(`${url}coupons`, {
-            params: { revalidate: 100 },
+        const res = await axios.get(`${url}/coupons`, {
+            // params: { revalidate: 100 },
         });
         return res.data.coupons;
     } catch (e: any) {
@@ -33,20 +33,23 @@ export const addCoupon = async (
 ): Promise<any> => {
     console.log("in add coupons");
     let error;
+    let url =
+        process.env.NODE_ENV === "production"
+            ? process.env.NEXT_PUBLIC_PROD_BASE_URL : process.env.NEXT_PUBLIC_DEV_BASE_URL;
     const validatedFields = CupounsSchema.safeParse(values);
-    console.log(validatedFields);
+
     if (!validatedFields.success) {
         return { error: "Invalid fields!" };
     }
     try {
         const res = await axios.post(
-            "http://localhost:3000/api/coupons",
+            `${url}/coupons`,
             validatedFields
         );
         // const res = await axios.post("https://wy8r3.wiremockapi.cloud/api/v1/coupons", validatedFields);
-        // const data = await res.data;
+        const data = await res.data;
         //console.log('data from post', { data })
-        return { success: "Coupon added successfully" };
+        return { success: "Coupon added successfully", data };
     } catch (e: any) {
         console.log(e);
         if (e.response) {
