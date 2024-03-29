@@ -6,7 +6,7 @@ import { SetStateAction, useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
-import { CupounsSchema } from "@/schemas";
+import { CupounsSchema, CouponStatus } from "@/schemas";
 import { Input } from "@/components/ui/input";
 import {
   Form,
@@ -36,6 +36,7 @@ import { CalendarIcon } from "@radix-ui/react-icons";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { addNewCoupon } from "@/redux/slices/couponsSlice";
 import { Coupons } from "@/constants/types";
+import Loader from "./loader";
 
 export const AddCouponForm = () => {
   const t = useI18n();
@@ -49,14 +50,14 @@ export const AddCouponForm = () => {
     resolver: zodResolver(CupounsSchema),
     defaultValues: {
       uuid: uuidv4(),
-      code: "xx32x",
-      description: "hiiii",
-      start: new Date("2023-12-01"),
+      code: "",
+      description: "",
+      start: new Date(),
       end: new Date(),
       usage: 0,
       percentage: 0.0,
       price: 0.0,
-      status: "Activated",
+      status: CouponStatus.Enum.Activated,
     },
   });
 
@@ -66,34 +67,15 @@ export const AddCouponForm = () => {
     setError("");
     setSuccess("");
     values.uuid = uuidv4();
-    values.status = "Activated";
-    startTransition(() => {
-      // console.log(values);
-      // addCoupon(values)
-      //   .then(
-      //     (data: {
-      //       error: SetStateAction<string | undefined>;
-      //       success: SetStateAction<string | undefined>;
-      //     }) => {
-      //       console.log(data);
-      //       if (data?.error) {
-      //         console.log("in error");
-      //         form.reset();
-      //         setError(data.error);
-      //       }
 
-      //       if (data?.success) {
-      //         console.log("in success");
-      //         form.reset();
-      //         setSuccess(data.success);
-      //       }
-      //       }
-      //     )
-      //     .catch(() => setError("Something went wrong"));
-      dispatch(addNewCoupon(values as Coupons));
+    startTransition(() => {
+      dispatch(addNewCoupon(values));
       if (!hasError) {
         form.reset();
         setSuccess("success");
+        setTimeout(() => setSuccess(""), 2000);
+      } else {
+        setError("error");
       }
     });
   };
@@ -294,9 +276,13 @@ export const AddCouponForm = () => {
 
             <FormError message={error} />
             <FormSuccess message={success} />
-            <Button disabled={isPending} type="submit" className="w-full">
-              confirm
-            </Button>
+            {isPending === true ? (
+              <Loader />
+            ) : (
+              <Button disabled={isPending} type="submit" className="w-full">
+                confirm
+              </Button>
+            )}
           </div>
         </form>
       </Form>

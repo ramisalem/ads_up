@@ -14,6 +14,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { TicketStatuses } from "@/components/dashboard/tables-components/statuses";
 import { DotsHorizontalIcon, CrossCircledIcon } from "@radix-ui/react-icons";
 import { closeTickets } from "@/actions/helpcenter";
+import CloseTicketComponent from "./close-ticket-component";
 //import { format } from "date-fns";
 export const columns: ColumnDef<Tickets>[] = [
   {
@@ -78,16 +79,8 @@ export const columns: ColumnDef<Tickets>[] = [
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => {
-                  // navigator.clipboard.writeText(ticket.uuid);
-                  console.log({ ticket });
+              <CloseTicketComponent ticket={ticket} />
 
-                  closeTickets(ticket.uuid);
-                }}>
-                Close Ticket
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
               {/* <DropdownMenuItem>View Ticket</DropdownMenuItem>
             <DropdownMenuItem>Delete Ticket</DropdownMenuItem> */}
             </DropdownMenuContent>

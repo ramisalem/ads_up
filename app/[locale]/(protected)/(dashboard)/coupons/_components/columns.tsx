@@ -62,6 +62,9 @@ export const columns: ColumnDef<Coupons>[] = [
       );
     },
     filterFn: (row, id, value) => {
+      console.log("row", row);
+      console.log("id", id);
+      console.log("value", value);
       return value.includes(row.getValue(id));
     },
   },
@@ -100,17 +103,13 @@ export const columns: ColumnDef<Coupons>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            {/* <DropdownMenuLabel>Actions</DropdownMenuLabel> */}
             <DropdownMenuItem
               onClick={() => {
                 navigator.clipboard.writeText(coupon.uuid);
                 console.log(coupon);
               }}>
-              Copy Coupon ID
+              change Coupon Status
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View Coupon</DropdownMenuItem>
-            <DropdownMenuItem>Delete Coupon</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

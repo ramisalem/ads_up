@@ -63,15 +63,15 @@ export const columns: ColumnDef<AdvType>[] = [
       );
     },
   },
-  // {
-  //   accessorKey: "Start",
-  //   header: "Start",
-  //   cell: ({ row }) => {
-  //     let newDate = new Date(row.getValue("start"));
-  //     let formatted = newDate.toUTCString(); // format(newDate, "PPP");
-  //     return <div className="text-center font-medium">{formatted}</div>;
-  //   },
-  // },
+  {
+    accessorKey: "start",
+    header: "Start",
+    cell: ({ row }) => {
+      let newDate = new Date(row.getValue("start"));
+      let formatted = newDate.toUTCString(); // format(newDate, "PPP");
+      return <div className="text-center font-medium">{formatted}</div>;
+    },
+  },
   {
     accessorKey: "end",
     header: "End",

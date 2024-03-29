@@ -18,7 +18,7 @@ export const Navbar = () => {
         <ADSUPLogo />
       </div>
       <div className="flex flex-wrap justify-center items-center">
-        <div className="flex items-start  mx-1 w-24 justify-end   rounded-md border-solid border-cyan-900 border-2  bg-blue">
+        <div className="flex items-start  mx-1 justify-end   rounded-md border-solid   border-2  bg-blue">
           <LocaleSwitcher />
         </div>
         <UserButton />

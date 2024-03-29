@@ -30,8 +30,8 @@ export const AdsStatuses = [
 
 export const CouponStatuses = [
     {
-        value: "ACTIVE",
-        label: "Active",
+        value: "Activated",
+        label: "Activated",
         icon: CheckCircledIcon,
     },
     {

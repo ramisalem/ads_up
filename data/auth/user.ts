@@ -1,11 +1,13 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { UserRole } from "@/constants/types";
 
 interface UserResponse {
   name: string;
   email: string;
   id: string | number | any;
   password: string;
+  role: UserRole,
   emailVerified: boolean;
   isTwoFactorEnabled: boolean;
 }
@@ -74,7 +76,7 @@ export const getUserById = async (
         },
       }
     );
-    console.log(`after get user`);
+    //console.log(`after get user`);
     return response.data;
   } catch (error) {
     console.error("There was a problem with your Axios request:", error);

@@ -93,17 +93,21 @@ let res = {
     ]
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+    console.log('in get coupons rout');
+    // console.log(req.headers)
     return Response.json(res);
 }
 
 export async function POST(req: NextRequest) {
-    // console.log('in server post')
+
     const data = await req.json();
 
     const coupons = data ?? '';
-    // console.log(coupons);
+
     res.coupons.push(coupons);
     return Response.json(data);
+
+
 
 }

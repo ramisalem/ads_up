@@ -1,9 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+
 import { Tickets } from "@/constants/types";
-import { CupounsSchema } from "@/schemas/index"
-import { addCoupon, getCoupons } from "@/actions/coupons";
-import { staticGenerationAsyncStorage } from "next/dist/client/components/static-generation-async-storage.external";
+
 import { closeTickets, getTickets } from "@/actions/helpcenter";
 
 
@@ -26,11 +24,9 @@ export const getAllTickets = createAsyncThunk<Tickets>('tickets/getAllTickets', 
     return data;
 });
 export const closeTicket = createAsyncThunk<Tickets, any>('tickets/closeTickets', async (payload: Tickets, { dispatch }) => {
-    console.log('in close  tickets action');
-    // console.log({ payload });
-    //state.isLoading=true;
+
     const data = await closeTickets(payload.uuid);
-    //console.log('data after new add action', data)
+
     return data;
 });
 
@@ -46,13 +42,13 @@ export const ticketsSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(getAllTickets.fulfilled, (state: ITickets, action: any) => {
-            console.log('in reducer');
+
             state.isLoading = false;
             state.hasError = false;
             state.ticketsList = action.payload;
         });
         builder.addCase(closeTicket.fulfilled, (state: ITickets, action: any) => {
-            console.log('ain close ticket', action.payload.data);
+
             state.isLoading = false;
             state.hasError = false;
             state.ticketsList.map((ticket) => ticket.uuid === action.payload.data.uuid ? { ...ticket, state: action.payload.data.status } : ticket)
@@ -65,5 +61,5 @@ export const ticketsSlice = createSlice({
     },
 });
 export const { ticketsState } = ticketsSlice.actions;
-//export const couponsSlice.actions;
+
 export const ticketsReducer = ticketsSlice.reducer;

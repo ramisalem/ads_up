@@ -38,6 +38,20 @@ export function DataTableToolbar<TData>({
           }
           className="h-8 w-[150px] lg:w-[250px]"
         />
+        {/* {type == "ads" ? (
+          <Input
+            type="date"
+            placeholder="filter by date"
+            value={(table.getColumn("end")?.getFilterValue() as string) ?? ""}
+            onChange={(event) => {
+              console.log("data", event.target.value);
+              table.getColumn("end")?.setFilterValue(event.target.value);
+            }}
+            className="h-8 w-[150px] lg:w-[250px]"
+          />
+        ) : (
+          <></>
+        )} */}
         {table.getColumn("status") && (
           <DataTableFacetedFilter
             column={table.getColumn("status")}

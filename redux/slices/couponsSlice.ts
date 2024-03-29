@@ -47,13 +47,13 @@ export const couponsSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(getALLCoupons.fulfilled, (state: ICoupons, action: any) => {
-            console.log('in reducer');
+
             state.isLoading = false;
             state.hasError = false;
             state.couponsList = action.payload;
         });
         builder.addCase(addNewCoupon.fulfilled, (state: ICoupons, action: any) => {
-            //  console.log('ain add new coupon builder', action.payload.data);
+
             state.isLoading = false;
             state.hasError = false;
             state.couponsList.push(action.payload.data);

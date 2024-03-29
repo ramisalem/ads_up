@@ -2,7 +2,7 @@ import * as z from "zod";
 
 export const UserRole = z.enum(['ADMIN', 'USER']);
 
-const CouponStatus = z.enum(['Activated', 'Deactivated']);
+export const CouponStatus = z.enum(['Activated', 'Deactivated']);
 export const CupounsSchema = z.object({
   uuid: z.string().uuid({ message: "Invalid UUID" }),
   code: z.coerce.string({
@@ -33,7 +33,7 @@ export const CupounsSchema = z.object({
     required_error: "price is required",
     invalid_type_error: "it must be float number",
   }).multipleOf(0.00001).positive(),
-  status: z.optional(CouponStatus),
+  status: z.optional(CouponStatus.default('Activated')),
 }).refine((data) => {
   if (data.end < data.start) {
     return false;

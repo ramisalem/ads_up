@@ -29,6 +29,7 @@ export type Metadata = {
 
 }
 
+const AdvStatus = z.enum(['Pending', 'Published', 'Deleted', 'Hidden']);
 export type AdvType = {
     uuid: string | any,
     title: string,
@@ -40,7 +41,7 @@ export type AdvType = {
     location: string, // (UUID)
     start: string,//(Timestamp in UTC zone )
     end: string, // (Timestamp in UTC zone )
-    status: 'Pending' | 'Published' | 'Deleted' | 'Hidden',
+    status: z.infer<typeof AdvStatus>, //'Pending' | 'Published' | 'Deleted' | 'Hidden',
 }
 export type Coupons = z.infer<typeof CupounsSchema>;
 // export type Coupons = {

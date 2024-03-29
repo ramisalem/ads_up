@@ -79,6 +79,7 @@ export const config = {
   matcher: [
     '/',
     '/(ar|en)/:path*',
-    "/((?!api|auth|_next|.*\\..*).*)"
+    "/((?!api|auth|_next|.*\\..*).*)",
+    '/((?!api|_next/static|_next/image|favicon.ico).*)'
   ]
 }

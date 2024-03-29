@@ -1,18 +1,21 @@
 //import axios from "axios";
 import { Tickets } from "@/constants/types";
+import { revalidatePath } from "next/cache";
 //import { revalidatePath } from 'next/cache'
+
 export const getTickets = async (): Promise<Tickets[] | any> => {
-    // const res = await fetch(
-    //     "https://65f372c4105614e654a089c4.mockapi.io/api/v1/tickets"
-    // );
+
     let error;
     let url = process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_PROD_BASE_URL : process.env.NEXT_PUBLIC_DEV_BASE_URL;
-    //console.log('url in get tickets', process.env.NEXT_DEV_BASE_URL);
+
     try {
         const res = await fetch(
             `${url}/tickets`, {
             method: "GET",
-            next: { revalidate: 1 }
+
+            headers: {
+                'mode': 'no-cors',
+            }
 
         });
 
@@ -27,9 +30,6 @@ export const getTickets = async (): Promise<Tickets[] | any> => {
 }
 
 export const closeTickets = async (ticketId: string): Promise<any> => {
-    // const res = await fetch(
-    //     "https://65f372c4105614e654a089c4.mockapi.io/api/v1/tickets"
-    // );
 
     let error;
     let url = process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_PROD_BASE_URL : process.env.NEXT_PUBLIC_DEV_BASE_URL;
@@ -38,7 +38,7 @@ export const closeTickets = async (ticketId: string): Promise<any> => {
         const res = await fetch(
             `${url}/tickets`, {
             method: "PUT",
-            next: { revalidate: 1 },
+
             headers: {
                 param: ticketId
             },

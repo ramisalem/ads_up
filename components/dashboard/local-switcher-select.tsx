@@ -3,7 +3,13 @@
 import clsx from "clsx";
 import { ChangeEvent, ReactNode, useTransition } from "react";
 import { useChangeLocale, useCurrentLocale } from "@/locales/client";
-
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 type Props = {
   children: ReactNode;
   defaultValue: string;
@@ -20,9 +26,11 @@ export default function LocaleSwitcherSelect({
   //const currentLocale = useCurrentLocale();
   const changeLocale = useChangeLocale();
 
-  function onSelectChange(event: ChangeEvent<HTMLSelectElement>) {
-    const nextLocale: any = event.target.value;
-
+  function onSelectChange(
+    value: string /*event: ChangeEvent<HTMLSelectElement>*/
+  ) {
+    // const nextLocale: any = event.target.value;
+    const nextLocale: any = value;
     startTransition(() => {
       try {
         changeLocale(nextLocale);
@@ -40,13 +48,24 @@ export default function LocaleSwitcherSelect({
         isPending && "transition-opacity [&:disabled]:opacity-30"
       )}>
       <p className="sr-only">{label}</p>
-      <select
+      {/* <select
         className="inline-flex appearance-light bg-transparent"
         defaultValue={defaultValue}
         disabled={isPending}
         onChange={(value) => onSelectChange(value)}>
         {children}
-      </select>
+      </select> */}
+      <Select
+        // disabled={isPending}
+        onValueChange={onSelectChange}
+        defaultValue={defaultValue}
+        value="hhhh">
+        <SelectTrigger>
+          <SelectValue placeholder={defaultValue}>{defaultValue}</SelectValue>
+        </SelectTrigger>
+
+        <SelectContent className="text-black">{children}</SelectContent>
+      </Select>
     </label>
   );
 }
