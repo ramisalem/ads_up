@@ -12,10 +12,11 @@ import { AdvType } from "@/constants/types";
 import { MinusCircleIcon } from "@heroicons/react/24/outline";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
+import { format } from "date-fns";
 import Image from "next/image";
 //import { format } from "date-fns";
 
-export const columns: ColumnDef<AdvType>[] = [
+export const columns: ColumnDef<AdvType, any>[] = [
   {
     accessorKey: "title",
     header: "Title",
@@ -68,16 +69,58 @@ export const columns: ColumnDef<AdvType>[] = [
     header: "Start",
     cell: ({ row }) => {
       let newDate = new Date(row.getValue("start"));
-      let formatted = newDate.toUTCString(); // format(newDate, "PPP");
+      let formatted = format(newDate, "PPP");
       return <div className="text-center font-medium">{formatted}</div>;
     },
+    filterFn: (row, columnId, value) => {
+      const date = new Date(row.getValue(columnId));
+
+      if (!(date instanceof Date)) {
+        console.error(
+          `Value of column "${columnId}" is expected to be a date, but got ${date}`
+        );
+        return false;
+      }
+
+      // const [start, end] = value ?? []; // value => two date input values
+      const start = new Date(value);
+      let end = new Date();
+
+      if (
+        !(start instanceof Date || start === undefined) ||
+        !(end instanceof Date || end === undefined)
+      ) {
+        console.error(
+          `Filter value of column "${columnId}" is expected to be an array of two dates, but got ${value}`
+        );
+        return false;
+      }
+
+      // If one filter defined and date is undefined, filter it
+      if ((start || end) && !date) {
+        return false;
+      }
+
+      if (start && !end) {
+        return date.getTime() >= start.getTime();
+      } else if (!start && end) {
+        return date.getTime() <= end.getTime();
+      } else if (start && end) {
+        return (
+          date.getTime() >= start.getTime() && date.getTime() <= end.getTime()
+        );
+      }
+
+      return true;
+    },
   },
+
   {
     accessorKey: "end",
     header: "End",
     cell: ({ row }) => {
       let newDate = new Date(row.getValue("end"));
-      let formatted = newDate.toUTCString(); // format(newDate, "PPP");
+      let formatted = format(newDate, "PPP");
       return <div className="text-center font-medium">{formatted}</div>;
     },
   },

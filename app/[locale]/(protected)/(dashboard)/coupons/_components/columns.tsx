@@ -62,9 +62,6 @@ export const columns: ColumnDef<Coupons>[] = [
       );
     },
     filterFn: (row, id, value) => {
-      console.log("row", row);
-      console.log("id", id);
-      console.log("value", value);
       return value.includes(row.getValue(id));
     },
   },
