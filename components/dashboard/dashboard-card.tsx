@@ -20,7 +20,7 @@ export const DashboardCardWrapper = ({
   Icon,
 }: CardWrapperProps) => {
   return (
-    <Card className="md:w-[350px] shadow-md">
+    <Card className="flex-1 shadow-md">
       <CardHeader className="w-full flex flex-row gap-y-4 items-center justify-between">
         <h1 className="text-2xl font-semibold">{headerLabel}</h1>
         {Icon}

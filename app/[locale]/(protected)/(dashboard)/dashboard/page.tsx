@@ -12,12 +12,8 @@ export default async function Page() {
   const t = await getI18n();
   return (
     <>
-      {/* <div className="container border-radius md:mx-4 my-6  md:w-full  items-start rounded-lg bg-slate-100  px-6 py-4 ">
-        <p className="text">{t("home")}</p>
-      </div> */}
-      <div className="flex flex-row flex-grow px-6 py-4 my-3 justify-between items-baseline space-x-4">
+      <div className="grid  size-full p-2  overflow-hidden">
         <div className="flex flex-col space-y-2">
-          {/* <div className="flex flex-row space-x-1 justify-between items-center"> */}
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <DashboardCardWrapper headerLabel="Reports" Icon={<CaretUpIcon />}>
               <span>Dashboard</span>
@@ -47,9 +43,7 @@ export default async function Page() {
               <CardContent>bla bla</CardContent>
             </Card>
           </div>
-          {/* <div className="bg-gray-200 h-full">saddam</div> */}
         </div>
-        {/* <div className="flex-1">Table come here</div> */}
       </div>
     </>
   );

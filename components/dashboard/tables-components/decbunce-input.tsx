@@ -1,6 +1,7 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import React from "react";
+import { DateRange } from "react-day-picker";
 
 export function DebouncedInput({
   value: initialValue,
@@ -9,12 +10,12 @@ export function DebouncedInput({
   placeholder,
   ...props
 }: {
-  value: string | number;
-  onChange: (value: string | number) => void;
+  value: string | number | any;
+  onChange: (value: string | number | any) => void;
   debounce?: number;
   placeholder?: string;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange">) {
-  const [value, setValue] = React.useState(initialValue);
+  const [value, setValue] = React.useState<string | number | any>(initialValue);
 
   React.useEffect(() => {
     setValue(initialValue);

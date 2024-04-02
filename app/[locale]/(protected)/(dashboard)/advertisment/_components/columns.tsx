@@ -82,9 +82,8 @@ export const columns: ColumnDef<AdvType, any>[] = [
         return false;
       }
 
-      // const [start, end] = value ?? []; // value => two date input values
-      const start = new Date(value);
-      let end = new Date();
+      const start = value.from;
+      const end = value.to;
 
       if (
         !(start instanceof Date || start === undefined) ||

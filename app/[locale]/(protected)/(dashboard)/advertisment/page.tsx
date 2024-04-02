@@ -11,20 +11,20 @@ export default async function Advertisment() {
   const t = await getI18n();
   const { data, error, isError } = await getAllAds();
   return (
-    // <Suspense fallback={"Loading..."}>
-    <div className="container border-radius  my-6  md:w-full  items-start rounded-lg bg-slate-50 px-3 py-4 md:flex-col">
-      <p className="text">{t("advertisment")}</p>
-      <span>
-        {
-          data && (
-            // data.map((item: AdvType) => (
-            // <AdvertTable ads={data} />
-            <DataTable columns={columns} data={data} />
-          )
-          // ))
-        }
-      </span>
-    </div>
-    // </Suspense>
+    <Suspense fallback={"Loading..."}>
+      <div className="container border-radius  my-6  md:w-full  items-start rounded-lg bg-slate-50 px-3 py-4 md:flex-col">
+        <p className="text">{t("advertisment")}</p>
+        <span>
+          {
+            data && (
+              // data.map((item: AdvType) => (
+              // <AdvertTable ads={data} />
+              <DataTable columns={columns} data={data} />
+            )
+            // ))
+          }
+        </span>
+      </div>
+    </Suspense>
   );
 }

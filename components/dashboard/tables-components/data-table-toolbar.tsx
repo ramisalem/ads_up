@@ -3,18 +3,22 @@
 import { CalendarIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { Table } from "@tanstack/react-table";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import { AdsStatuses, CouponStatuses, TicketStatuses } from "./statuses";
 import { DataTableFacetedFilter } from "./data-table-filtered";
 import { DebouncedInput } from "./decbunce-input";
+import { DateRange, DayPicker } from "react-day-picker";
+import { addDays, format } from "date-fns";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useState } from "react";
+import { cn, isValidDate } from "@/lib/utils";
+import { Calendar } from "@/components/ui/calendar";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -35,7 +39,11 @@ export function DataTableToolbar<TData>({
       ? CouponStatuses
       : TicketStatuses;
 
-  const [searchDate, setSearchDate] = useState(null);
+  const [fdate, setDate] = useState<DateRange | undefined>({
+    from: new Date("01-2-1990"),
+    to: new Date(),
+  });
+
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
@@ -51,27 +59,73 @@ export function DataTableToolbar<TData>({
           <Popover>
             <PopoverTrigger asChild>
               <Button
+                id="date"
                 variant={"outline"}
-                className="w-[220px] pl-3 text-left font-normal">
-                <span className="text-muted-foreground">
-                  {searchDate ? searchDate : "Pick a date to filter"}
-                </span>
-                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                className={cn(
+                  "w-[300px] justify-start text-left font-normal",
+                  !fdate && "text-muted-foreground"
+                )}>
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {fdate?.from ? (
+                  fdate.to ? (
+                    <>
+                      {format(fdate.from, "LLL dd, y")} -{" "}
+                      {format(fdate.to, "LLL dd, y")}
+                    </>
+                  ) : (
+                    format(fdate.from, "LLL dd, y")
+                  )
+                ) : (
+                  <span>Pick a date</span>
+                )}
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
-              <DebouncedInput
+              <Calendar
+                initialFocus
+                mode="range"
+                selected={fdate}
+                onSelect={(value) => {
+                  // console.log("value in onChange", value);
+                  setDate(value);
+                  if (value?.to !== undefined) {
+                    // console.log("value.to is ", value?.to);
+                    table.getColumn("start")?.setFilterValue(fdate);
+                  }
+                }}
+                numberOfMonths={2}
+              />
+              {/* <DebouncedInput
                 type="date"
-                debounce={1000}
-                placeholder="filter by start date"
-                value={
-                  (table.getColumn("start")?.getFilterValue() as string) ?? ""
-                }
-                onChange={(value: any) => {
-                  setSearchDate(value);
-                  table.getColumn("start")?.setFilterValue(value);
+                debounce={2000}
+                value={fdate?.from ? format(fdate.from, "LLL dd, y") : ""}
+                onChange={(value) => {
+                  if (isValidDate(value)) {
+                    setDate((prevDate) => ({
+                      ...prevDate,
+                      from: value,
+                    }));
+
+                    table.getColumn("start")?.setFilterValue(fdate);
+                  }
                 }}
               />
+              <DebouncedInput
+                type="date"
+                debounce={2000}
+                value={fdate?.to ? format(fdate?.to, "LLL dd, y") : ""}
+                onChange={(value) => {
+                  if (isValidDate(value)) {
+                    setDate((prevDate) => ({
+                      ...prevDate,
+                      from: fdate?.from,
+                      to: value,
+                    }));
+
+                    table.getColumn("start")?.setFilterValue(fdate);
+                  }
+                }}
+              /> */}
             </PopoverContent>
           </Popover>
         ) : (
@@ -89,8 +143,9 @@ export function DataTableToolbar<TData>({
           <Button
             variant="ghost"
             onClick={() => {
+              setDate({ from: new Date() });
+
               table.resetColumnFilters();
-              setSearchDate(null);
             }}
             className="h-8 px-2 lg:px-3">
             Reset
