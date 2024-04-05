@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { couponsReducer } from './slices/couponsSlice'
 import { ticketsReducer } from './slices/ticketsSlice'
+import { metadataReducer } from './slices/metadataSlice';
 export const makeStore = () => {
     return configureStore({
         reducer: {
             coupons: couponsReducer,
             tickets: ticketsReducer,
+            metadata: metadataReducer,
         }
     })
 }

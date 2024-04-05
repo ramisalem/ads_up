@@ -1,4 +1,4 @@
-import { CupounsSchema, UserRole } from '@/schemas';
+import { CupounsSchema, MetaDataSchema, UserRole } from '@/schemas';
 import { z } from 'zod';
 
 
@@ -19,15 +19,16 @@ export type Tickets = {
     createdBy: string,
 
 }
-export type Metadata = {
-    aboutAr: String,
-    aboutEn: String,
-    termsAndConditionsAr: String,
-    termsAndConditionsEn: String,
-    privacyPolicyAr: String,
-    privacyPolicyEn: String,
+export type Metadata = z.infer<typeof MetaDataSchema>;
+// export type Metadata = {
+//     aboutAr?: String,
+//     aboutEn?: String,
+//     termsAndConditionsAr?: String,
+//     termsAndConditionsEn?: String,
+//     privacyPolicyAr?: String,
+//     privacyPolicyEn?: String,
 
-}
+// }
 
 const AdvStatus = z.enum(['Pending', 'Published', 'Deleted', 'Hidden']);
 export type AdvType = {

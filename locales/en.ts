@@ -23,6 +23,11 @@ export default {
     'add-coupn': "Add New Coupon",
     "go-back": "Back",
     'showmenu': "Hide Menu",
+    'header.update-metadata': "Update Privacy, About and Terms and Conditions",
+    'termsAndConditions': "Terms and Conditions",
+    'privacyPolicy': "Privacy Policy",
+    'about': "About us",
+
     "sidebar": {
         "home": "Dashboard ",
         "advertisment": "Advertisment",
@@ -32,6 +37,7 @@ export default {
         'settings': "Settings",
         'coupons': 'Coupons',
         'helpcenter': 'Help Center',
+        'metadata': "Info Page"
     },
     "pagination": {
         "go-to-first-page": "Go to first page",

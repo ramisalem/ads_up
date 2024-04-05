@@ -23,6 +23,10 @@ export default {
     'add-coupn': "اضافة كوبون جديد",
     "go-back": "رجوع",
     'showmenu': 'اخفاء القائمة',
+    'header.update-metadata': "تحديث سياسة الخصوصية والمعلومات عنا والشروط والاتفاقيات",
+    'termsAndConditions': "الشروط والاتفاقيات",
+    'privacyPolicy': "سياسة الخصوصية",
+    'about': "About us",
     'sidebar': {
         'home': "الرئيسية",
         "advertisment": "الاعلانـات",
@@ -32,6 +36,7 @@ export default {
         'settings': 'الاعدادات',
         'coupons': 'الكوبونات',
         'helpcenter': 'طلبات المساعدة',
+        'metadata': 'تحديث المعلومات',
     },
     "pagination": {
         "go-to-first-page": "الذهاب للصفحة الاولى",

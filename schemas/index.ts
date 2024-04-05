@@ -45,12 +45,12 @@ export const CupounsSchema = z.object({
 })
 
 export const MetaDataSchema = z.object({
-  aboutAr: z.string(),
-  aboutEn: z.string(),
-  termsAndConditionsAr: z.string(),
-  termsAndConditionsEn: z.string(),
-  privacyPolicyAr: z.string(),
-  privacyPolicyEn: z.string(),
+  aboutAr: z.optional(z.string()),
+  aboutEn: z.optional(z.string()),
+  termsAndConditionsAr: z.optional(z.string()),
+  termsAndConditionsEn: z.optional(z.string()),
+  privacyPolicyAr: z.optional(z.string()),
+  privacyPolicyEn: z.optional(z.string()),
 });
 
 export const SettingsSchema = z.object({

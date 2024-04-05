@@ -1,4 +1,4 @@
-import { DocumentDuplicateIcon, UserGroupIcon, HomeIcon, QuestionMarkCircleIcon, BookOpenIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+import { DocumentDuplicateIcon, DocumentTextIcon, HomeIcon, QuestionMarkCircleIcon, BookOpenIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import { SideNavItem } from "./types";
 import { FcSettings } from "react-icons/fc";
 
@@ -30,5 +30,9 @@ export const SIDENAVITEMS: SideNavItem[] = [
             { name: 'client', href: '/client' } as const,
         ] as const
     } as const,
-
+    {
+        name: "metadata",
+        href: `/metadata`,
+        icon: DocumentTextIcon,
+    } as const,
 ] as const;

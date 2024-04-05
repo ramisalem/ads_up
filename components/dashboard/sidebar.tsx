@@ -1,7 +1,7 @@
 "use client";
-import Link from "next/link";
+
 import NavLinks from "@/components/dashboard/nav-links";
-import ADSUPLogo from "@/components/dashboard/adsup-logo";
+
 import { LogoutButton } from "../auth/logout-button";
 // import {
 //   ArrowDownLeftIcon,
@@ -15,8 +15,7 @@ import { LogoutButton } from "../auth/logout-button";
 
 import clsx from "clsx";
 import { useI18n, useCurrentLocale } from "@/locales/client";
-import { logout } from "@/actions/auth/logout";
-import { useFormState } from "react-dom";
+
 import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
