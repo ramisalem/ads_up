@@ -35,7 +35,7 @@ import Loader from "./loader";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 
-type MetaDataFormValues = z.infer<typeof MetaDataSchema>;
+//type MetaDataFormValues = z.infer<typeof MetaDataSchema>;
 export function MetaDataForm() {
   const store = useAppStore();
   const initialized = useRef(false);
@@ -81,7 +81,7 @@ export function MetaDataForm() {
   const [selected, setSelected] = useState("");
   useEffect(() => {
     form.reset(metadata);
-  }, [selected, form]);
+  }, [selected, form, metadata]);
   return (
     <FormCardWrapper headerLabel="update-metadata">
       <Form {...form}>

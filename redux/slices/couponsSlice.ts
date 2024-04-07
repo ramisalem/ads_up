@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { addCoupon, getCoupons } from "@/actions/coupons";
+import { addCoupon, changeCouponStatus, getCoupons } from "@/actions/coupons";
 import { z } from "zod";
 import { CupounsSchema } from "@/schemas";
 
@@ -32,7 +32,12 @@ export const addNewCoupon = createAsyncThunk<Coupons, any>(
         return data;
     }
 );
+export const changecouponStatus = createAsyncThunk<Coupons, any>('coupons/changeCouponStatus', async (payload: Coupons, { dispatch }) => {
 
+    const data = await changeCouponStatus(payload);
+
+    return data;
+});
 export const couponsSlice = createSlice({
     name: "coupons",
     initialState,
@@ -56,6 +61,12 @@ export const couponsSlice = createSlice({
         builder.addCase(addNewCoupon.rejected, (state: ICoupons) => {
             state.hasError = true;
             state.isLoading = false;
+        });
+        builder.addCase(changecouponStatus.fulfilled, (state: ICoupons, action: any) => {
+
+            state.isLoading = false;
+            state.hasError = false;
+            state.couponsList.map((coupon) => coupon.uuid === action.payload.data.uuid ? { ...coupon, state: action.payload.data.status } : coupon)
         });
     },
 });

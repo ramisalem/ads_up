@@ -19,6 +19,7 @@ import {
 import { useState } from "react";
 import { cn, isValidDate } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
+import { DateRangePicker } from "../date-range-picker/date-range-picker";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -32,6 +33,7 @@ export function DataTableToolbar<TData>({
   label,
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
+  // console.log(table.getState().columnFilters);
   const statuses =
     type === "ads"
       ? AdsStatuses
@@ -47,12 +49,14 @@ export function DataTableToolbar<TData>({
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
-        <Input
+        <DebouncedInput
+          type="text"
           placeholder={label}
+          debounce={2000}
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("title")?.setFilterValue(event.target.value)
-          }
+          onChange={(value) => {
+            table.getColumn("title")?.setFilterValue(value);
+          }}
           className="h-8 w-[150px] lg:w-[250px]"
         />
         {type == "ads" ? (
@@ -81,7 +85,22 @@ export function DataTableToolbar<TData>({
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-auto p-0" align="start">
-              <Calendar
+              <DateRangePicker
+                onUpdate={(values) => {
+                  console.log({ values });
+                  setDate(values.range);
+                  if (values.range?.to !== undefined) {
+                    // console.log("value.to is ", value?.to);
+                    table.getColumn("start")?.setFilterValue(values.range);
+                  }
+                }}
+                initialDateFrom={fdate?.from}
+                initialDateTo={fdate?.to ?? ""}
+                align="start"
+                locale="en-US"
+                showCompare={false}
+              />
+              {/* <Calendar
                 initialFocus
                 mode="range"
                 selected={fdate}
@@ -94,37 +113,6 @@ export function DataTableToolbar<TData>({
                   }
                 }}
                 numberOfMonths={2}
-              />
-              {/* <DebouncedInput
-                type="date"
-                debounce={2000}
-                value={fdate?.from ? format(fdate.from, "LLL dd, y") : ""}
-                onChange={(value) => {
-                  if (isValidDate(value)) {
-                    setDate((prevDate) => ({
-                      ...prevDate,
-                      from: value,
-                    }));
-
-                    table.getColumn("start")?.setFilterValue(fdate);
-                  }
-                }}
-              />
-              <DebouncedInput
-                type="date"
-                debounce={2000}
-                value={fdate?.to ? format(fdate?.to, "LLL dd, y") : ""}
-                onChange={(value) => {
-                  if (isValidDate(value)) {
-                    setDate((prevDate) => ({
-                      ...prevDate,
-                      from: fdate?.from,
-                      to: value,
-                    }));
-
-                    table.getColumn("start")?.setFilterValue(fdate);
-                  }
-                }}
               /> */}
             </PopoverContent>
           </Popover>

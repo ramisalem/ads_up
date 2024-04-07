@@ -3,17 +3,15 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Coupons } from "@/constants/types";
-import { MinusCircleIcon } from "@heroicons/react/24/outline";
+
 import { ColumnDef } from "@tanstack/react-table";
 import { CouponStatuses } from "@/components/dashboard/tables-components/statuses";
 import { format } from "date-fns";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
+import ChangeCouponStatusComponent from "./change-coupon-status-component";
 export const columns: ColumnDef<Coupons>[] = [
   {
     accessorKey: "title",
@@ -34,6 +32,14 @@ export const columns: ColumnDef<Coupons>[] = [
   {
     accessorKey: "price",
     header: "Price",
+    cell: ({ row }) => {
+      const f_price = row.getValue("price") as number;
+      const formattedPrice = f_price.toLocaleString("en-SA", {
+        style: "currency",
+        currency: "SAR",
+      });
+      return <div className="text-center font-medium">{formattedPrice}</div>;
+    },
   },
   {
     accessorKey: "percentage",
@@ -69,12 +75,12 @@ export const columns: ColumnDef<Coupons>[] = [
   {
     accessorKey: "start",
     header: "Start Date",
-    // cell: ({ row }) => {
-    //   let newDate = new Date(row.getValue("start"));
+    cell: ({ row }) => {
+      let newDate = new Date(row.getValue("start"));
 
-    //   let formatted = format(newDate, "PPP");
-    //   return <div className="text-center font-medium">{formatted}</div>;
-    // },
+      let formatted = format(newDate, "PP");
+      return <div className="text-center font-medium">{formatted}</div>;
+    },
   },
   {
     accessorKey: "end",
@@ -100,13 +106,7 @@ export const columns: ColumnDef<Coupons>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem
-              onClick={() => {
-                navigator.clipboard.writeText(coupon.uuid);
-                console.log(coupon);
-              }}>
-              change Coupon Status
-            </DropdownMenuItem>
+            <ChangeCouponStatusComponent coupon={coupon} />
           </DropdownMenuContent>
         </DropdownMenu>
       );

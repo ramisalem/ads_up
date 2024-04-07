@@ -17,13 +17,11 @@ import clsx from "clsx";
 import { useI18n, useCurrentLocale } from "@/locales/client";
 
 import {
-  ChevronDoubleLeftIcon,
-  ChevronDoubleRightIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   PowerIcon,
 } from "@heroicons/react/24/outline";
-import { useState } from "react";
+
 type props = {
   collapsed: boolean;
   setCollapsed(collapsed: boolean): void;

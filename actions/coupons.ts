@@ -67,3 +67,36 @@ export const addCoupon = async (
         return error;
     }
 };
+export const changeCouponStatus = async (coupon: Coupons): Promise<any> => {
+
+    let error;
+    let url = process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_PROD_BASE_URL : process.env.NEXT_PUBLIC_DEV_BASE_URL;
+
+    try {
+        const res = await axios.put(
+            `${url}/coupons`, coupon.uuid, {
+            headers: {
+                param: coupon.uuid
+            }
+        }
+
+        );
+        //  await fetch(
+        //     `${url}/coupons`, {
+        //     method: "PUT",
+
+        //     headers: {
+        //         param: coupon.uuid,
+        //     },
+        // });
+
+        const data = await res.data;
+
+        console.log('data after chang status', data)
+        return { success: "change coupon status successed", data };
+    } catch (e) {
+        if (typeof e === "string") error = e;
+        else if (e instanceof Error) error = e.message;
+        return error;
+    }
+}
