@@ -118,7 +118,9 @@ export function MetaDataForm() {
             name={`${selected}En`}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{selected.toUpperCase()} in English</FormLabel>
+                <FormLabel>
+                  {selected !== "" ? selected.toUpperCase() : ""} in English
+                </FormLabel>
                 <FormControl>
                   <Textarea placeholder=" " {...field} />
                 </FormControl>
@@ -149,7 +151,9 @@ export function MetaDataForm() {
             {isPending === true ? (
               <Loader />
             ) : (
-              <Button type="submit">Update MetaData</Button>
+              <Button type="submit" disabled={selected === ""}>
+                Update MetaData
+              </Button>
             )}
           </div>
         </form>

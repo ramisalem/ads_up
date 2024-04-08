@@ -3,17 +3,13 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Tickets } from "@/constants/types";
-
 import { ColumnDef } from "@tanstack/react-table";
 import { TicketStatuses } from "@/components/dashboard/tables-components/statuses";
 import { DotsHorizontalIcon, CrossCircledIcon } from "@radix-ui/react-icons";
-import { closeTickets } from "@/actions/helpcenter";
 import CloseTicketComponent from "./close-ticket-component";
 //import { format } from "date-fns";
 export const columns: ColumnDef<Tickets>[] = [
@@ -80,9 +76,6 @@ export const columns: ColumnDef<Tickets>[] = [
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <CloseTicketComponent ticket={ticket} />
-
-              {/* <DropdownMenuItem>View Ticket</DropdownMenuItem>
-            <DropdownMenuItem>Delete Ticket</DropdownMenuItem> */}
             </DropdownMenuContent>
           </DropdownMenu>
         );

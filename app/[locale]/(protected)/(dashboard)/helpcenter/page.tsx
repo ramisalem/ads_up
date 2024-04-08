@@ -16,7 +16,7 @@ export default function Page() {
     store.dispatch(getAllTickets());
     initialized.current = true;
   }
-  //const name = useAppSelector(state => state.coupons.couponsList)
+
   const { ticketsList, isLoading } = useAppSelector((state) => state.tickets);
   // const data = await getTickets();
   const t = useI18n();

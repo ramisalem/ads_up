@@ -87,7 +87,6 @@ export function DataTableToolbar<TData>({
             <PopoverContent className="w-auto p-0" align="start">
               <DateRangePicker
                 onUpdate={(values) => {
-                  console.log({ values });
                   setDate(values.range);
                   if (values.range?.to !== undefined) {
                     // console.log("value.to is ", value?.to);

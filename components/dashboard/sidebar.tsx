@@ -1,21 +1,10 @@
 "use client";
 
 import NavLinks from "@/components/dashboard/nav-links";
-
 import { LogoutButton } from "../auth/logout-button";
-// import {
-//   ArrowDownLeftIcon,
-//   ArrowLeftCircleIcon,
-//   ArrowLongRightIcon,
-//   ChevronDoubleLeftIcon,
-//   ChevronDoubleRightIcon,
-//   ChevronLeftIcon,
-//   PowerIcon,
-// } from "@heroicons/react/24/outline";
 
 import clsx from "clsx";
 import { useI18n, useCurrentLocale } from "@/locales/client";
-
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -27,7 +16,6 @@ type props = {
   setCollapsed(collapsed: boolean): void;
 };
 export default function SideNav({ collapsed, setCollapsed }: props) {
-  // const [errorMessage, dispatch] = useFormState(logout, null);
   const t = useI18n();
   const lng = useCurrentLocale();
   return (

@@ -25,7 +25,7 @@ export const FormCardWrapper = ({
 }: CardWrapperProps) => {
   const t = useScopedI18nUntyped("header");
   return (
-    <Card className="w-[500px] shadow-md">
+    <Card className="md:w-[500px] w-auto shadow-md">
       <CardHeader>
         <div className="w-full flex flex-col gap-y-4 items-center justify-center">
           <h1 className={cn("text-3xl font-semibold", font.className)}>

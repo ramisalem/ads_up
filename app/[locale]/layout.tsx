@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "ADSUP Dashboard",
-  description: "we will create here",
+  description: "dashboard for ADSUP application",
 };
 
 export default async function RootLayout({
