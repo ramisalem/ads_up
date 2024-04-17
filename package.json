@@ -25,6 +25,7 @@
     "@radix-ui/react-switch": "^1.0.3",
     "@reduxjs/toolkit": "^2.2.2",
     "@tanstack/react-table": "^8.13.2",
+    "@vercel/speed-insights": "^1.0.10",
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",

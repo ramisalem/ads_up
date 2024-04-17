@@ -5,7 +5,7 @@ import { auth } from "@/auth";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import StoreProvider from "@/app/storeProvider";
-import { I18nProviderClient } from "../../locales/client";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -28,7 +28,9 @@ export default async function RootLayout({
         <body className={inter.className}>
           {/* <I18nProviderClient locale={locale}> */}
           <Toaster />
-          <StoreProvider>{children}</StoreProvider>
+          <StoreProvider>
+            {children} <SpeedInsights />
+          </StoreProvider>
           {/* </I18nProviderClient> */}
         </body>
       </html>

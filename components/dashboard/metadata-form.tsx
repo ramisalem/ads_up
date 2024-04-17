@@ -28,9 +28,9 @@ import { toast } from "sonner";
 import { useEffect, useRef, useState, useTransition } from "react";
 import { FormCardWrapper } from "./form-card-wraper";
 import { getMetaData, updateMetaData } from "@/redux/slices/metadataSlice";
-import { useAppDispatch, useAppSelector, useAppStore } from "@/hooks/hooks";
+import { useAppSelector, useAppStore } from "@/hooks/hooks";
 import { Metadata } from "@/constants/types";
-import { getMetadata } from "@/actions/metadata";
+
 import Loader from "./loader";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
@@ -39,10 +39,13 @@ import { FormSuccess } from "../form-success";
 export function MetaDataForm() {
   const store = useAppStore();
   const initialized = useRef(false);
-  if (!initialized.current) {
-    store.dispatch(getMetaData());
-    initialized.current = true;
-  }
+  useEffect(() => {
+    if (!initialized.current) {
+      store.dispatch(getMetaData());
+      initialized.current = true;
+    }
+  }, [initialized, store]);
+
   const [isPending, startTransition] = useTransition();
 
   const { hasError, isLoading, metadata } = useAppSelector(
@@ -76,7 +79,7 @@ export function MetaDataForm() {
   }
   const onInvalid = (errors: any) => {
     console.error(errors);
-    toast.success(`${JSON.stringify(errors, null, 2)}`);
+    toast.error(`${JSON.stringify(errors, null, 2)}`);
   };
   const [selected, setSelected] = useState("");
   useEffect(() => {

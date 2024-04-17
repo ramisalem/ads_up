@@ -19,7 +19,7 @@ export default function MainLayout({
   return (
     <div className="min-h-screen ">
       <Navbar />
-      <HeaderMobile />
+      {/* <HeaderMobile /> */}
       <div
         className={clsx(
           "md:grid transition-[grid-template-column] max-h-fit duration-300 ease-in-out md:grid-cols-[1fr,minmax(0, 1fr)]",
@@ -35,7 +35,7 @@ export default function MainLayout({
           />
         </div>
 
-        <div className="flex flex-shrink-1  md:flex-none md:mx-3  md:overflow-y-auto md:px-5">
+        <div className=" md:flex-none md:mx-3  md:overflow-y-auto md:px-5">
           {children}
         </div>
       </div>

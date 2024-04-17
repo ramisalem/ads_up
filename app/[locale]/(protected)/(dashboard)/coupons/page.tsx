@@ -5,7 +5,7 @@ import { columns } from "./_components/columns";
 //import { getI18n } from "@/locales/server";
 import { useI18n } from "@/locales/client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { AddCouponButton } from "@/components/dashboard/add-coupon-button";
 import { Button } from "@/components/ui/button";
 import { useAppSelector, useAppStore } from "@/hooks/hooks";
@@ -16,17 +16,19 @@ export default function Page() {
   //const data = await getCoupons();
   const store = useAppStore();
   const initialized = useRef(false);
-  if (!initialized.current) {
-    store.dispatch(getALLCoupons());
-    initialized.current = true;
-  }
+  useEffect(() => {
+    if (!initialized.current) {
+      store.dispatch(getALLCoupons());
+      initialized.current = true;
+    }
+  }, [initialized, store]);
 
   const { couponsList, isLoading } = useAppSelector((state) => state.coupons);
   // const t = await getI18n();
   const t = useI18n();
   return (
     // <Suspense fallback={"...loading"}>
-    <div className="container border-radius my-6  md:w-full  items-start rounded-lg bg-slate-50 px-6 py-4 md:flex-col">
+    <div className="container border-radius my-6  md:w-full w-auto items-start rounded-lg bg-slate-50 px-6 py-4 md:flex-col">
       <div className="flex flex-row items-center justify-between">
         <p className="text">{t("coupon")}</p>
         <AddCouponButton asChild={true}>

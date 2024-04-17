@@ -48,7 +48,7 @@ export function DataTableToolbar<TData>({
 
   return (
     <div className="flex items-center justify-between">
-      <div className="flex flex-1 items-center space-x-2">
+      <div className="md:flex  md:flex-1 md:flex-row flex-col md:items-center items-start md:space-x-2 ">
         <DebouncedInput
           type="text"
           placeholder={label}
@@ -66,7 +66,7 @@ export function DataTableToolbar<TData>({
                 id="date"
                 variant={"outline"}
                 className={cn(
-                  "w-[300px] justify-start text-left font-normal",
+                  "w-auto justify-start text-left font-normal",
                   !fdate && "text-muted-foreground"
                 )}>
                 <CalendarIcon className="mr-2 h-4 w-4" />
@@ -89,7 +89,6 @@ export function DataTableToolbar<TData>({
                 onUpdate={(values) => {
                   setDate(values.range);
                   if (values.range?.to !== undefined) {
-                    // console.log("value.to is ", value?.to);
                     table.getColumn("start")?.setFilterValue(values.range);
                   }
                 }}
