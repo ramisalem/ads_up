@@ -45,15 +45,15 @@ const MenuItem = ({
           <button
             onClick={toggleSubMenu}
             className={clsx(
-              "flex h-10  items-center justify-between  rounded-md bg-gray-50 p-2 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 ",
+              "flex h-10 grow items-center justify-center gap-2 rounded-md  p-1 mx-1 text-3xl font-semibold hover:bg-sky-100 hover:text-blue-600  md:flex-none md:justify-between md:p-2 md:px-1",
               {
                 "bg-sky-100 text-blue-600": pathname.indexOf(item.href) !== -1,
-                "flex w-10  ": !isSidebarCollapsed,
-                "w-full": isSidebarCollapsed,
+                "flex w-12  ": !isSidebarCollapsed,
+                "w-full justify-start": isSidebarCollapsed,
               }
             )}>
-            <div className="flex flex-row space-x-4 items-center">
-              <LinkIcon className="w-6" />
+            <div className="flex flex-row space-x-4  items-center">
+              <LinkIcon className="w-10 h-6" />
               {isSidebarCollapsed ? (
                 <p className=" text-sm block">{t(`${item.name}`)}</p>
               ) : (
@@ -76,11 +76,11 @@ const MenuItem = ({
                   <div
                     key={idx}
                     className={clsx(
-                      "flex h-10  items-center justify-between gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 ",
+                      "flex h-10  items-center justify-between gap-2 rounded-md bg-gray-50 ms-auto text-base font-medium hover:bg-sky-100 hover:text-blue-600 ",
                       {
                         "bg-sky-100 text-blue-600":
                           pathname.indexOf(item.href) !== -1,
-                        "flex w-10  ": !isSidebarCollapsed,
+                        "flex w-12  ": !isSidebarCollapsed,
                         "w-full": isSidebarCollapsed,
                       }
                     )}>
@@ -92,7 +92,7 @@ const MenuItem = ({
                           ? "bg-sky-100 font-bold"
                           : ""
                       }`}>
-                      <span> {t(`${subItem.name}`)}</span>
+                      <span className=""> {t(`${subItem.name}`)}</span>
                     </Link>
                   </div>
                 );
@@ -105,15 +105,15 @@ const MenuItem = ({
           key={item.name}
           href={item.href}
           className={clsx(
-            "flex h-10 grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600  md:flex-none md:justify-start md:p-2 md:px-3",
+            "flex h-10 grow items-center justify-center gap-2 rounded-md  p-1 mx-1 text-3xl font-semibold hover:bg-sky-100 hover:text-blue-600  md:flex-none md:justify-start md:p-2 md:px-3",
             {
               "bg-sky-100 text-blue-600": pathname.indexOf(item.href) !== -1,
-              "w-10 ": !isSidebarCollapsed,
+              "w-12 ": !isSidebarCollapsed,
             }
           )}>
-          <LinkIcon className="w-6" />
+          <LinkIcon className="w-10 h-6" />
           {isSidebarCollapsed ? (
-            <p className="hidden text-sm md:block">{t(`${item.name}`)}</p>
+            <p className="hidden text-base md:block">{t(`${item.name}`)}</p>
           ) : (
             <p className="hidden"></p>
           )}

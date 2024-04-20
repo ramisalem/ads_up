@@ -48,7 +48,7 @@ export function CouponsDataTable<TData, TValue>({
   });
 
   return (
-    <div className="  flex-col mx-auto  md:p-4">
+    <div className="  flex w-full flex-col   md:p-4">
       <h1 className={`${lusitana.className} mb-8 text-xl md:text-2xl`}>
         all Coupons
       </h1>
@@ -57,12 +57,12 @@ export function CouponsDataTable<TData, TValue>({
         type="coupons"
         label="Filtered Coupons ..."
       />
-      <div className="mt-6 flow-root md:w-full w-auto">
+      <div className=" mt-6  flow-root md:w-full w-auto">
         <div className="overflow-x-auto">
-          <div className="inline-block md:min-w-full w-auto align-middle">
-            <div className="overflow-hidden w-full rounded-md bg-gray-400 p-2 md:pt-0">
-              <Table className=" mb-2 w-full justify-stretch rounded-md bg-white p-4">
-                <TableHeader className=" md:contents md:content-stretch w-auto justify-stretch md:min-w-full border-b pb-4 hover:bg-slate-200">
+          <div className="inline-grid md:min-w-full w-auto align-middle">
+            <div className="relative overflow-hidden w-full rounded-md bg-gray-400  md:pt-0">
+              <Table className="relative  md:w-full rounded-md bg-white px-0">
+                <TableHeader className="relative md:contents md:content-stretch w-auto  justify-stretch md:min-w-fit border-b  hover:bg-slate-200">
                   {table.getHeaderGroups().map((headerGroup) => (
                     <TableRow
                       className="border-1 border-slate-700 justify-center justify-self-center hover:p-5"

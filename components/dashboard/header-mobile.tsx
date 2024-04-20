@@ -52,12 +52,12 @@ const HeaderMobile = () => {
       }`}
       ref={containerRef}>
       <motion.div
-        className="absolute inset-0 right-0 w-[90%] bg-white"
+        className="fixed inset-0 right-0 w-[90%] bg-white"
         variants={sidebar}
       />
       <motion.ul
         variants={variants}
-        className="absolute  w-[90%] gap-3 px-10 py-16">
+        className="fixed  w-[90%] gap-3 px-10 py-16">
         {SIDENAVITEMS.map((item, idx) => {
           const isLastItem = idx === SIDENAVITEMS.length - 1; // Check if it's the last item
 

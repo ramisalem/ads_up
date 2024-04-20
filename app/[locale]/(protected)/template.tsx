@@ -17,28 +17,28 @@ export default function MainLayout({
   const [collapsed, setSidebarCollapsed] = useState(false);
 
   return (
-    <div className="min-h-screen ">
-      <Navbar />
+    <>
       {/* <HeaderMobile /> */}
       <div
         className={clsx(
-          "md:grid transition-[grid-template-column] max-h-fit duration-300 ease-in-out md:grid-cols-[1fr,minmax(0, 1fr)]",
+          "grid min-h-screen transition-[grid-template-column]  duration-300 ease-in-out md:grid-cols-[1fr,minmax(0, 1fr)]",
           {
             "md:grid-cols-sidebar": collapsed,
             "md:grid-cols-sidebar-collapsed": !collapsed,
           }
         )}>
-        <div className="flex h-full  md:w-64 md:block">
+        <div className="hidden md:grid">
           <SideNav
+            shown={false}
             collapsed={collapsed}
             setCollapsed={() => setSidebarCollapsed((prev) => !prev)}
           />
         </div>
-
-        <div className=" md:flex-none md:mx-3  md:overflow-y-auto md:px-5">
+        <div>
+          <Navbar collapsed={collapsed} />
           {children}
         </div>
       </div>
-    </div>
+    </>
   );
 }

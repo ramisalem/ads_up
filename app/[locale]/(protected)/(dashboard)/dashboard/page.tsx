@@ -12,7 +12,7 @@ export default async function Page() {
   const t = await getI18n();
   return (
     <>
-      <div className="grid  size-full p-2  overflow-hidden">
+      <div className="grid   p-2  overflow-hidden">
         <div className="flex flex-col space-y-2">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <DashboardCardWrapper headerLabel="Reports" Icon={<CaretUpIcon />}>
