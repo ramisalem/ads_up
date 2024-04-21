@@ -21,7 +21,7 @@ export default function Page() {
   // const data = await getTickets();
   const t = useI18n();
   return (
-    <div className="container border-radius  my-6  md:w-full  items-start rounded-lg bg-slate-50 px-6 py-4 md:flex-col">
+    <div className="container relative border-radius my-6 md:mx-1 md:w-[99%]  py-4 px-[0.25rem] items-start rounded-lg bg-slate-50  md:flex-col">
       <p className="text">{t("helpcenter")}</p>
       <span>
         {isLoading ? (

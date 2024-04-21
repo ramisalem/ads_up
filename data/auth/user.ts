@@ -7,7 +7,7 @@ interface UserResponse {
   email: string;
   id: string | number | any;
   password: string;
-  role: UserRole,
+  role: UserRole;
   emailVerified: boolean;
   isTwoFactorEnabled: boolean;
 }
@@ -15,7 +15,7 @@ interface UserResponse {
 export const login = async (email: string, password: string) => {
   try {
     const authResponse = await axios.post(
-      "https://dev.deemat.net/api/v1/users/login",
+      "https://app.deemat.net/api/v1/users/login",
       { email, password },
       {
         headers: {

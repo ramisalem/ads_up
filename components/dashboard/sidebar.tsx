@@ -73,14 +73,14 @@ export default function SideNav({ collapsed, setCollapsed, shown }: props) {
         </div> */}
           <div
             className={clsx(
-              "  h-10 flex-wrap flex-col m-auto gap-1  rounded-md bg-gray-50  text-sm font-medium hover:bg-sky-100 hover:text-blue-600  md:flex-none md:justify-start md:p-2 md:px-3 ",
+              " flex h-10 grow items-center justify-center gap-2 space-x-2 rounded-md  p-1 mx-1 text-xl font-semibold hover:bg-sky-100 hover:text-blue-600  md:flex-none md:justify-start md:p-2 md:px-3 ",
               {
                 "h-[40px] w-16  m-auto ": !collapsed,
               }
             )}>
+            <PowerIcon className="w-6 " />
             <LogoutButton>
               <button className="flex space-x-2 flex-row overflow-hidden items-center justify-center   ">
-                <PowerIcon className="w-6 " />
                 {collapsed && (
                   <div className="hidden md:block">{t("logout")}</div>
                 )}

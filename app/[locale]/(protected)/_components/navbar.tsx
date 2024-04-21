@@ -26,7 +26,7 @@ export const Navbar = ({ collapsed }: props) => {
           true, //positioning & styling
       })}>
       {!collapsed && (
-        <div className="flex items-center  justify-between ">
+        <div className="hidden  items-center  justify-between md:flex">
           <ADSUPLogo />
         </div>
       )}

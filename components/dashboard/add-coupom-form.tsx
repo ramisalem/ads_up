@@ -37,6 +37,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { addNewCoupon } from "@/redux/slices/couponsSlice";
 import { Coupons } from "@/constants/types";
 import Loader from "./loader";
+import { Textarea } from "../ui/textarea";
 
 export const AddCouponForm = () => {
   const t = useI18n();
@@ -86,8 +87,9 @@ export const AddCouponForm = () => {
         <form
           onSubmit={form.handleSubmit(onSubmit, onInvalid)}
           className="space-y-6">
-          <div className="space-y-4">
+          <div className="  space-y-4 ">
             <>
+              {/* <div className="flex flex-row justify-center items-center"> */}
               <FormField
                 control={form.control}
                 name="code"
@@ -113,11 +115,10 @@ export const AddCouponForm = () => {
                   <FormItem>
                     <FormLabel>Description</FormLabel>
                     <FormControl>
-                      <Input
+                      <Textarea
                         {...field}
                         disabled={isPending}
                         placeholder="description"
-                        type="text"
                       />
                     </FormControl>
 
@@ -125,8 +126,8 @@ export const AddCouponForm = () => {
                   </FormItem>
                 )}
               />
-
-              <div className="flex flex-row flex-shrink-1 justify-between ">
+              {/* </div> */}
+              <div className="flex flex-row flex-shrink-1   justify-center items-center ">
                 <FormField
                   control={form.control}
                   name="start"
@@ -139,7 +140,7 @@ export const AddCouponForm = () => {
                             <Button
                               variant={"outline"}
                               className={cn(
-                                "w-[220px] pl-3 text-left font-normal",
+                                "md:w-[220px] w-auto pl-3 text-left font-normal",
                                 !field.value && "text-muted-foreground"
                               )}>
                               {field.value ? (
@@ -180,7 +181,7 @@ export const AddCouponForm = () => {
                             <Button
                               variant={"outline"}
                               className={cn(
-                                "w-[220px] pl-3 text-left font-normal",
+                                "md:w-[220px] w-auto pl-3 text-left font-normal",
                                 !field.value && "text-muted-foreground"
                               )}>
                               {field.value ? (
