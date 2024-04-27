@@ -1,8 +1,10 @@
 "use client";
 import {
   ColumnDef,
+  ColumnFiltersState,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
@@ -15,8 +17,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Search from "@/components/dashboard/search";
+
 import { lusitana } from "@/components/fonts";
+import { DataTablePagination } from "@/components/dashboard/tables-components/data-table-pagination";
+import { DataTableToolbar } from "@/components/dashboard/tables-components/data-table-toolbar";
+import React from "react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -27,9 +32,18 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  );
+
   const table = useReactTable({
     data,
     columns,
+    state: {
+      columnFilters,
+    },
+    getFilteredRowModel: getFilteredRowModel(),
+    onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
@@ -39,13 +53,17 @@ export function DataTable<TData, TValue>({
       <h1 className={`${lusitana.className} mb-8 text-xl md:text-2xl`}>
         all tickets
       </h1>
-      <Search placeholder="Search Ads Report..." />
-      <div className="mt-6 flow-root w-full">
+      <DataTableToolbar
+        table={table}
+        type="tickets"
+        label="Filtered Tickets ..."
+      />
+      <div className=" mt-6  flow-root md:w-full w-auto">
         <div className="overflow-x-auto">
-          <div className="inline-block md:min-w-full align-middle">
-            <div className="overflow-hidden w-full rounded-md bg-gray-400 p-2 md:pt-0">
-              <Table className=" mb-2 w-full justify-stretch rounded-md bg-white p-4">
-                <TableHeader className=" md:contents md:content-stretch justify-stretch md:min-w-full border-b pb-4 hover:bg-slate-200">
+          <div className="inline-grid md:min-w-full w-auto align-middle">
+            <div className="relative overflow-hidden w-full rounded-md bg-gray-400  md:pt-0">
+              <Table className="relative  md:w-full rounded-md bg-white px-0">
+                <TableHeader className="relative md:contents md:content-stretch w-auto  justify-stretch md:min-w-fit border-b  hover:bg-slate-200">
                   {table.getHeaderGroups().map((headerGroup) => (
                     <TableRow
                       className="border-1 border-slate-700 justify-center justify-self-center hover:p-5"
@@ -98,6 +116,7 @@ export function DataTable<TData, TValue>({
                 </TableBody>
               </Table>
             </div>
+            <DataTablePagination table={table} />
           </div>
         </div>
       </div>

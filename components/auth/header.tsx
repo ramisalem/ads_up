@@ -2,7 +2,7 @@
 import { Poppins } from "next/font/google";
 
 import { cn } from "@/lib/utils";
-import { useI18n, useScopedI18nUntyped } from "@/locales/client";
+import { useScopedI18nUntyped } from "@/locales/client";
 const font = Poppins({
   subsets: ["latin"],
   weight: ["600"],

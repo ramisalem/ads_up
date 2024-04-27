@@ -2,11 +2,11 @@
 
 import * as z from "zod";
 import { useForm } from "react-hook-form";
-import { useState, useTransition } from "react";
+import { SetStateAction, useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
-import { CupounsSchema } from "@/schemas";
+import { CupounsSchema, CouponStatus } from "@/schemas";
 import { Input } from "@/components/ui/input";
 import {
   Form,
@@ -33,13 +33,16 @@ import { addCoupon } from "@/actions/coupons";
 import { useI18n } from "@/locales/client";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "@radix-ui/react-icons";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
+import { addNewCoupon } from "@/redux/slices/couponsSlice";
+import { Coupons } from "@/constants/types";
+import Loader from "./loader";
+import { Textarea } from "../ui/textarea";
 
 export const AddCouponForm = () => {
   const t = useI18n();
-  // const searchParams = useSearchParams();
-
-  // const locale = useCurrentLocale();
-
+  const dispatch = useAppDispatch();
+  const { hasError, isLoading } = useAppSelector((state) => state.coupons);
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -47,6 +50,7 @@ export const AddCouponForm = () => {
   const form = useForm<z.infer<typeof CupounsSchema>>({
     resolver: zodResolver(CupounsSchema),
     defaultValues: {
+      uuid: uuidv4(),
       code: "",
       description: "",
       start: new Date(),
@@ -54,41 +58,38 @@ export const AddCouponForm = () => {
       usage: 0,
       percentage: 0.0,
       price: 0.0,
+      status: CouponStatus.Enum.Activated,
     },
   });
 
+  const onInvalid = (errors: any) => console.error(errors);
   const onSubmit = (values: z.infer<typeof CupounsSchema>) => {
-    //console.log("in submit");
+    // console.log("in submit form values ");
     setError("");
     setSuccess("");
     values.uuid = uuidv4();
-    startTransition(() => {
-      // console.log(values);
-      addCoupon(values)
-        .then((data) => {
-          console.log(data);
-          if (data?.error) {
-            console.log("in error");
-            form.reset();
-            setError(data.error);
-          }
 
-          if (data?.success) {
-            console.log("in success");
-            form.reset();
-            setSuccess(data.success);
-          }
-        })
-        .catch(() => setError("Something went wrong"));
+    startTransition(() => {
+      dispatch(addNewCoupon(values));
+      if (!hasError) {
+        form.reset();
+        setSuccess("success");
+        setTimeout(() => setSuccess(""), 2000);
+      } else {
+        setError("error");
+      }
     });
   };
 
   return (
     <FormCardWrapper headerLabel="add-coupn">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <div className="space-y-4">
+        <form
+          onSubmit={form.handleSubmit(onSubmit, onInvalid)}
+          className="space-y-6">
+          <div className="  space-y-4 ">
             <>
+              {/* <div className="flex flex-row justify-center items-center"> */}
               <FormField
                 control={form.control}
                 name="code"
@@ -114,11 +115,10 @@ export const AddCouponForm = () => {
                   <FormItem>
                     <FormLabel>Description</FormLabel>
                     <FormControl>
-                      <Input
+                      <Textarea
                         {...field}
                         disabled={isPending}
                         placeholder="description"
-                        type="text"
                       />
                     </FormControl>
 
@@ -126,7 +126,8 @@ export const AddCouponForm = () => {
                   </FormItem>
                 )}
               />
-              <div className="flex flex-row flex-shrink-1 justify-between ">
+              {/* </div> */}
+              <div className="flex flex-row flex-shrink-1   justify-center items-center ">
                 <FormField
                   control={form.control}
                   name="start"
@@ -139,7 +140,7 @@ export const AddCouponForm = () => {
                             <Button
                               variant={"outline"}
                               className={cn(
-                                "w-[220px] pl-3 text-left font-normal",
+                                "md:w-[220px] w-auto pl-3 text-left font-normal",
                                 !field.value && "text-muted-foreground"
                               )}>
                               {field.value ? (
@@ -180,7 +181,7 @@ export const AddCouponForm = () => {
                             <Button
                               variant={"outline"}
                               className={cn(
-                                "w-[220px] pl-3 text-left font-normal",
+                                "md:w-[220px] w-auto pl-3 text-left font-normal",
                                 !field.value && "text-muted-foreground"
                               )}>
                               {field.value ? (
@@ -243,7 +244,7 @@ export const AddCouponForm = () => {
                         <Input
                           {...field}
                           disabled={isPending}
-                          placeholder=""
+                          placeholder="0.0"
                           type="number"
                         />
                       </FormControl>
@@ -273,12 +274,17 @@ export const AddCouponForm = () => {
                 />
               </div>
             </>
+
+            <FormError message={error} />
+            <FormSuccess message={success} />
+            {isPending === true ? (
+              <Loader />
+            ) : (
+              <Button disabled={isPending} type="submit" className="w-full">
+                confirm
+              </Button>
+            )}
           </div>
-          <FormError message={error} />
-          <FormSuccess message={success} />
-          <Button disabled={isPending} type="submit" className="w-full">
-            confirm
-          </Button>
         </form>
       </Form>
     </FormCardWrapper>

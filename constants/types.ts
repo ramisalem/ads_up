@@ -1,4 +1,9 @@
+import { CupounsSchema, MetaDataSchema, UserRole } from '@/schemas';
 import { z } from 'zod';
+
+
+export type UserRole = z.infer<typeof UserRole>;
+
 export type SideNavItem = {
     name: string;
     href: string;
@@ -12,24 +17,20 @@ export type Tickets = {
     description: string,
     status: "Opened" | "Closed",
     createdBy: string,
-    // createdAt: string,
-    // updatedAt: string,
-    // uuid: String,
-    // title: String
-    // description: String 
-    // status: String (Opened/Closed)
-    // createdBy: String
-}
-export type Metadata = {
-    aboutAr: String,
-    aboutEn: String,
-    termsAndConditionsAr: String,
-    termsAndConditionsEn: String,
-    privacyPolicyAr: String,
-    privacyPolicyEn: String,
 
 }
+export type Metadata = z.infer<typeof MetaDataSchema>;
+// export type Metadata = {
+//     aboutAr?: String,
+//     aboutEn?: String,
+//     termsAndConditionsAr?: String,
+//     termsAndConditionsEn?: String,
+//     privacyPolicyAr?: String,
+//     privacyPolicyEn?: String,
 
+// }
+
+const AdvStatus = z.enum(['Pending', 'Published', 'Deleted', 'Hidden']);
 export type AdvType = {
     uuid: string | any,
     title: string,
@@ -41,17 +42,18 @@ export type AdvType = {
     location: string, // (UUID)
     start: string,//(Timestamp in UTC zone )
     end: string, // (Timestamp in UTC zone )
-    status: 'Pending' | 'Published' | 'Deleted' | 'Hidden',
+    status: z.infer<typeof AdvStatus>, //'Pending' | 'Published' | 'Deleted' | 'Hidden',
 }
-export type Coupons = {
-    uuid: string,// (UUID)
-    code: string,
-    description: string,
-    start: string, //Long (Timestamp in UTC zone )
-    end: string,//Long (Timestamp in UTC zone )
-    usage: number, //long
-    percentage: number, //float
-    price: number,//Float
-    status: 'Activated' | 'Deactivated',
-}
+export type Coupons = z.infer<typeof CupounsSchema>;
+// export type Coupons = {
+//     uuid?: string,// (UUID)
+//     code: string,
+//     description: string,
+//     start: Date, //Long (Timestamp in UTC zone )
+//     end: Date,//Long (Timestamp in UTC zone )
+//     usage: number, //long
+//     percentage: number, //float
+//     price: number,//Float
+//     status: 'Activated' | 'Deactivated',
+// }
 

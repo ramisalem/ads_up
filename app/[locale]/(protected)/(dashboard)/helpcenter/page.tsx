@@ -1,17 +1,34 @@
+"use client";
 import { DataTable } from "./_components/data-table";
 import { columns } from "./_components/columns";
 
-import { getI18n } from "@/locales/server";
-import { getTickets } from "@/actions/helpcenter";
+import { useI18n } from "@/locales/client";
+import { useAppSelector, useAppStore } from "@/hooks/hooks";
+import { getAllTickets } from "@/redux/slices/ticketsSlice";
+import { useRef } from "react";
+import Loader from "@/components/dashboard/loader";
+// import { getTickets } from "@/actions/helpcenter";
 
-export default async function Page() {
-  const data = await getTickets();
-  const t = await getI18n();
+export default function Page() {
+  const store = useAppStore();
+  const initialized = useRef(false);
+  if (!initialized.current) {
+    store.dispatch(getAllTickets());
+    initialized.current = true;
+  }
+
+  const { ticketsList, isLoading } = useAppSelector((state) => state.tickets);
+  // const data = await getTickets();
+  const t = useI18n();
   return (
-    <div className="container border-radius  my-6  md:w-full  items-start rounded-lg bg-slate-50 px-6 py-4 md:flex-col">
+    <div className="container relative border-radius my-6 md:mx-1 md:w-[99%]  py-4 px-[0.25rem] items-start rounded-lg bg-slate-50  md:flex-col">
       <p className="text">{t("helpcenter")}</p>
       <span>
-        <DataTable columns={columns} data={data} />
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <DataTable columns={columns} data={ticketsList} />
+        )}
       </span>
     </div>
   );

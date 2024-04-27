@@ -17,13 +17,6 @@ export const AddCouponButton = ({
   mode = "modal",
   asChild,
 }: AddButtonProps) => {
-  //const router = useRouter();
-  //const locale = useCurrentLocale();
-  const onClick = () => {
-    //router.push(`${locale}/auth/login`);
-    //<AddCouponForm />;
-  };
-
   if (mode === "modal") {
     return (
       <Dialog>
@@ -35,9 +28,5 @@ export const AddCouponButton = ({
     );
   }
 
-  return (
-    <span onClick={onClick} className="cursor-pointer">
-      {children}
-    </span>
-  );
+  return <span className="cursor-pointer">{children}</span>;
 };

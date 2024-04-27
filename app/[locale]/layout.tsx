@@ -4,12 +4,13 @@ import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import { I18nProviderClient } from "../../locales/client";
+import StoreProvider from "@/app/storeProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "ADSUP Dashboard",
-  description: "we will create here",
+  description: "dashboard for ADSUP application",
 };
 
 export default async function RootLayout({
@@ -27,7 +28,9 @@ export default async function RootLayout({
         <body className={inter.className}>
           {/* <I18nProviderClient locale={locale}> */}
           <Toaster />
-          {children}
+          <StoreProvider>
+            {children} <SpeedInsights />
+          </StoreProvider>
           {/* </I18nProviderClient> */}
         </body>
       </html>

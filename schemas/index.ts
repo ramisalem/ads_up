@@ -1,10 +1,10 @@
 import * as z from "zod";
-import { UserRole } from "@prisma/client";
 
+export const UserRole = z.enum(['ADMIN', 'USER']);
 
-const CouponStatus = z.enum(['Activated', 'Deactivated']);
+export const CouponStatus = z.enum(['Activated', 'Deactivated']);
 export const CupounsSchema = z.object({
-  uuid: z.optional(z.string().uuid({ message: "Invalid UUID" })),
+  uuid: z.string().uuid({ message: "Invalid UUID" }),
   code: z.coerce.string({
     required_error: "Code is required",
     invalid_type_error: "code must be string",
@@ -33,7 +33,7 @@ export const CupounsSchema = z.object({
     required_error: "price is required",
     invalid_type_error: "it must be float number",
   }).multipleOf(0.00001).positive(),
-  status: CouponStatus
+  status: z.optional(CouponStatus.default('Activated')),
 }).refine((data) => {
   if (data.end < data.start) {
     return false;
@@ -45,18 +45,18 @@ export const CupounsSchema = z.object({
 })
 
 export const MetaDataSchema = z.object({
-  aboutAr: z.string(),
-  aboutEn: z.string(),
-  termsAndConditionsAr: z.string(),
-  termsAndConditionsEn: z.string(),
-  privacyPolicyAr: z.string(),
-  privacyPolicyEn: z.string(),
+  aboutAr: z.optional(z.string()),
+  aboutEn: z.optional(z.string()),
+  termsAndConditionsAr: z.optional(z.string()),
+  termsAndConditionsEn: z.optional(z.string()),
+  privacyPolicyAr: z.optional(z.string()),
+  privacyPolicyEn: z.optional(z.string()),
 });
 
 export const SettingsSchema = z.object({
   name: z.optional(z.string()),
   isTwoFactorEnabled: z.optional(z.boolean()),
-  role: z.enum([UserRole.ADMIN, UserRole.USER]),
+  role: UserRole,//z.enum([UserRole.ADMIN, UserRole.USER]),
   email: z.optional(z.string().email()),
   password: z.optional(z.string().min(6)),
   newPassword: z.optional(z.string().min(6)),
