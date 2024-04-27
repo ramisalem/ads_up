@@ -6,11 +6,11 @@ type props = {
 };
 export default function ADSUPLogo() {
   return (
-    <div className="flex flex-row flex-grow items-center  leading-none text-white md:w-auto">
+    <div className="flex flex-row flex-grow items-center ltr:pl-4 rtl:pr-4 leading-none text-white md:w-auto">
       {/* <GlobeAltIcon className="h-12 w-10  text-sky-500 rotate-[15deg]" /> */}
       {/* <p className="text-[36px] hidden text-sky-500 md:block">ADSUP</p> */}
       <svg
-        width="234"
+        width="204"
         height="48"
         viewBox="0 0 234 48"
         fill="none"

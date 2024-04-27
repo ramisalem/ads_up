@@ -10,12 +10,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { EnglishFlag, SaudiArabiaFlag } from "./svgicons";
 type Props = {
   children: ReactNode;
   defaultValue: string;
   label: string;
 };
-
+//import SaudiArabiaFlag from "@/components/dashboard/svgicons";
 export default function LocaleSwitcherSelect({
   children,
   defaultValue,
@@ -40,7 +41,20 @@ export default function LocaleSwitcherSelect({
       //window.history.replaceState(router.);
     });
   }
-
+  const icon = (lng: string) =>
+    lng === "ar" ? (
+      <div className="flex flex-row justify-between items-center ">
+        <span className="grid-content w-10">
+          <SaudiArabiaFlag />
+        </span>
+      </div>
+    ) : (
+      <div className="flex flex-row justify-between items-center ">
+        <span className="grid-content w-10">
+          <EnglishFlag />
+        </span>
+      </div>
+    );
   return (
     <label
       className={clsx(
@@ -49,12 +63,14 @@ export default function LocaleSwitcherSelect({
       )}>
       <p className="sr-only">{label}</p>
       <Select
-        // disabled={isPending}
+        disabled={isPending}
         onValueChange={onSelectChange}
         defaultValue={defaultValue}
-        value="hhhh">
+        value="">
         <SelectTrigger>
-          <SelectValue placeholder={defaultValue}>{defaultValue}</SelectValue>
+          <SelectValue placeholder={icon(defaultValue)}>
+            {defaultValue}
+          </SelectValue>
         </SelectTrigger>
 
         <SelectContent className="text-black">{children}</SelectContent>

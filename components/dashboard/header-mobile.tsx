@@ -11,6 +11,7 @@ import { SideNavItem } from "@/constants/types";
 import { motion, useCycle } from "framer-motion";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { useScopedI18nUntyped } from "@/locales/client";
+
 type MenuItemWithSubMenuProps = {
   item: SideNavItem;
   toggleOpen: () => void;

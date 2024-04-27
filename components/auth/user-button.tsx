@@ -13,6 +13,8 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { LogoutButton } from "@/components/auth/logout-button";
 import { useI18n } from "@/locales/client";
+import Link from "next/link";
+import { UserIcon } from "@heroicons/react/24/outline";
 
 export const UserButton = () => {
   const user = useCurrentUser();
@@ -28,6 +30,12 @@ export const UserButton = () => {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-40" align="end">
+        <Link href="/client">
+          <DropdownMenuItem>
+            <UserIcon className="h-4 w-4 mr-2" />
+            {t("user_info")}
+          </DropdownMenuItem>
+        </Link>
         <LogoutButton>
           <DropdownMenuItem>
             <ExitIcon className="h-4 w-4 mr-2" />

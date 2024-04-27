@@ -5,6 +5,7 @@ import { LogoutButton } from "../auth/logout-button";
 
 import clsx from "clsx";
 import { useI18n, useCurrentLocale } from "@/locales/client";
+import { motion, useCycle } from "framer-motion";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -17,11 +18,35 @@ type props = {
   setCollapsed(collapsed: boolean): void;
   shown: boolean;
 };
+
+const sidebar = {
+  open: (height = 1000) => ({
+    clipPath: `circle(${height * 2 + 300}px at 100% 0)`,
+    transition: {
+      type: "spring",
+      stiffness: 20,
+      restDelta: 2,
+    },
+  }),
+  closed: (width = 1000) => ({
+    clipPath: `circle(${width * 2 + 300}px at 100% 0)`,
+    transition: {
+      type: "spring",
+      stiffness: 400,
+      damping: 40,
+    },
+  }),
+};
+
 export default function SideNav({ collapsed, setCollapsed, shown }: props) {
   const t = useI18n();
-  const lng = useCurrentLocale();
+  //const lng = useCurrentLocale();
+  const [isOpen, toggleOpen] = useCycle(true, false);
   return (
-    <div
+    <motion.div
+      initial={false}
+      animate={isOpen ? "open" : "closed"}
+      variants={sidebar}
       className={clsx({
         " fixed md:static bg-secondary md:translate-x-0 z-20": true,
         "transition-all duration-300 ease-in-out": true,
@@ -38,21 +63,24 @@ export default function SideNav({ collapsed, setCollapsed, shown }: props) {
         <div
           className={clsx({
             "flex items-center border-b transition-none": true,
-            "p-4 mx-4 justify-between": !collapsed,
+            "p-4 mx-4 justify-center": !collapsed,
             "py-2 justify-center": collapsed,
           })}>
           {collapsed && (
-            <span className="whitespace-nowrap">
+            <span className="flex justify-center items-center whitespace-nowrap">
               <ADSUPLogo />
             </span>
           )}
           <button
-            className="grid place-content-center hover:bg-indigo-800 text-slate-50 rounded-full opacity-0 md:opacity-100"
-            onClick={() => setCollapsed(!collapsed)}>
+            className="grid place-content-center    rounded-full opacity-0 md:opacity-100"
+            onClick={() => {
+              setCollapsed(!collapsed);
+              toggleOpen();
+            }}>
             {collapsed ? (
-              <ChevronLeftIcon className="p-0 w-6 m-3 rounded-full bg-blue-900  text-slate-50" />
+              <ChevronLeftIcon className="p-0 w-6 m-3 rounded-full bg-blue-900 hover:bg-blue-700  text-slate-50" />
             ) : (
-              <ChevronRightIcon className="p-0 w-6 m-3 rounded-full bg-blue-900  text-slate-50 md:block" />
+              <ChevronRightIcon className="p-0 w-6 m-3 rounded-full bg-blue-900 hover:bg-blue-700   text-slate-50 md:block" />
             )}
           </button>
         </div>
@@ -89,6 +117,6 @@ export default function SideNav({ collapsed, setCollapsed, shown }: props) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
