@@ -1,7 +1,6 @@
 "use server";
 
 import { currentRole } from "@/lib/auth";
-//import { UserRole } from "@/constants/types";
 import { UserRole } from "@/schemas";
 
 export const admin = async () => {
@@ -11,5 +10,5 @@ export const admin = async () => {
     return { success: "Allowed Server Action!" };
   }
 
-  return { error: "Forbidden Server Action!" }
+  return { error: "Forbidden Server Action!" };
 };
