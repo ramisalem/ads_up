@@ -55,7 +55,7 @@ const MenuItem = ({
             <div className="flex flex-row space-x-4  items-center">
               <LinkIcon className="w-10 h-6" />
               {isSidebarCollapsed ? (
-                <p className=" text-sm block">{t(`${item.name}`)}</p>
+                <p className=" text-xl block">{t(`${item.name}`)}</p>
               ) : (
                 <p className="hidden"></p>
               )}
@@ -69,14 +69,14 @@ const MenuItem = ({
           </button>
 
           {subMenuOpen && isSidebarCollapsed && (
-            <div className="my-2 ml-12  flex flex-col space-y-3">
+            <div className="my-2 ltr:ml-12 rtl:mr-12 flex flex-col space-y-3">
               {item.subMenuItems?.map((subItem, idx) => {
                 //const SubLinkIcon = subItem.icon ;
                 return (
                   <div
                     key={idx}
                     className={clsx(
-                      "flex h-10  items-center justify-between gap-2 rounded-md bg-gray-50 ms-auto text-base font-medium hover:bg-sky-100 hover:text-blue-600 ",
+                      "flex h-10  items-center justify-between gap-2 rounded-md bg-gray-50 ms-auto text-md font-semibold hover:bg-sky-100 hover:text-blue-600 ",
                       {
                         "bg-sky-100 text-blue-600":
                           pathname.indexOf(item.href) !== -1,
