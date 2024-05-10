@@ -1,7 +1,5 @@
 "use client";
-
 import { useRouter } from "next/navigation";
-
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { LoginForm } from "@/components/auth/login-form";
 import { useCurrentLocale } from "@/locales/client";

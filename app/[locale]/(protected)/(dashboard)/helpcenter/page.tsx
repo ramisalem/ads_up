@@ -30,7 +30,9 @@ export default function Page() {
           <DataTable columns={columns} data={ticketsList} />
         ) : (
           //
-          <p className="text">No Data</p>
+          <p className="text text-center bg-destructive/15 p-3 rounded-md flex justify-center items-center gap-x-2 text-sm text-destructive">
+            No Data
+          </p>
         )}
       </span>
     </div>

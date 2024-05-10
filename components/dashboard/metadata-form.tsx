@@ -68,10 +68,10 @@ export function MetaDataForm() {
     startTransition(() => {
       store.dispatch(updateMetaData(data));
       if (!hasError) {
-        //console.log("there is no error");
-        form.reset();
         setSuccess("success");
+        store.dispatch(getMetaData());
         setTimeout(() => setSuccess(""), 4000);
+        form.reset(metadata);
       } else {
         console.log("error in update");
         setError("error");
@@ -79,7 +79,7 @@ export function MetaDataForm() {
     });
   }
   const onInvalid = (errors: any) => {
-    console.error(errors);
+    //console.error(errors);
     toast.error(`${JSON.stringify(errors, null, 2)}`);
   };
   useEffect(() => {
@@ -148,7 +148,7 @@ export function MetaDataForm() {
               )}
             />
           </div>
-          <div className="flex items-center">
+          <div className="flex m-auto items-center justify-center">
             <FormError message={error} />
             <FormSuccess message={success} />
             {isPending === true ? (

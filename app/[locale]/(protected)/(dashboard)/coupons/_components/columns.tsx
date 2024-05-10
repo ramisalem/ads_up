@@ -77,7 +77,7 @@ export const columns: ColumnDef<Coupons>[] = [
     header: "Start Date",
     cell: ({ row }) => {
       let newDate = new Date(row.getValue("start"));
-      console.log(typeof newDate);
+      //console.log(typeof newDate);
       if (typeof newDate === ("Date" as string)) {
         let formatted = format(newDate, "PP");
         return <div className="text-center font-medium">{formatted}</div>;

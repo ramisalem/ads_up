@@ -1,50 +1,31 @@
+"use server";
 //import axios from "axios";
 import { Tickets } from "@/constants/types";
 import axios from "axios";
-import { revalidatePath } from "next/cache";
-//import { revalidatePath } from 'next/cache'
+import api from "@/data/api/axiosInstance";
 
 export const getTickets = async (): Promise<Tickets[] | any> => {
   let error;
-  let url =
-    process.env.NODE_ENV === "production"
-      ? process.env.NEXT_PUBLIC_PROD_BASE_URL
-      : process.env.NEXT_PUBLIC_DEV_BASE_URL;
 
   try {
-    const res = await axios.get(`${url}/tickets`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    // await fetch(`${url}/tickets`, {
-    //   method: "GET",
+    const res = await api.get(`/tickets`);
 
-    //   headers: {
-    //     mode: "no-cors",
-    //   },
-    // });
-    //console.log({ res });
     const data: Tickets[] = res.data;
 
     return data;
   } catch (e) {
     if (typeof e === "string") error = e;
     else if (e instanceof Error) error = e.message;
-    console.log(error);
-    return error;
+    throw e;
+    //return error;
   }
 };
 
 export const closeTickets = async (ticketId: string): Promise<any> => {
   let error;
-  let url =
-    process.env.NODE_ENV === "production"
-      ? process.env.NEXT_PUBLIC_PROD_BASE_URL
-      : process.env.NEXT_PUBLIC_DEV_BASE_URL;
 
   try {
-    const res = await axios.put(`${url}/tickets`, {
+    const res = await api.put(`/tickets`, {
       headers: {
         param: ticketId,
       },

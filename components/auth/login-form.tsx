@@ -53,7 +53,7 @@ export const LoginForm = () => {
       login(values, callbackUrl)
         .then((data) => {
           if (data?.error) {
-            form.reset();
+            // form.reset();
             setError(data.error);
           }
 
@@ -61,10 +61,6 @@ export const LoginForm = () => {
             form.reset();
             setSuccess(data.success);
           }
-
-          // if (data?.twoFactor) {
-          //   setShowTwoFactor(true);
-          // }
         })
         .catch(() => setError("Something went wrong"));
     });

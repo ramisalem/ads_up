@@ -23,7 +23,9 @@ export default function Page() {
     }
   }, [initialized, store]);
 
-  const { couponsList, isLoading } = useAppSelector((state) => state.coupons);
+  const { couponsList, isLoading, error } = useAppSelector(
+    (state) => state.coupons
+  );
   // const t = await getI18n();
   const t = useI18n();
   return (
@@ -39,8 +41,12 @@ export default function Page() {
       <span>
         {isLoading ? (
           <Loader />
-        ) : (
+        ) : couponsList.length >= 1 ? (
           <CouponsDataTable columns={columns} data={couponsList} />
+        ) : (
+          <p className="text text-center bg-destructive/15 p-3 rounded-md flex justify-center items-center gap-x-2 text-sm text-destructive">
+            No Data
+          </p>
         )}
       </span>
     </div>

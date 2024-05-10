@@ -8,22 +8,26 @@ export interface ITickets {
   ticketsList: Tickets[];
   isLoading: boolean;
   hasError: boolean;
+  error: string;
 }
 
 const initialState: ITickets = {
   ticketsList: [],
   isLoading: true,
   hasError: false,
+  error: "",
 };
 
 export const getAllTickets = createAsyncThunk<Tickets>(
   "tickets/getAllTickets",
   async (_date, { dispatch }) => {
-    console.log("in get tickets action");
-    //state.isLoading=true;
-    const data = await getTickets();
-    console.log("tickets data in slice", data.length);
-    return data;
+    try {
+      const data = await getTickets();
+      return data;
+    } catch (e) {
+      console.log("error in get tickets");
+      throw e;
+    }
   }
 );
 export const closeTicket = createAsyncThunk<Tickets, any>(
@@ -51,6 +55,12 @@ export const ticketsSlice = createSlice({
       state.hasError = false;
 
       state.ticketsList = action.payload;
+    });
+    builder.addCase(getAllTickets.rejected, (state: ITickets, action: any) => {
+      state.isLoading = false;
+      state.hasError = true;
+
+      state.error = action.error.message;
     });
     builder.addCase(closeTicket.fulfilled, (state: ITickets, action: any) => {
       state.isLoading = false;
