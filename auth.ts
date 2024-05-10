@@ -1,9 +1,7 @@
-import NextAuth from "next-auth"
-import { UserRole } from "@prisma/client";
-
+import NextAuth from "next-auth";
+import { UserRole } from "@/constants/types";
 
 import authConfig from "@/auth.config";
-
 
 export const {
   handlers: { GET, POST },
@@ -25,9 +23,7 @@ export const {
   //   }
   // },
   callbacks: {
-
     async session({ token, session, user }) {
-
       //console.log({ user_in_session: token })
       if (token.sub && session.user) {
         session.user.id = token.sub;
@@ -51,10 +47,8 @@ export const {
       return session;
     },
     async jwt({ token, user }) {
-
       return { ...token, ...user };
-
-    }
+    },
   },
 
   session: { strategy: "jwt" },

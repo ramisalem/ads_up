@@ -8,6 +8,12 @@ import { SIDENAVITEMS } from "@/constants/links";
 import { useState } from "react";
 import { SideNavItem } from "@/constants/types";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type props = {
   showname: boolean;
@@ -45,19 +51,32 @@ const MenuItem = ({
           <button
             onClick={toggleSubMenu}
             className={clsx(
-              "flex h-10 grow items-center justify-center gap-2 rounded-md  p-1 mx-1 text-3xl font-semibold hover:bg-sky-100 hover:text-blue-600  md:flex-none md:justify-between md:p-2 md:px-1",
+              "flex h-10  items-center justify-center gap-1 rounded-md  mx-auto text-3xl font-semibold hover:bg-sky-100 hover:text-blue-600   md:justify-between  ",
               {
                 "bg-sky-100 text-blue-600": pathname.indexOf(item.href) !== -1,
                 "flex w-12  ": !isSidebarCollapsed,
-                "w-full justify-start": isSidebarCollapsed,
+                "w-full justify-start md:p-1 md:px-3": isSidebarCollapsed,
               }
             )}>
             <div className="flex flex-row space-x-4  items-center">
-              <LinkIcon className="w-10 h-6" />
               {isSidebarCollapsed ? (
-                <p className=" text-xl block">{t(`${item.name}`)}</p>
+                <span className="flex flex-row">
+                  <LinkIcon className="w-10 h-6" />
+                  <p className="hidden text-base md:block">
+                    {t(`${item.name}`)}
+                  </p>
+                </span>
               ) : (
-                <p className="hidden"></p>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <LinkIcon className="w-10 h-6" />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>يحتوي قائمة</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               )}
             </div>
 
@@ -111,11 +130,25 @@ const MenuItem = ({
               "w-12 ": !isSidebarCollapsed,
             }
           )}>
-          <LinkIcon className="w-10 h-6" />
           {isSidebarCollapsed ? (
-            <p className="hidden text-base md:block">{t(`${item.name}`)}</p>
+            <span className="flex flex-row">
+              <LinkIcon className="w-10 h-6" />
+              <p className="hidden text-base md:block">{t(`${item.name}`)}</p>
+            </span>
           ) : (
-            <p className="hidden"></p>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <LinkIcon className="w-10 h-6" />
+                </TooltipTrigger>
+                <TooltipContent
+                  className="text-sm bg-secondary text-black mx-4 "
+                  side="left"
+                  sideOffset={4}>
+                  <p>{t(`${item.name}`)}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           )}
         </Link>
       )}

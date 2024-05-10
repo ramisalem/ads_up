@@ -5,6 +5,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getMetadata, updateMetadata } from "@/actions/metadata";
 import { MetaDataSchema } from "@/schemas";
 import { z } from "zod";
+import { errorToJSON } from "next/dist/server/render";
 
 type Metadata = z.infer<typeof MetaDataSchema>;
 
@@ -12,6 +13,7 @@ export interface IMetaData {
   metadata: Metadata;
   isLoading: boolean;
   hasError: boolean;
+  errors: any;
 }
 
 const initialState: IMetaData = {
@@ -25,23 +27,23 @@ const initialState: IMetaData = {
   },
   isLoading: true,
   hasError: false,
+  errors: [],
 };
 
 export const getMetaData = createAsyncThunk<Metadata>(
   "metadata/getMetaData",
   async (_data, { dispatch }) => {
     const data = await getMetadata();
-
-    return data;
+    if (data) return data;
   }
 );
 
 export const updateMetaData = createAsyncThunk<Metadata, any>(
   "metadata/updateMetadata",
   async (payload: Metadata, { dispatch }) => {
-    console.log("in update metadata action");
+    //console.log("in update metadata action");
 
-    const { data } = await updateMetadata(payload);
+    const data = await updateMetadata(payload);
 
     return data;
   }
@@ -67,13 +69,18 @@ export const metadataSlice = createSlice({
       (state: IMetaData, action: any) => {
         state.isLoading = false;
         state.hasError = false;
-        state.metadata = action.payload.data;
+        state.metadata = action.payload;
       }
     );
-    builder.addCase(updateMetaData.rejected, (state: IMetaData) => {
-      state.hasError = true;
-      state.isLoading = false;
-    });
+    builder.addCase(
+      updateMetaData.rejected,
+      (state: IMetaData, action: any) => {
+        console.log("rejected update metadata");
+        state.hasError = true;
+        state.isLoading = false;
+        state.errors.push(action.payload);
+      }
+    );
   },
 });
 export const { metadataState } = metadataSlice.actions;

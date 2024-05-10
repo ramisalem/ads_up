@@ -26,8 +26,11 @@ export default function Page() {
       <span>
         {isLoading ? (
           <Loader />
-        ) : (
+        ) : ticketsList.length >= 1 ? (
           <DataTable columns={columns} data={ticketsList} />
+        ) : (
+          //
+          <p className="text">No Data</p>
         )}
       </span>
     </div>

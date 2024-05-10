@@ -51,28 +51,29 @@ export function MetaDataForm() {
   const { hasError, isLoading, metadata } = useAppSelector(
     (state) => state.metadata
   );
-  const form = useForm<any>({
-    // resolver: zodResolver(MetaDataSchema),
-    defaultValues: metadata,
-    // async () => {
-    //   const data = await getMetadata();
-    //   // console.log(data);
-    //   return data;
-    // },
-    mode: "all",
-  });
+
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
 
+  const form = useForm<any>({
+    // resolver: zodResolver(MetaDataSchema),
+    defaultValues: metadata,
+    mode: "all",
+  });
+
+  const [selected, setSelected] = useState("");
+
   function onSubmit(data: Metadata) {
-    toast.success(`${JSON.stringify(data, null, 2)}`);
+    //toast.success(`${JSON.stringify(data, null, 2)}`);
     startTransition(() => {
       store.dispatch(updateMetaData(data));
       if (!hasError) {
+        //console.log("there is no error");
         form.reset();
         setSuccess("success");
-        setTimeout(() => setSuccess(""), 2000);
+        setTimeout(() => setSuccess(""), 4000);
       } else {
+        console.log("error in update");
         setError("error");
       }
     });
@@ -81,10 +82,9 @@ export function MetaDataForm() {
     console.error(errors);
     toast.error(`${JSON.stringify(errors, null, 2)}`);
   };
-  const [selected, setSelected] = useState("");
   useEffect(() => {
     form.reset(metadata);
-  }, [selected, form, metadata]);
+  }, [selected]);
   return (
     <FormCardWrapper headerLabel="update-metadata">
       <Form {...form}>
@@ -125,7 +125,7 @@ export function MetaDataForm() {
                   {selected !== "" ? selected.toUpperCase() : ""} in English
                 </FormLabel>
                 <FormControl>
-                  <Textarea placeholder=" " {...field} />
+                  <Textarea className="text-xl" placeholder=" " {...field} />
                 </FormControl>
                 <FormDescription></FormDescription>
                 <FormMessage />
@@ -140,7 +140,7 @@ export function MetaDataForm() {
                 <FormItem>
                   <FormLabel> باللغة العربية</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="" {...field} />
+                    <Textarea className="text-xl" placeholder="" {...field} />
                   </FormControl>
 
                   <FormMessage />

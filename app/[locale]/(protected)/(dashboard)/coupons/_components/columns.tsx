@@ -34,11 +34,11 @@ export const columns: ColumnDef<Coupons>[] = [
     header: "Price",
     cell: ({ row }) => {
       const f_price = row.getValue("price") as number;
-      const formattedPrice = f_price.toLocaleString("en-SA", {
-        style: "currency",
-        currency: "SAR",
-      });
-      return <div className="text-center font-medium">{formattedPrice}</div>;
+      // const formattedPrice = f_price.toLocaleString("en-SA", {
+      //   style: "currency",
+      //   currency: "SAR",
+      // });
+      return <div className="text-center font-medium">{f_price}</div>;
     },
   },
   {
@@ -77,9 +77,12 @@ export const columns: ColumnDef<Coupons>[] = [
     header: "Start Date",
     cell: ({ row }) => {
       let newDate = new Date(row.getValue("start"));
-
-      let formatted = format(newDate, "PP");
-      return <div className="text-center font-medium">{formatted}</div>;
+      console.log(typeof newDate);
+      if (typeof newDate === ("Date" as string)) {
+        let formatted = format(newDate, "PP");
+        return <div className="text-center font-medium">{formatted}</div>;
+      }
+      return <div className="text-center font-medium">No Date</div>;
     },
   },
   {
