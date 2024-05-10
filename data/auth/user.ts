@@ -1,13 +1,13 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import { UserRole } from "@/constants/types";
+import { userRole } from "@/constants/types";
 
 interface UserResponse {
   name: string;
   email: string;
   id: string | number | any;
   password: string;
-  role: UserRole;
+  role: userRole;
   emailVerified: boolean;
   isTwoFactorEnabled: boolean;
 }

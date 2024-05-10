@@ -1,11 +1,13 @@
 import { currentRole } from "@/lib/auth";
-import { UserRole } from "@prisma/client";
+
 import { NextResponse } from "next/server";
+import { UserRole } from "@/constants/types";
+import { UserRole as schemUserRole } from "@/schemas";
 
 export async function GET() {
   const role = await currentRole();
 
-  if (role === UserRole.ADMIN) {
+  if (role === schemUserRole.Enum.ADMIN) {
     return new NextResponse(null, { status: 200 });
   }
 
