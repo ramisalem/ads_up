@@ -28,9 +28,9 @@ export default function LocaleSwitcherSelect({
   const changeLocale = useChangeLocale();
 
   function onSelectChange(
-    value: string /*event: ChangeEvent<HTMLSelectElement>*/
+    value: string 
   ) {
-    // const nextLocale: any = event.target.value;
+   
     const nextLocale: any = value;
     startTransition(() => {
       try {

@@ -30,7 +30,7 @@ export default function Page() {
   const t = useI18n();
   return (
     // <Suspense fallback={"...loading"}>
-    <div className="container relative border-radius my-6 md:mx-1 md:w-[99%]  py-4 px-[0.25rem] items-start rounded-lg bg-slate-50  md:flex-col">
+    <div className="border-radius my-6  md:w-full  py-4 px-[0.25rem] items-start rounded-md  md:flex-col">
       <div className="flex flex-row items-center justify-between">
         <p className="text">{t("coupon")}</p>
         <AddCouponButton asChild={true}>

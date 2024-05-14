@@ -70,6 +70,6 @@ export const config = {
     // '/',
     // '/(ar|en)/:path*',
     // "/((?!api|auth|_next|.*\\..*).*)",
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+    "/((?!api|_next/static|_next/public|_next/image|favicon.ico).*)",
   ],
 };

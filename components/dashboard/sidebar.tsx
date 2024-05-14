@@ -48,7 +48,8 @@ export default function SideNav({ collapsed, setCollapsed, shown }: props) {
       animate={isOpen ? "open" : "closed"}
       variants={sidebar}
       className={clsx({
-        " fixed md:static bg-secondary md:translate-x-0 z-20": true,
+        " fixed md:static bg-gray-50 shadow-sm shadow-gray-400 md:translate-x-0 z-20":
+          true,
         "transition-all duration-300 ease-in-out": true,
         "w-[240px] ": collapsed,
         "w-[60px]": !collapsed,
