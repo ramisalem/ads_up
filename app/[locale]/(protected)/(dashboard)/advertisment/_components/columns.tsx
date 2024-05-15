@@ -14,6 +14,7 @@ import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import Image from "next/image";
+import Link from "next/link";
 //import { format } from "date-fns";
 
 export const columns: ColumnDef<AdvType, any>[] = [
@@ -141,13 +142,15 @@ export const columns: ColumnDef<AdvType, any>[] = [
             <DropdownMenuItem
               onClick={() => {
                 navigator.clipboard.writeText(report.uuid);
-                console.log({ report });
+                //console.log({ report });
               }}>
-              Copy Report Id
+              <Link href={`/advertisment/${report.uuid}`} /*passHref*/>
+                View Report
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View Report</DropdownMenuItem>
-            <DropdownMenuItem>Delete Report</DropdownMenuItem>
+            {/* <DropdownMenuItem>View Report</DropdownMenuItem>
+            <DropdownMenuItem>Delete Report</DropdownMenuItem> */}
           </DropdownMenuContent>
         </DropdownMenu>
       );

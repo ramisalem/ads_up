@@ -6,6 +6,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import StoreProvider from "@/app/storeProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ReactNode } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -31,6 +32,7 @@ export default async function RootLayout({
           <StoreProvider>
             {children} <SpeedInsights />
           </StoreProvider>
+
           {/* </I18nProviderClient> */}
         </body>
       </html>
