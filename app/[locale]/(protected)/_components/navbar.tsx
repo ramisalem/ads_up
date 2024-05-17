@@ -12,7 +12,7 @@ export const Navbar = ({ collapsed }: props) => {
   return (
     <nav
       className={cn({
-        "bg-gray-50  text-black shadow-gray-400 shadow-sm": true, // colors
+        "bg-[#FFFFFF]  text-black shadow-gray-400 shadow-md": true, // colors
         "flex flex-row justify-between items-center": true, // layout
         "w-screen md:w-full sticky mb-4  md:pr-0 z-10 px-4 shadow-sm h-[68px] top-0 ":
           true, //positioning & styling

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
+import AdvertismentCard from "@/components/dashboard/ads-card";
 
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -28,14 +29,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
         <div className="shadow-xs m-auto w-96 rounded-lg  bg-white p-4 dark:bg-slate-800 ">
           <div className="flex grow flex-col items-center">
             <ExclamationTriangleIcon className="m-5 w-10 text-red-500" />
-            {/* <div className="mt-2 flex-shrink-0 ">
-              <p className="text-md  text-right  text-gray-500 dark:text-white">
-                <b>Are you sure you want to delete this story?</b>
-                <b>هل أنت متأكد انك تريد الحذف</b>
-                <br />
-                بمجرد موافقتك على الحذف لن تستطيع استرجاع القصة
-              </p>
-            </div> */}
+
             {children}
             <Button
               variant="secondary"

@@ -48,7 +48,7 @@ export default function SideNav({ collapsed, setCollapsed, shown }: props) {
       animate={isOpen ? "open" : "closed"}
       variants={sidebar}
       className={clsx({
-        " fixed md:static bg-gray-50 shadow-sm shadow-gray-400 md:translate-x-0 z-20":
+        " fixed md:static bg-[#FFFFFF] shadow-sm shadow-gray-400 md:translate-x-0 z-20":
           true,
         "transition-all duration-300 ease-in-out": true,
         "w-[240px] ": collapsed,
@@ -76,7 +76,7 @@ export default function SideNav({ collapsed, setCollapsed, shown }: props) {
             className="grid place-content-center    rounded-full opacity-0 md:opacity-100"
             onClick={() => {
               setCollapsed(!collapsed);
-              toggleOpen();
+              // toggleOpen();
             }}>
             {collapsed ? (
               <ChevronLeftIcon className="p-0 w-6 m-3 rounded-full bg-blue-900 hover:bg-blue-700  text-slate-50" />

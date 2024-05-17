@@ -58,16 +58,16 @@ export function DataTable<TData, TValue>({
         <div className="overflow-x-auto">
           <div className="inline-grid md:min-w-full w-auto align-middle">
             <div className="relative overflow-hidden w-full rounded-md bg-gray-400  md:pt-0">
-              <Table className="relative  md:w-full rounded-md bg-white px-0">
+              <Table className="relative  md:w-full text-xl !important rounded-md bg-white px-0">
                 <TableHeader className="relative md:contents md:content-stretch w-auto  justify-stretch md:min-w-fit border-b  hover:bg-slate-200">
                   {table.getHeaderGroups().map((headerGroup) => (
                     <TableRow
-                      className="border-1 border-slate-700 justify-center justify-self-center hover:p-5"
+                      className="border-1 border-slate-700  justify-center justify-self-center hover:p-5"
                       key={headerGroup.id}>
                       {headerGroup.headers.map((header) => {
                         return (
                           <TableHead
-                            className="border-1 border-slate-700 text-black"
+                            className="border-1 border-slate-700 text-lg !important  text-gray-500 text-center bg-[#F7F9FC]"
                             key={header.id}>
                             {header.isPlaceholder
                               ? null
@@ -90,7 +90,7 @@ export function DataTable<TData, TValue>({
                         data-state={row.getIsSelected() && "selected"}>
                         {row.getVisibleCells().map((cell) => (
                           <TableCell
-                            className=" flex-row items-center justify-between border-b border-black py-3 mx-2 hover:py-4"
+                            className=" flex-row items-center text-center text-lg !important justify-between border-b border-black py-3 mx-2 hover:py-4"
                             key={cell.id}>
                             {flexRender(
                               cell.column.columnDef.cell,

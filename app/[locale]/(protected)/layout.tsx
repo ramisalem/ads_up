@@ -5,7 +5,7 @@ interface ProtectedLayoutProps {
 
 const ProtectedLayout = ({ children, modal }: ProtectedLayoutProps) => {
   return (
-    <div className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white to-gray-100">
+    <div className="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white to-white">
       <section>{children}</section>
       {/* {modal}
 

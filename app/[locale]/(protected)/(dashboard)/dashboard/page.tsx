@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { FaMoneyBill } from "react-icons/fa";
 export default async function Page() {
   const t = await getI18n();
   return (
@@ -15,16 +16,27 @@ export default async function Page() {
       <div className="grid   p-2  overflow-hidden">
         <div className="flex flex-col space-y-2">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <DashboardCardWrapper headerLabel="Reports" Icon={<CaretUpIcon />}>
+            <DashboardCardWrapper
+              headerLabel="Reports"
+              Icon={<CaretUpIcon className="w-12 h-12" />}>
               <span>Dashboard</span>
             </DashboardCardWrapper>
-            <DashboardCardWrapper headerLabel="Coupuns" Icon={<HomeIcon />}>
-              <span>Coupons</span>
+            <DashboardCardWrapper
+              headerLabel="Coupuns"
+              Icon={<FaMoneyBill className="w-8 h-8" />}>
+              <div className="flex flex-row justify-between items-center p-4">
+                <span>Total Coupons</span>
+                <span className="text-green-400 ">^%83,98</span>
+              </div>
             </DashboardCardWrapper>
-            <DashboardCardWrapper headerLabel="Tickets" Icon={<HomeIcon />}>
+            <DashboardCardWrapper
+              headerLabel="49$"
+              Icon={<HomeIcon className="w-8 h-8" />}>
               <span>Tickets</span>
             </DashboardCardWrapper>
-            <DashboardCardWrapper headerLabel="Tickets" Icon={<HomeIcon />}>
+            <DashboardCardWrapper
+              headerLabel="Tickets"
+              Icon={<HomeIcon className="w-8 h-8" />}>
               <span>Tickets</span>
             </DashboardCardWrapper>
           </div>

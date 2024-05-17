@@ -22,11 +22,15 @@ export const DashboardCardWrapper = ({
   return (
     <Card className="flex-1 shadow-md">
       <CardHeader className="w-full flex flex-row gap-y-4 items-center justify-between">
-        <h1 className="text-2xl font-semibold">{headerLabel}</h1>
-        {Icon}
+        <div className="flex w-12 h-12 rounded-full bg-[#EEEEEE] text-blue-700 items-center justify-center">
+          {Icon}
+        </div>
       </CardHeader>
-      <Separator className="bg-gray-50 w-full h-1" />
-      <CardContent className="p-2">{children}</CardContent>
+      {/* <Separator className="bg-gray-50 w-full h-1" /> */}
+      <CardContent className="p-4">
+        <h1 className="text-2xl text-blue-700 font-semibold">{headerLabel}</h1>
+        {children}
+      </CardContent>
 
       <CardFooter>
         <p>{headerLabel}</p>

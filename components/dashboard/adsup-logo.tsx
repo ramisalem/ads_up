@@ -1,18 +1,17 @@
-import { GlobeAltIcon } from "@heroicons/react/24/outline";
-//import { lusitana } from "@/app/ui/fonts";
-//import clsx from "clsx";
 type props = {
-  showName: boolean;
+  showName?: boolean;
+  width?: number;
+  height?: number;
 };
 export default function ADSUPLogo() {
+  //ADSUPLogo({ width: 204, height: 48 });
+
   return (
-    <div className="flex flex-row flex-grow items-center ltr:pl-4 rtl:pr-4 leading-none text-white md:w-auto">
-      {/* <GlobeAltIcon className="h-12 w-10  text-sky-500 rotate-[15deg]" /> */}
-      {/* <p className="text-[36px] hidden text-sky-500 md:block">ADSUP</p> */}
+    <div className="flex flex-row flex-grow ltr:pl-6 rtl:pr-6   items-center leading-none ">
       <svg
-        width="204"
+        width="236"
         height="48"
-        viewBox="0 0 234 48"
+        viewBox="0 0 236 48"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <path

@@ -48,8 +48,7 @@ const MenuItem = ({
     <div className={`${!isSidebarCollapsed}?"w-10 ": ''`}>
       {item.submenu ? (
         <div>
-          <button
-            onClick={toggleSubMenu}
+          <div
             className={clsx(
               "flex h-10  items-center justify-center gap-1 rounded-md  mx-auto text-3xl font-semibold hover:bg-sky-100 hover:text-blue-600   md:justify-between  ",
               {
@@ -60,12 +59,14 @@ const MenuItem = ({
             )}>
             <div className="flex flex-row space-x-4  items-center">
               {isSidebarCollapsed ? (
-                <span className="flex flex-row">
-                  <LinkIcon className="w-10 h-6" />
-                  <p className="hidden text-base md:block">
-                    {t(`${item.name}`)}
-                  </p>
-                </span>
+                <button onClick={toggleSubMenu}>
+                  <span className="flex flex-row">
+                    <LinkIcon className="w-10 h-6" />
+                    <p className="hidden text-base md:block">
+                      {t(`${item.name}`)}
+                    </p>
+                  </span>
+                </button>
               ) : (
                 <TooltipProvider>
                   <Tooltip>
@@ -81,12 +82,13 @@ const MenuItem = ({
             </div>
 
             {isSidebarCollapsed && (
-              <div className={`${subMenuOpen ? "rotate-180" : ""} flex`}>
-                <ChevronDownIcon className="w-6" />
-              </div>
+              <button onClick={toggleSubMenu}>
+                <div className={`${subMenuOpen ? "rotate-180" : ""} flex`}>
+                  <ChevronDownIcon className="w-6" />
+                </div>
+              </button>
             )}
-          </button>
-
+          </div>
           {subMenuOpen && isSidebarCollapsed && (
             <div className="my-2 ltr:ml-12 rtl:mr-12 flex flex-col space-y-3">
               {item.subMenuItems?.map((subItem, idx) => {
@@ -95,7 +97,7 @@ const MenuItem = ({
                   <div
                     key={idx}
                     className={clsx(
-                      "flex h-10  items-center justify-between gap-2 rounded-md bg-gray-50 ms-auto text-md font-semibold hover:bg-sky-100 hover:text-blue-600 ",
+                      "flex h-10  items-center justify-between gap-2 rounded-md bg-white ms-auto text-md font-semibold hover:bg-sky-100 hover:text-blue-600 ",
                       {
                         "bg-sky-100 text-blue-600":
                           pathname.indexOf(item.href) !== -1,

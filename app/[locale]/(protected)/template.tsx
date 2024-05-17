@@ -5,16 +5,15 @@
 import clsx from "clsx";
 import { useState } from "react";
 import { Navbar } from "./_components/navbar";
-import HeaderMobile from "@/components/dashboard/header-mobile";
+
 import SideNav from "@/components/dashboard/sidebar";
-import StoreProvider from "@/app/storeProvider";
 
 export default function MainLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [collapsed, setSidebarCollapsed] = useState(false);
+  const [collapsed, setSidebarCollapsed] = useState(true);
 
   return (
     <>
