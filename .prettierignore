@@ -1,0 +1,13 @@
+# Ignore artifacts:
+build
+coverage
+
+
+README.md
+.prettierignore
+.gitignore
+
+.next
+.vscode
+
+reports

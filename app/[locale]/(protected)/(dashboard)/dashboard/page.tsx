@@ -40,7 +40,7 @@ export default async function Page() {
               <span>Tickets</span>
             </DashboardCardWrapper>
           </div>
-          <div className="grid h-[500px] w-auto md:overflow-hidden gap-4 md:grid-cols-2 lg:grid-cols-7">
+          <div className="grid h-[500px] w-auto md:overflow-hidden gap-4 md:grid-cols-2 lg:grid-cols-7 shadow-lg">
             <Card className="col-span-4">
               <CardHeader>
                 <CardTitle>Overview</CardTitle>

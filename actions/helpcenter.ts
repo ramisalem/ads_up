@@ -10,8 +10,8 @@ export const getTickets = async (): Promise<Tickets[] | any> => {
   try {
     const res = await api.get(`/tickets`);
 
-    const data: Tickets[] = res.data;
-
+    const data = res.data;
+    console.log("tickets data", data);
     return data;
   } catch (e) {
     if (typeof e === "string") error = e;

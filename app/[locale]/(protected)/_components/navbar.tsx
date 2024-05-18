@@ -22,7 +22,7 @@ export const Navbar = ({ collapsed }: props) => {
           <ADSUPLogo />
         </div>
       )}
-      <div className="flex  justify-center mx-2 gap-x-2 items-center">
+      <div className="flex  justify-center mx-2 gap-x-2 items-end">
         <LocaleSwitcher />
 
         <UserButton />

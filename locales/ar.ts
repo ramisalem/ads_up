@@ -11,6 +11,8 @@ export default {
   user_info: "بيانات المستخدم",
   settings: "الاعدادات",
   "welcome-back": "مرحبا بعودتك",
+  "sign-in-dashboard": "دخول لوحة التحكم",
+  aboutUs: " منصة ديناميكية مصممة لتحويل طريقة إدارة وعرض الإعلانات.",
   "ask.register": "ليس لديك حساب قم بالتسجيل",
   server: "السيرفر",
   admin: "المدير",

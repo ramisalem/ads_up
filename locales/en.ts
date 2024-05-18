@@ -11,6 +11,9 @@ export default {
   user_info: "User Info",
   settings: "Settings",
   "welcome-back": "Welcome Back",
+  "sign-in-dashboard": "Sign in to Dashboard",
+  aboutUs:
+    "Adsup is a dynamic platform designed to revolutionize the way ads are managed and viewed.",
   "ask.register": "Don't have an account?",
   server: "Server",
   admin: "ADMIN",

@@ -55,6 +55,9 @@ export const LoginForm = () => {
           if (data?.error) {
             // form.reset();
             setError(data.error);
+            setTimeout(() => {
+              setError("");
+            }, 4000);
           }
 
           if (data?.success) {
@@ -67,78 +70,82 @@ export const LoginForm = () => {
   };
 
   return (
-    <CardWrapper headerLabel={t("welcome-back")}>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <div className="space-y-4">
-            {showTwoFactor && (
-              <FormField
-                control={form.control}
-                name="code"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Two Factor Code</FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        disabled={isPending}
-                        placeholder="123456"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-            {!showTwoFactor && (
-              <>
+    <CardWrapper headerLabel={t("sign-in-dashboard")}>
+      <div className="flex p-6 bg-transparent rounded-md w-[300px] items-center justify-between ">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="min-w-full space-y-8">
+            <div className="space-y-8">
+              {showTwoFactor && (
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="code"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>Two Factor Code</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           disabled={isPending}
-                          placeholder="john.doe@example.com"
-                          type="email"
+                          placeholder="123456"
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          disabled={isPending}
-                          placeholder="******"
-                          type="password"
-                        />
-                      </FormControl>
+              )}
+              {!showTwoFactor && (
+                <>
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            disabled={isPending}
+                            placeholder="john.doe@example.com"
+                            type="email"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Password</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            disabled={isPending}
+                            placeholder="******"
+                            type="password"
+                          />
+                        </FormControl>
 
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </>
-            )}
-          </div>
-          <FormError message={error || urlError} />
-          <FormSuccess message={success} />
-          <Button disabled={isPending} type="submit" className="w-full">
-            {"Login"}
-          </Button>
-        </form>
-      </Form>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </>
+              )}
+            </div>
+            <FormError message={error || urlError} />
+            <FormSuccess message={success} />
+            <Button disabled={isPending} type="submit" className="w-full">
+              {"Login"}
+            </Button>
+          </form>
+        </Form>
+      </div>
     </CardWrapper>
   );
 };
