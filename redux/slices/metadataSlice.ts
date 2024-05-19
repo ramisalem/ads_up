@@ -2,10 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 //import { Metadata } from "@/constants/types";
 
-import { getMetadata, updateMetadata } from '@/actions/metadata';
+import { getMetadata as getServerMetadata, updateMetadata } from '@/actions/metadata';
 import { MetaDataSchema } from '@/schemas';
 import { z } from 'zod';
 import { errorToJSON } from 'next/dist/server/render';
+import api from '@/data/api/axiosInstance';
+import axios from 'axios';
 
 type Metadata = z.infer<typeof MetaDataSchema>;
 
@@ -34,8 +36,14 @@ export const getMetaData = createAsyncThunk<Metadata>(
     'metadata/getMetaData',
     async (_data, { dispatch }) => {
         console.log('in get metadata');
-        const data = await getMetadata();
-        return data;
+        try {
+            const data = await getServerMetadata();
+            // await axios.get('https://service.adzup.app/api/v1/metadata');
+            return data;
+        } catch (e) {
+            console.log('error on get metadat', e);
+            throw e;
+        }
     }
 );
 

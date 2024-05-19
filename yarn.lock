@@ -1415,6 +1415,24 @@ electron-to-chromium@^1.4.668:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.690.tgz#dd5145d45c49c08a9a6f7454127e660bdf9a3fa7"
   integrity sha512-+2OAGjUx68xElQhydpcbqH50hE8Vs2K6TkAeLhICYfndb67CVH0UsZaijmRUE3rHlIxU1u0jxwhgVe6fK3YANA==
 
+embla-carousel-react@^8.1.2:
+  version "8.1.2"
+  resolved "https://registry.yarnpkg.com/embla-carousel-react/-/embla-carousel-react-8.1.2.tgz#f9852d7c873e2e3c107d2ddbca237b8433264218"
+  integrity sha512-gDJ82bdP3VujDpnfX+HyDcIiq5IDArnBCu9Y5nRZoGpon3UcTeDnQdYBrj/n8yluQnkYdXWCKdfPlduJgf1U/w==
+  dependencies:
+    embla-carousel "8.1.2"
+    embla-carousel-reactive-utils "8.1.2"
+
+embla-carousel-reactive-utils@8.1.2:
+  version "8.1.2"
+  resolved "https://registry.yarnpkg.com/embla-carousel-reactive-utils/-/embla-carousel-reactive-utils-8.1.2.tgz#af9d85f59b88c471f098c9d75adb3bda420296ba"
+  integrity sha512-iDTx9WKtxz/ljZWmcUTY6Xfd6lx/Zkpz4tDqZHeHnMOmI1Wgu1S4ZWA7yzHWqpj14mND8Gw1BH9kkycuXL/PeQ==
+
+embla-carousel@8.1.2:
+  version "8.1.2"
+  resolved "https://registry.yarnpkg.com/embla-carousel/-/embla-carousel-8.1.2.tgz#268e96b8acc0937c1fb35da9309b9e8546fac6f1"
+  integrity sha512-UCjqg223H6xZ0xxosmyV5CDfzdbw31yIgkm3xGGLeRRD5yIbtR2AhWzkk2ntjHK09/v3dKcY8G09OawDV3gbew==
+
 emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"

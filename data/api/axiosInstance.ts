@@ -1,9 +1,9 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance } from 'axios';
 
-const API_URL =
-  process.env.NODE_ENV === "production"
-    ? process.env.NEXT_PUBLIC_PROD_BASE_URL
-    : process.env.NEXT_PUBLIC_DEV_BASE_URL;
+const API_URL = process.env.NEXT_PUBLIC_BASE_URL + '/api/v1';
+// process.env.NODE_ENV === "production"
+//   ? process.env.NEXT_PUBLIC_PROD_BASE_URL
+//   : process.env.NEXT_PUBLIC_DEV_BASE_URL;
 
 // axios.interceptors.request.use(
 //     (config) => {
@@ -19,7 +19,7 @@ const API_URL =
 //   );
 
 const api = axios.create({
-  baseURL: API_URL,
+    baseURL: API_URL
 });
 
 export default api;

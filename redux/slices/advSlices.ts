@@ -1,44 +1,46 @@
-import { getAllAds } from '@/actions/advertisment';
+import { fetchOneAd, getAllAds } from '@/actions/advertisment';
 import { AdvType } from '@/constants/types';
+import api from '@/data/api/axiosInstance';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { FaLessThanEqual } from 'react-icons/fa';
 
 export interface IAdvertisment {
-    advsList: AdvType[];
+    adsList: AdvType[];
+    detailedAd: AdvType | null;
     isLoading: boolean;
     hasError: boolean;
     error: string;
 }
 
 const initialState: IAdvertisment = {
-    advsList: [],
+    adsList: [],
+    detailedAd: null,
     isLoading: false,
     hasError: false,
     error: ''
 };
 
-export const fetchAds = createAsyncThunk<any>('ads/fetchAds', async (_state, { dispatch }) => {
+export const fetchAds = createAsyncThunk('ads/fetchAds', async (_state, { dispatch }) => {
     try {
-        // console.log("in get one ads", id);
-        const data = await getAllAds();
-        console.log('in fetch all ads');
-        return data; //{ data: data, uuid: id };
-        //    return data?.data.filter((item)=>item.uuid===id)
+        const response = await getAllAds();
+        // await api.get('/ads', {
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // });
+        console.log('in fetch all ads', response);
+        return response;
     } catch (e) {
         console.log('error ', e);
         throw e;
     }
 });
 
-export const getOneAdvertisment = createAsyncThunk<any>(
+export const getOneAdvertisment = createAsyncThunk<any, any>(
     'ads/getOneAdvertisment',
-    async (_id, { dispatch }) => {
+    async (payload: any) => {
         try {
-            // console.log("in get one ads", id);
-            const data = await getAllAds();
-
-            return data; //{ data: data, uuid: id };
-            //    return data?.data.filter((item)=>item.uuid===id)
+            const data = await api.get(`/ads?id=${payload}`);
+            return data.data;
         } catch (e) {
             console.log('error ', e);
             throw e;
@@ -49,7 +51,7 @@ export const adsSlice = createSlice({
     name: 'ads',
     initialState,
     reducers: {
-        advsState: (state: IAdvertisment) => {
+        adsState: (state: IAdvertisment) => {
             state.hasError = false;
             state.error = '';
             state.isLoading = false;
@@ -60,32 +62,32 @@ export const adsSlice = createSlice({
         builder.addCase(fetchAds.fulfilled, (state: IAdvertisment, action: any) => {
             state.isLoading = false;
             state.hasError = false;
-            state.advsList = action.payload;
+            state.adsList = action.payload;
         }),
             builder.addCase(
-                getOneAdvertisment.fulfilled,
+                getOneAdvertisment.pending,
                 (state: IAdvertisment, action: any) => {
-                    state.isLoading = false;
+                    state.isLoading = true;
                     state.hasError = false;
-                    state.advsList = action.payload.data;
-                    //console.log(action.payload.data);
-                    // state.advsList = {
-                    //   ...action.payload.data.data.filter(
-                    //     (item: AdvType) => item.uuid === action.payload.uuid
-                    //   ),
-                    // };
-                    console.log(state.advsList);
+                    state.detailedAd = null;
                 }
             );
+        builder.addCase(getOneAdvertisment.fulfilled, (state: IAdvertisment, action: any) => {
+            console.log('action payload in get 1 ads', action.payload[0]);
+            state.isLoading = false;
+            state.hasError = false;
+            state.detailedAd = action.payload[0];
+
+            console.log('addetailed state', state.detailedAd);
+        });
         builder.addCase(getOneAdvertisment.rejected, (state: IAdvertisment, action: any) => {
             state.isLoading = false;
             state.hasError = true;
-            console.log('error in getOne adv');
             state.error = action.error.message;
         });
     }
 });
 
-export const { advsState } = adsSlice.actions;
+export const { adsState } = adsSlice.actions;
 
 export const adsReducer = adsSlice.reducer;

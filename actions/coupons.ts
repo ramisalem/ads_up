@@ -8,11 +8,6 @@ import api from '@/data/api/axiosInstance';
 export const getCoupons = async (): Promise<Coupons[] | any> => {
     let error: any;
 
-    //   let url =
-    //     process.env.NODE_ENV === "production"
-    //       ? process.env.NEXT_PUBLIC_PROD_BASE_URL
-    //       : process.env.NEXT_PUBLIC_DEV_BASE_URL;
-
     try {
         const res = await api.get(`/coupons`, {
             headers: {
@@ -33,10 +28,6 @@ export const getCoupons = async (): Promise<Coupons[] | any> => {
 
 export const addCoupon = async (values: z.infer<typeof CupounsSchema>): Promise<any> => {
     let error;
-    //   let url =
-    //     process.env.NODE_ENV === "production"
-    //       ? process.env.NEXT_PUBLIC_PROD_BASE_URL
-    //       : process.env.NEXT_PUBLIC_DEV_BASE_URL;
     const validatedFields = CupounsSchema.safeParse(values);
 
     if (!validatedFields.success) {

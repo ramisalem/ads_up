@@ -10,6 +10,7 @@ export const getMetadata = async (): Promise<Metadata | any> => {
     try {
         const res = await api.get(`/metadata`);
         const data = res.data;
+        console.log('metadat in action', data);
         return data;
     } catch (e) {
         if (typeof e === 'string') error = e;

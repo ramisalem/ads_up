@@ -1,30 +1,26 @@
-import {
-  CupounsSchema,
-  MetaDataSchema,
-  UserRole as user_role,
-} from "@/schemas";
-import { z } from "zod";
+import { CupounsSchema, MetaDataSchema, UserRole as user_role } from '@/schemas';
+import { z } from 'zod';
 
 export enum userRole {
-  ADMIN,
-  USER,
+    ADMIN,
+    USER
 }
 
 export type UserRole = z.infer<typeof user_role>;
 
 export type SideNavItem = {
-  name: string;
-  href: string;
-  icon?: any; //string; //JSX.Element;
-  submenu?: boolean;
-  subMenuItems?: SideNavItem[];
+    name: string;
+    href: string;
+    icon?: any; //string; //JSX.Element;
+    submenu?: boolean;
+    subMenuItems?: SideNavItem[];
 };
 export type Tickets = {
-  uuid: string;
-  title: string;
-  description: string;
-  status: "Opened" | "Closed";
-  createdBy: string;
+    uuid: string;
+    title: string;
+    description: string;
+    status: 'Opened' | 'Closed';
+    createdBy: string;
 };
 export type Metadata = z.infer<typeof MetaDataSchema>;
 // export type Metadata = {
@@ -37,19 +33,22 @@ export type Metadata = z.infer<typeof MetaDataSchema>;
 
 // }
 
-const AdvStatus = z.enum(["Pending", "Published", "Deleted", "Hidden"]);
+const AdvStatus = z.enum(['Pending', 'Published', 'Deleted', 'Hidden']);
 export type AdvType = {
-  uuid: string | any;
-  title: string;
-  categoryId: string; // (UUID)
-  description: string;
-  price: number;
-  link?: string; //(Optional)
-  images: string; //[]to be discuss later
-  location: string; // (UUID)
-  start: string; //(Timestamp in UTC zone )
-  end: string; // (Timestamp in UTC zone )
-  status: z.infer<typeof AdvStatus>; //'Pending' | 'Published' | 'Deleted' | 'Hidden',
+    uuid: string | any;
+    title: string;
+    categoryId: string; // (UUID)
+    description: string;
+    price: number;
+    link?: string; //(Optional)
+    images: [string]; //[]to be discuss later
+    location: string; // (UUID)
+    start: string; //(Timestamp in UTC zone )
+    end: string; // (Timestamp in UTC zone )
+    status: z.infer<typeof AdvStatus>; //'Pending' | 'Published' | 'Deleted' | 'Hidden',
+    owner: string;
+    createdAt: string;
+    updatedAt: string;
 };
 export type Coupons = z.infer<typeof CupounsSchema>;
 // export type Coupons = {
