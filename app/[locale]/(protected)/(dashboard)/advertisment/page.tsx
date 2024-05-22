@@ -1,7 +1,7 @@
 'use client';
 import { useI18n } from '@/locales/client';
 //import { getAllAds } from '@/actions/advertisment';
-import { fetchAds } from '@/redux/slices/advSlices';
+import { fetchAds } from '@/redux/slices/adsSlice';
 import { Suspense, useEffect } from 'react';
 
 import { DataTable } from './_components/data-table';
@@ -15,17 +15,17 @@ export default function Advertisment() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        console.log('in fetchads use effect');
         dispatch(fetchAds());
     }, []);
 
     return (
-        <Suspense fallback={<Loader />}>
+        <>
+            {isLoading && <Loader />}
             <div className=" border-radius my-6  md:w-full  py-4 px-[0.25rem] items-start rounded-md  md:flex-col">
                 <p className="text">{t('advertisment')}</p>
                 <span>{adsList && <DataTable columns={columns} data={adsList} />}</span>
                 <span>{hasError && <p>{error}</p>}</span>
             </div>
-        </Suspense>
+        </>
     );
 }

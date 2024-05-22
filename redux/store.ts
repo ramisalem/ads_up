@@ -2,14 +2,16 @@ import { configureStore } from '@reduxjs/toolkit';
 import { couponsReducer } from './slices/couponsSlice';
 import { ticketsReducer } from './slices/ticketsSlice';
 import { metadataReducer } from './slices/metadataSlice';
-import { adsReducer } from './slices/advSlices';
+import { adsReducer } from './slices/adsSlice';
+import { categoriesReducer } from './slices/categorysSlice';
 export const makeStore = () => {
     return configureStore({
         reducer: {
             coupons: couponsReducer,
             tickets: ticketsReducer,
             metadata: metadataReducer,
-            ads: adsReducer
+            ads: adsReducer,
+            cats: categoriesReducer
         },
         ///TODO find a way to repaire this wwithout middleware
         middleware: (getDefaultMiddleware) =>

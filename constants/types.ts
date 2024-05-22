@@ -33,9 +33,9 @@ export type Metadata = z.infer<typeof MetaDataSchema>;
 
 // }
 
-const AdvStatus = z.enum(['Pending', 'Published', 'Deleted', 'Hidden']);
+export const AdvStatus = z.enum(['PENDING', 'PUBLISHED', 'DELETED', 'HIDDEN']);
 export type AdvType = {
-    uuid: string | any;
+    uuid: string;
     title: string;
     categoryId: string; // (UUID)
     description: string;
@@ -62,3 +62,39 @@ export type Coupons = z.infer<typeof CupounsSchema>;
 //     price: number,//Float
 //     status: 'Activated' | 'Deactivated',
 // }
+
+export type Users = {
+    uuid: string;
+    name: string;
+    phoneNumber: string;
+    role: string;
+    // "preferences": {
+    //   "categories": [
+    //     "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+    //   ]
+    // },
+    dateOfBrith?: string;
+    joinedDate: string;
+    // "favorites": [
+    //   {}
+    // ],
+    // "advertisements": [
+    //   {}
+    // ],
+    email: string;
+    // avatar: [
+    //   "string"
+    // ],
+    status: string;
+};
+
+export type Categories = {
+    uuid: string;
+    nameAr: string;
+    nameEn: string;
+    classificationUuid: string;
+    classificationNameAr: string;
+    classificationNameEn: string;
+    subCategories: Categories[];
+    status: string;
+};

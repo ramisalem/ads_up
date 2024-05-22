@@ -80,7 +80,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                                     ))}
                                 </TableHeader>
                                 <TableBody>
-                                    {table.getRowModel().rows?.length ? (
+                                    {table && table.getRowModel().rows?.length ? (
                                         table.getRowModel().rows.map((row) => (
                                             <TableRow
                                                 className="border-1 cursor-pointer content-center self-center border-black items-center hover:ring-2 hover:ring-blue"

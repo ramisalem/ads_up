@@ -5,7 +5,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export interface IAdvertisment {
     adsList: AdvType[];
-    detailedAd: AdvType | null;
+    detailedAd: AdvType | undefined;
     isLoading: boolean;
     hasError: boolean;
     error: string;
@@ -13,7 +13,7 @@ export interface IAdvertisment {
 
 const initialState: IAdvertisment = {
     adsList: [],
-    detailedAd: null,
+    detailedAd: undefined,
     isLoading: false,
     hasError: false,
     error: ''
@@ -64,21 +64,25 @@ export const adsSlice = createSlice({
             state.hasError = false;
             state.adsList = action.payload;
         }),
+            // builder.addCase(
+            //     getOneAdvertisment.pending,
+            //     (state: IAdvertisment, action: any) => {
+            //         state.isLoading = true;
+            //         state.hasError = false;
+            //     }
+            // );
             builder.addCase(
                 getOneAdvertisment.pending,
                 (state: IAdvertisment, action: any) => {
                     state.isLoading = true;
                     state.hasError = false;
-                    state.detailedAd = null;
+                    console.log('get one add is pending');
                 }
             );
         builder.addCase(getOneAdvertisment.fulfilled, (state: IAdvertisment, action: any) => {
-            console.log('action payload in get 1 ads', action.payload[0]);
             state.isLoading = false;
             state.hasError = false;
             state.detailedAd = action.payload[0];
-
-            console.log('addetailed state', state.detailedAd);
         });
         builder.addCase(getOneAdvertisment.rejected, (state: IAdvertisment, action: any) => {
             state.isLoading = false;

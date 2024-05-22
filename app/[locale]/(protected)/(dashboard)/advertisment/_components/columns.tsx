@@ -15,6 +15,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
+import { CategoryDetail } from '@/components/dashboard/category-detail';
 //import { format } from "date-fns";
 
 export const columns: ColumnDef<AdvType, any>[] = [
@@ -32,7 +33,11 @@ export const columns: ColumnDef<AdvType, any>[] = [
     },
     {
         accessorKey: 'categoryId',
-        header: 'Category'
+        header: 'Category',
+        cell: ({ row }) => {
+            let id: string = row.getValue('categoryId');
+            return <CategoryDetail id={id} />;
+        }
     },
     {
         accessorKey: 'price',
@@ -44,7 +49,10 @@ export const columns: ColumnDef<AdvType, any>[] = [
     // },
     {
         accessorKey: 'status',
-        header: 'Status'
+        header: 'Status',
+        filterFn: (row, id, value) => {
+            return value.includes(row.getValue(id));
+        }
     },
     {
         accessorKey: 'location',
@@ -75,7 +83,7 @@ export const columns: ColumnDef<AdvType, any>[] = [
         cell: ({ row }) => {
             let newDate = new Date(row.getValue('start'));
             let formatted = format(newDate, 'PPP');
-            return <div className="text-center font-medium">{formatted}</div>;
+            return <div className="text-center font-sm ">{formatted}</div>;
         },
         filterFn: (row, columnId, value) => {
             const date = new Date(row.getValue(columnId));
