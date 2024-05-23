@@ -9,9 +9,9 @@ export default function ADSUPLogo() {
     return (
         <div className="flex flex-row flex-grow ltr:pr-2 rtl:pl-2   items-center leading-none ">
             <svg
-                width="236"
+                width="248"
                 height="48"
-                viewBox="0 0 236 48"
+                viewBox="0 0 248 48"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
             >

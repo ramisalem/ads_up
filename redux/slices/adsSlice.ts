@@ -27,7 +27,7 @@ export const fetchAds = createAsyncThunk('ads/fetchAds', async (_state, { dispat
         //         'Content-Type': 'application/json'
         //     }
         // });
-        console.log('in fetch all ads', response);
+
         return response;
     } catch (e) {
         console.log('error ', e);

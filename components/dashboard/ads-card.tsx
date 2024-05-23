@@ -161,33 +161,29 @@ export default function AdvertismentCard({ params: { id } }: { params: { id: str
                     </Card>
 
                     <Carousel className=" relative flex-col z-20 items-center justify-between space-y-8 bg-transparent rounded-lg   max-w-xs">
-                        <div className=" flex-row inline-flex z-50items-center bg-transparent absolute top-[40px] md:top-[550px] right-[150px] justify-center  space-x-2  ">
-                            <CarouselPrevious className="z-50 " />
-                            <CarouselNext className="z-50 " />
+                        <div className=" flex-row inline-flex z-40 items-center bg-transparent absolute top-[40px] md:top-[50px] right-[150px] justify-center  space-x-2  ">
+                            <CarouselPrevious className="z-40 " />
+                            <CarouselNext className="z-40 " />
                         </div>
                         <CarouselContent>
-                            {
-                                /*detailedAd?.images*/ img.map((item, index) => (
-                                    <CarouselItem key={index}>
-                                        <Card className="border-none rounded-none z-0 shadow-none">
-                                            <CardHeader>
-                                                <CardDescription>Images</CardDescription>
-                                            </CardHeader>
-                                            <CardContent className="flex z-0 aspect-square items-center bg-white justify-center">
-                                                <Image
-                                                    src={
-                                                        `/img/${item}` /*`https://adsup.s3.me-central-1.amazonaws.com/images/${item} `*/
-                                                    }
-                                                    alt="ad images"
-                                                    width={400}
-                                                    height={300}
-                                                    className="rounded-md z-0"
-                                                />
-                                            </CardContent>
-                                        </Card>
-                                    </CarouselItem>
-                                ))
-                            }
+                            {detailedAd?.images.map((item, index) => (
+                                <CarouselItem key={index}>
+                                    <Card className="border-none rounded-none z-0 shadow-none">
+                                        <CardHeader>
+                                            <CardDescription>Images</CardDescription>
+                                        </CardHeader>
+                                        <CardContent className="flex z-0 aspect-square items-center  justify-center">
+                                            <Image
+                                                src={`https://adsup.s3.me-central-1.amazonaws.com/images/${item} `}
+                                                alt="ad images"
+                                                width={400}
+                                                height={300}
+                                                className="rounded-md z-0"
+                                            />
+                                        </CardContent>
+                                    </Card>
+                                </CarouselItem>
+                            ))}
                         </CarouselContent>
                     </Carousel>
                 </Card>

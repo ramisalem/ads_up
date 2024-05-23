@@ -17,12 +17,12 @@ import {
     TableHeader,
     TableRow
 } from '@/components/ui/table';
-import Search from '@/components/dashboard/search';
+
 import { lusitana } from '@/components/fonts';
 import { DataTablePagination } from '@/components/dashboard/tables-components/data-table-pagination';
 import { DataTableToolbar } from '@/components/dashboard/tables-components/data-table-toolbar';
 import React from 'react';
-
+import { useI18n, useScopedI18nUntyped } from '@/locales/client';
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
@@ -41,7 +41,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel()
     });
-
+    const t = useScopedI18nUntyped('adscol');
     return (
         <div className="flex w-full flex-col   md:p-4">
             <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
@@ -66,13 +66,16 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                                                         className="border-1 border-slate-700 text-lg !important  text-gray-500 text-center bg-[#F7F9FC]"
                                                         key={header.id}
                                                     >
-                                                        {header.isPlaceholder
-                                                            ? null
-                                                            : flexRender(
-                                                                  header.column.columnDef
-                                                                      .header,
-                                                                  header.getContext()
-                                                              )}
+                                                        {
+                                                            header.isPlaceholder
+                                                                ? null
+                                                                : t(header.id)
+                                                            // flexRender(
+                                                            //       header.column.columnDef
+                                                            //           .header,
+                                                            //       header.getContext()
+                                                            //   )
+                                                        }
                                                     </TableHead>
                                                 );
                                             })}
