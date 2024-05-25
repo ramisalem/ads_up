@@ -149,13 +149,8 @@ export const columns: ColumnDef<AdvType, any>[] = [
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem
-                            onClick={() => {
-                                navigator.clipboard.writeText(report.uuid);
-                                //console.log({ report });
-                            }}
-                        >
-                            <Link href={`/advertisment/${report.uuid}`} /*passHref*/>
+                        <DropdownMenuItem>
+                            <Link href={`/advertisment/${report.uuid}`} passHref>
                                 View Ad
                             </Link>
                         </DropdownMenuItem>

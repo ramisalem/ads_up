@@ -59,11 +59,15 @@ export const adsSlice = createSlice({
     },
 
     extraReducers: (builder) => {
-        builder.addCase(fetchAds.fulfilled, (state: IAdvertisment, action: any) => {
-            state.isLoading = false;
+        builder.addCase(fetchAds.pending, (state: IAdvertisment, action: any) => {
+            state.isLoading = true;
             state.hasError = false;
-            state.adsList = action.payload;
         }),
+            builder.addCase(fetchAds.fulfilled, (state: IAdvertisment, action: any) => {
+                state.isLoading = false;
+                state.hasError = false;
+                state.adsList = action.payload;
+            }),
             // builder.addCase(
             //     getOneAdvertisment.pending,
             //     (state: IAdvertisment, action: any) => {

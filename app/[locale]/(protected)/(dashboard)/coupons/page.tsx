@@ -11,9 +11,6 @@ import { getALLCoupons } from '@/redux/slices/couponsSlice';
 import Loader from '@/components/dashboard/loader';
 
 export default function Page() {
-    //const data = await getCoupons();
-    //const store = useAppStore();
-    //const initialized = useRef(false);
     const dispatch = useAppDispatch();
     useEffect(() => {
         // if (!initialized.current) {
@@ -26,7 +23,6 @@ export default function Page() {
     // const t = await getI18n();
     const t = useI18n();
     return (
-        // <Suspense fallback={"...loading"}>
         <div className="border-radius my-6  md:w-full  py-4 px-[0.25rem] items-start rounded-md  md:flex-col">
             <div className="flex flex-row items-center justify-between mb-2">
                 <p className="text">{t('coupon')}</p>
@@ -35,7 +31,7 @@ export default function Page() {
                 </AddCouponButton>
             </div>
             {/* <div className="flex flex-auto w-full"> */}
-            <span>
+            <div>
                 {isLoading ? (
                     <Loader />
                 ) : couponsList.length >= 1 ? (
@@ -45,7 +41,7 @@ export default function Page() {
                         No Data
                     </p>
                 )}
-            </span>
+            </div>
         </div>
     );
 }

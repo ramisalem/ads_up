@@ -1,13 +1,13 @@
-'use client';
-import { useI18n } from '@/locales/client';
+"use client";
+import { useI18n } from "@/locales/client";
 //import { getAllAds } from '@/actions/advertisment';
-import { fetchAds } from '@/redux/slices/adsSlice';
-import { Suspense, useEffect } from 'react';
+import { fetchAds } from "@/redux/slices/adsSlice";
+import { useEffect } from "react";
 
-import { DataTable } from './_components/data-table';
-import { columns } from './_components/columns';
-import Loader from '@/components/dashboard/loader';
-import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { DataTable } from "./_components/data-table";
+import { columns } from "./_components/columns";
+import Loader from "@/components/dashboard/loader";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 
 export default function Advertisment() {
     const t = useI18n();
@@ -19,13 +19,19 @@ export default function Advertisment() {
     }, []);
 
     return (
-        <>
-            {isLoading && <Loader />}
-            <div className=" border-radius my-6  md:w-full  py-4 px-[0.25rem] items-start rounded-md  md:flex-col">
-                <p className="text">{t('advertisment')}</p>
-                <span>{adsList && <DataTable columns={columns} data={adsList} />}</span>
-                <span>{hasError && <p>{error}</p>}</span>
+        <div className=" border-radius my-6  md:w-full  py-4 px-[0.25rem] items-start rounded-md  md:flex-col">
+            <p className="text">{t("advertisment")}</p>
+            <div>
+                {isLoading && !adsList ? (
+                    <Loader />
+                ) : adsList && adsList.length >= 1 ? (
+                    <DataTable columns={columns} data={adsList} />
+                ) : hasError ? (
+                    <span>{hasError && <p>{error}</p>}</span>
+                ) : (
+                    <p>No Data</p>
+                )}
             </div>
-        </>
+        </div>
     );
 }

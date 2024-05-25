@@ -1,9 +1,9 @@
-import { CupounsSchema, MetaDataSchema, UserRole as user_role } from '@/schemas';
-import { z } from 'zod';
+import { CupounsSchema, MetaDataSchema, UserRole as user_role } from "@/schemas";
+import { z } from "zod";
 
 export enum userRole {
     ADMIN,
-    USER
+    USER,
 }
 
 export type UserRole = z.infer<typeof user_role>;
@@ -19,7 +19,7 @@ export type Tickets = {
     uuid: string;
     title: string;
     description: string;
-    status: 'Opened' | 'Closed';
+    status: "Opened" | "Closed";
     createdBy: string;
 };
 export type Metadata = z.infer<typeof MetaDataSchema>;
@@ -33,7 +33,7 @@ export type Metadata = z.infer<typeof MetaDataSchema>;
 
 // }
 
-export const AdvStatus = z.enum(['PENDING', 'PUBLISHED', 'DELETED', 'HIDDEN']);
+export const AdvStatus = z.enum(["PENDING", "PUBLISHED", "DELETED", "HIDDEN"]);
 export type AdvType = {
     uuid: string;
     title: string;
@@ -63,7 +63,7 @@ export type Coupons = z.infer<typeof CupounsSchema>;
 //     status: 'Activated' | 'Deactivated',
 // }
 
-export type Users = {
+export type AdUsers = {
     uuid: string;
     name: string;
     phoneNumber: string;

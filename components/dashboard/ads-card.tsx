@@ -16,7 +16,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
 import { useRouter } from 'next/navigation';
-import { FaMoneyBill } from 'react-icons/fa';
+
 //import Autoplay from 'embla-carousel-autoplay';
 import {
     Carousel,
@@ -38,7 +38,7 @@ import { EntityId } from '@reduxjs/toolkit';
 import { CategoryDetail } from './category-detail';
 import Link from 'next/link';
 
-export default function AdvertismentCard({ params: { id } }: { params: { id: string } }) {
+export default function AdvertismentCard({ id }: { id: string }) {
     const router = useRouter();
 
     const dispatch = useAppDispatch();

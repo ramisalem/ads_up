@@ -28,7 +28,7 @@ interface DataTableProps<TData, TValue> {
     data: TData[];
 }
 
-export function CouponsDataTable<TData, TValue>({
+export function UsersDataTable<TData, TValue>({
     columns,
     data,
 }: DataTableProps<TData, TValue>) {
@@ -47,8 +47,8 @@ export function CouponsDataTable<TData, TValue>({
 
     return (
         <div className="  flex w-full flex-col   md:p-4">
-            <h1 className={`${lusitana.className} mb-8 text-xl md:text-2xl`}>all Coupons</h1>
-            <DataTableToolbar table={table} type="coupons" label="Filtered Coupons ..." />
+            <h1 className={`${lusitana.className} mb-8 text-xl md:text-2xl`}>all Users</h1>
+            <DataTableToolbar table={table} type="users" label="Filtered Users ..." />
             <div className=" mt-6  flow-root md:w-full w-auto">
                 <div className="overflow-x-auto">
                     <div className="inline-grid md:min-w-full w-auto align-middle">
