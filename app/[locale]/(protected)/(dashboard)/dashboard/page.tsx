@@ -1,33 +1,33 @@
-'use client';
+"use client";
 //import { getI18n } from '@/locales/server';
-import { DashboardCardWrapper } from '@/components/dashboard/dashboard-card';
-import { CaretUpIcon, HomeIcon, ExclamationTriangleIcon } from '@radix-ui/react-icons';
-import { AnalyticalChart } from '@/components/dashboard/analytica-chart';
-import { FcAnswers } from 'react-icons/fc';
-import { FaUsers } from 'react-icons/fa';
-import { useI18n } from '@/locales/client';
+import { DashboardCardWrapper } from "@/components/dashboard/dashboard-card";
+import { CaretUpIcon, HomeIcon, ExclamationTriangleIcon } from "@radix-ui/react-icons";
+import { AnalyticalChart } from "@/components/dashboard/analytica-chart";
+import { FcAnswers } from "react-icons/fc";
+import { FaUsers } from "react-icons/fa";
+import { useI18n } from "@/locales/client";
 import {
     Card,
     CardContent,
     CardDescription,
     CardHeader,
-    CardTitle
-} from '@/components/ui/card';
-import { FaMoneyBill, FaChartBar } from 'react-icons/fa';
+    CardTitle,
+} from "@/components/ui/card";
+import { FaMoneyBill, FaChartBar } from "react-icons/fa";
 export default function Page() {
     const t = useI18n();
 
     const analyticsData = [
-        { name: 'ads 1', value: 300, views: 200 },
-        { name: 'ads 2', value: 500, views: 300 },
-        { name: 'ads 3', value: 400, views: 240 },
-        { name: 'ads 4', value: 200, views: 290 },
-        { name: 'ads 5', value: 170, views: 400 },
-        { name: 'ads 6', value: 300, views: 200 },
-        { name: 'ads 7', value: 500, views: 120 },
-        { name: 'ads 8', value: 400, views: 280 },
-        { name: 'ads 9', value: 200, views: 500 },
-        { name: 'ads 10', value: 170, views: 350 }
+        { name: "ads 1", value: 300, views: 200 },
+        { name: "ads 2", value: 500, views: 300 },
+        { name: "ads 3", value: 400, views: 240 },
+        { name: "ads 4", value: 200, views: 290 },
+        { name: "ads 5", value: 170, views: 400 },
+        { name: "ads 6", value: 300, views: 200 },
+        { name: "ads 7", value: 500, views: 120 },
+        { name: "ads 8", value: 400, views: 280 },
+        { name: "ads 9", value: 200, views: 500 },
+        { name: "ads 10", value: 170, views: 350 },
     ];
     return (
         <>
@@ -75,7 +75,7 @@ export default function Page() {
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="pl-2">
-                                {' '}
+                                {" "}
                                 <AnalyticalChart data={analyticsData} />
                             </CardContent>
                         </Card>

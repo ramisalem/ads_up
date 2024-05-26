@@ -1,4 +1,5 @@
 import { CupounsSchema, MetaDataSchema, UserRole as user_role } from "@/schemas";
+import { IconType } from "react-icons/lib";
 import { z } from "zod";
 
 export enum userRole {
@@ -11,7 +12,7 @@ export type UserRole = z.infer<typeof user_role>;
 export type SideNavItem = {
     name: string;
     href: string;
-    icon?: any; //string; //JSX.Element;
+    icon: React.ElementType;
     submenu?: boolean;
     subMenuItems?: SideNavItem[];
 };

@@ -28,11 +28,10 @@ export default async function RootLayout({
             <StoreProvider>
                 <html lang="en">
                     <body>
-                        <Toaster />
-
-                        <main>{children}</main>
+                        {children}
                         {modal}
-                        <div id="modal-root" />
+                        <Toaster />
+                        {/* <div id="modal-root" /> */}
                         <SpeedInsights />
                     </body>
                 </html>
