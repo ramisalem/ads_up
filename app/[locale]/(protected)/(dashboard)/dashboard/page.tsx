@@ -1,7 +1,7 @@
 "use client";
 //import { getI18n } from '@/locales/server';
 import { DashboardCardWrapper } from "@/components/dashboard/dashboard-card";
-import { CaretUpIcon, HomeIcon, ExclamationTriangleIcon } from "@radix-ui/react-icons";
+import { CaretUpIcon } from "@radix-ui/react-icons";
 import { AnalyticalChart } from "@/components/dashboard/analytica-chart";
 import { FcAnswers } from "react-icons/fc";
 import { FaUsers } from "react-icons/fa";
@@ -38,7 +38,10 @@ export default function Page() {
                             headerLabel="Tickets"
                             Icon={<CaretUpIcon className="w-12 h-12" />}
                         >
-                            <span>Dashboard</span>
+                            <div className="flex flex-row justify-between items-center p-4">
+                                <span>Total Tickets</span>
+                                <span className="text-green-400 ">^%83.98</span>
+                            </div>
                         </DashboardCardWrapper>
                         <DashboardCardWrapper
                             headerLabel="Coupuns"
@@ -46,20 +49,26 @@ export default function Page() {
                         >
                             <div className="flex flex-row justify-between items-center p-4">
                                 <span>Total Coupons</span>
-                                <span className="text-green-400 ">^%83,98</span>
+                                <span className="text-green-400 ">^%83.98</span>
                             </div>
                         </DashboardCardWrapper>
                         <DashboardCardWrapper
                             headerLabel="Report"
                             Icon={<FcAnswers className="w-8 h-8" />}
                         >
-                            <span>Reports</span>
+                            <div className="flex flex-row justify-between items-center p-4">
+                                <span>Total Reports</span>
+                                <span className="text-red-600 ">%23.9</span>
+                            </div>
                         </DashboardCardWrapper>
                         <DashboardCardWrapper
                             headerLabel="Users"
                             Icon={<FaUsers className="w-8 h-8" />}
                         >
-                            <span>users</span>
+                            <div className="flex flex-row justify-between items-center p-4">
+                                <span>Total Users</span>
+                                <span className="text-green-600 ">^%93.9</span>
+                            </div>
                         </DashboardCardWrapper>
                     </div>
                     <div className="grid h-auto w-auto md:overflow-hidden gap-4 md:grid-cols-2 lg:grid-cols-7 shadow-lg">

@@ -6,6 +6,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import StoreProvider from "@/app/storeProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { getCurrentLocale } from "@/locales/server";
 
 //const inter = Inter({ subsets: ['latin'] });
 
@@ -22,17 +23,18 @@ export default async function RootLayout({
     modal?: React.ReactNode;
 }) {
     const session = await auth();
-
+    const locale = getCurrentLocale();
     return (
         <SessionProvider session={session}>
             <StoreProvider>
-                <html lang="en">
+                <html lang={locale}>
                     <body>
+                        <Toaster />
                         {children}
                         {modal}
-                        <Toaster />
-                        {/* <div id="modal-root" /> */}
-                        <SpeedInsights />
+
+                        <div id="modal-root" />
+                        {/* <SpeedInsights /> */}
                     </body>
                 </html>
             </StoreProvider>

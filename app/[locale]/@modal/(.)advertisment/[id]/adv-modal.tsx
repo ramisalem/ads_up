@@ -1,14 +1,14 @@
-'use client';
-import React, { type ElementRef, useEffect, useRef } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { createPortal } from 'react-dom';
-import { FaExternalLinkAlt } from 'react-icons/fa';
-import { FaArrowRightToBracket } from 'react-icons/fa6';
+"use client";
+import React, { type ElementRef, useEffect, useRef } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { createPortal } from "react-dom";
+import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaArrowRightToBracket } from "react-icons/fa6";
 
 export function AdsModal({ children }: { children: React.ReactNode }) {
     const router = useRouter();
-    const pathName = usePathname();
-    const dialogRef = useRef<ElementRef<'dialog'>>(null);
+
+    const dialogRef = useRef<ElementRef<"dialog">>(null);
 
     useEffect(() => {
         if (!dialogRef.current?.open) {
@@ -31,7 +31,7 @@ export function AdsModal({ children }: { children: React.ReactNode }) {
                 justify-center   bg-opacity-50  bg-transparent"
                 onClose={onDismiss}
             >
-                <div className="absolute top-28 right-34 flex flex-row space-x-6 items-end justify-end">
+                <div className="absolute top-30 right-34 flex flex-row space-x-6 items-end justify-end">
                     <FaArrowRightToBracket
                         onClick={onDismiss}
                         className="absolute top-5 cursor-alias w-6 text-blue-600 h-6   z-50 hover:w-8 hover:text-blue-300 "
@@ -46,6 +46,6 @@ export function AdsModal({ children }: { children: React.ReactNode }) {
                 </div>
             </dialog>
         </div>,
-        document.getElementById('modal-root')!
+        document.getElementById("modal-root")!,
     );
 }

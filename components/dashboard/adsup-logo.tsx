@@ -7,7 +7,7 @@ export default function ADSUPLogo() {
     //ADSUPLogo({ width: 204, height: 48 });
 
     return (
-        <div className="flex flex-row flex-grow ltr:pr-2 rtl:pl-2   items-center leading-none ">
+        <div className="flex flex-row flex-grow ltr:pr-2 rtl:pl-2  justify-center   items-center leading-none ">
             <svg
                 width="248"
                 height="48"

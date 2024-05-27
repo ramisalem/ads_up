@@ -4,7 +4,7 @@ import NavLinks from "@/components/dashboard/nav-links";
 import { LogoutButton } from "../auth/logout-button";
 
 import clsx from "clsx";
-import { useI18n, useCurrentLocale } from "@/locales/client";
+import { useI18n } from "@/locales/client";
 import { motion, useCycle } from "framer-motion";
 import { ChevronLeftIcon, ChevronRightIcon, PowerIcon } from "@heroicons/react/24/outline";
 import ADSUPLogo from "./adsup-logo";

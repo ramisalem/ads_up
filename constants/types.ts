@@ -12,7 +12,7 @@ export type UserRole = z.infer<typeof user_role>;
 export type SideNavItem = {
     name: string;
     href: string;
-    icon: React.ElementType;
+    icon: any;
     submenu?: boolean;
     subMenuItems?: SideNavItem[];
 };

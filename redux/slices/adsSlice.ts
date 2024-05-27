@@ -1,7 +1,8 @@
-import { fetchOneAd, getAllAds } from '@/actions/advertisment';
-import { AdvType } from '@/constants/types';
-import api from '@/data/api/axiosInstance';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { fetchOneAd, getAllAds } from "@/actions/advertisment";
+import { AdvType } from "@/constants/types";
+import api from "@/data/api/axiosInstance";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export interface IAdvertisment {
     adsList: AdvType[];
@@ -16,10 +17,10 @@ const initialState: IAdvertisment = {
     detailedAd: undefined,
     isLoading: false,
     hasError: false,
-    error: ''
+    error: "",
 };
 
-export const fetchAds = createAsyncThunk('ads/fetchAds', async (_state, { dispatch }) => {
+export const fetchAds = createAsyncThunk("ads/fetchAds", async (_state, { dispatch }) => {
     try {
         const response = await getAllAds();
         // await api.get('/ads', {
@@ -30,32 +31,37 @@ export const fetchAds = createAsyncThunk('ads/fetchAds', async (_state, { dispat
 
         return response;
     } catch (e) {
-        console.log('error ', e);
+        console.log("error ", e);
         throw e;
     }
 });
 
 export const getOneAdvertisment = createAsyncThunk<any, any>(
-    'ads/getOneAdvertisment',
+    "ads/getOneAdvertisment",
     async (payload: any) => {
         try {
             const data = await api.get(`/ads?id=${payload}`);
             return data.data;
-        } catch (e) {
-            console.log('error ', e);
-            throw e;
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                console.log("errors in fetch one ads", error.response?.status);
+                console.log(error.response?.statusText);
+                console.log(error.response?.data);
+                return error.response?.statusText;
+            }
+            throw error;
         }
-    }
+    },
 );
 export const adsSlice = createSlice({
-    name: 'ads',
+    name: "ads",
     initialState,
     reducers: {
         adsState: (state: IAdvertisment) => {
             state.hasError = false;
-            state.error = '';
+            state.error = "";
             state.isLoading = false;
-        }
+        },
     },
 
     extraReducers: (builder) => {
@@ -80,8 +86,8 @@ export const adsSlice = createSlice({
                 (state: IAdvertisment, action: any) => {
                     state.isLoading = true;
                     state.hasError = false;
-                    console.log('get one add is pending');
-                }
+                    console.log("get one add is pending");
+                },
             );
         builder.addCase(getOneAdvertisment.fulfilled, (state: IAdvertisment, action: any) => {
             state.isLoading = false;
@@ -93,7 +99,7 @@ export const adsSlice = createSlice({
             state.hasError = true;
             state.error = action.error.message;
         });
-    }
+    },
 });
 
 export const { adsState } = adsSlice.actions;
