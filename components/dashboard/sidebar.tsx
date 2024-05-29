@@ -60,27 +60,44 @@ export default function SideNav({ collapsed, setCollapsed, shown }: props) {
                 {/* logo and collapse button */}
                 <div
                     className={clsx({
-                        "flex items-center border-b transition-none": true,
-                        "p-4 mx-4 justify-center": !collapsed,
-                        "py-2 justify-center": collapsed,
+                        "flex items-center border-b transition-x-1": true,
+                        "py-5  mx-4 justify-center": !collapsed,
+                        "py-2.5 justify-center": collapsed,
                     })}
                 >
                     {collapsed && (
-                        <span className="flex justify-center items-center whitespace-nowrap">
+                        <motion.div
+                            animate={{ x: 10 }}
+                            initial={{ x: -100 }}
+                            exit={{ x: 0 }}
+                            transition={{ ease: "easeIn", duration: 2 }}
+                        >
                             <ADSUPLogo />
-                        </span>
+                        </motion.div>
                     )}
                     <button
-                        className="grid place-content-center    rounded-full opacity-0 md:opacity-100"
+                        className="grid place-content-center  rounded-full opacity-0 md:opacity-100"
                         onClick={() => {
                             setCollapsed(!collapsed);
                             toggleOpen();
                         }}
                     >
                         {collapsed ? (
-                            <ChevronLeftIcon className="p-0 w-6 m-3 rounded-full bg-blue-900 hover:bg-blue-700  text-slate-50" />
+                            <motion.div
+                                animate={{ rotate: 180 }}
+                                transition={{ repeat: 1, duration: 1 }}
+                                whileHover={{ scale: 1.1 }}
+                            >
+                                <ChevronLeftIcon className="p-0 w-6  rounded-full bg-blue-900 hover:bg-blue-700  text-slate-50" />
+                            </motion.div>
                         ) : (
-                            <ChevronRightIcon className="p-0 w-6 m-3 rounded-full bg-blue-900 hover:bg-blue-700   text-slate-50 md:block" />
+                            <motion.div
+                                animate={{ rotate: 180 }}
+                                transition={{ repeat: 1, duration: 1 }}
+                                whileHover={{ scale: 1.1 }}
+                            >
+                                <ChevronRightIcon className="p-0 w-6  rounded-full bg-blue-900 hover:bg-blue-700   text-slate-50 md:block" />
+                            </motion.div>
                         )}
                     </button>
                 </div>
@@ -102,20 +119,25 @@ export default function SideNav({ collapsed, setCollapsed, shown }: props) {
         </div> */}
                     <div
                         className={clsx(
-                            " flex h-10 grow items-center justify-center gap-2 space-x-2 rounded-md  p-1 mx-1 text-xl font-semibold hover:bg-sky-100 hover:text-blue-600  md:flex-none md:justify-start md:p-2 md:px-3 ",
+                            " flex h-10 grow items-center justify-center gap-2 space-x-2 rounded-md  p-1 mx-1 text-xl font-semibold  hover:text-blue-600  md:flex-none md:justify-start md:p-2 md:px-3 ",
                             {
                                 "h-[40px] w-16  m-auto ": !collapsed,
                             },
                         )}
                     >
-                        <PowerIcon className="w-6 " />
-                        <LogoutButton>
-                            <button className="flex space-x-2 flex-row overflow-hidden items-center justify-center   ">
-                                {collapsed && (
-                                    <div className="hidden md:block">{t("logout")}</div>
-                                )}
-                            </button>
-                        </LogoutButton>
+                        <motion.span
+                            whileHover={{ scale: 1.2 }}
+                            className="flex space-x-2 flex-row overflow-hidden items-center justify-center   "
+                        >
+                            <PowerIcon className="w-6 " />
+                            <LogoutButton>
+                                <button className="flex space-x-2 flex-row overflow-hidden items-center justify-center   ">
+                                    {collapsed && (
+                                        <div className="hidden md:block">{t("logout")}</div>
+                                    )}
+                                </button>
+                            </LogoutButton>
+                        </motion.span>
                     </div>
                 </div>
             </div>

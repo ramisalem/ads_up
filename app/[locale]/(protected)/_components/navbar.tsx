@@ -4,9 +4,23 @@ import LocaleSwitcher from "@/components/dashboard/local-switcher";
 import ADSUPLogo from "@/components/dashboard/adsup-logo";
 import { HeaderMobile } from "@/components/dashboard/header-mobile";
 import { cn } from "@/lib/utils";
+import { easeIn, motion } from "framer-motion";
 type props = {
     collapsed: boolean;
 };
+
+const container = {
+    hidden: { opacity: 0 },
+    show: {
+        easeIn: [0.17, 0.67, 0.83, 0.67],
+        opacity: 1,
+        transition: {
+            easeIn: [0.17, 0.67, 0.83, 0.67],
+            delayChildren: 0.5,
+        },
+    },
+};
+
 export const Navbar = ({ collapsed }: props) => {
     return (
         <nav
@@ -17,7 +31,16 @@ export const Navbar = ({ collapsed }: props) => {
             })}
         >
             <div className="  items-center  justify-between md:flex">
-                {!collapsed && <ADSUPLogo />}
+                {!collapsed && (
+                    <motion.div
+                        animate={{ x: 10 }}
+                        initial={{ x: -100 }}
+                        exit={{ x: 0 }}
+                        transition={{ ease: "easeIn", duration: 2 }}
+                    >
+                        <ADSUPLogo />
+                    </motion.div>
+                )}
             </div>
 
             <div className="flex  justify-center items-start mx-2 gap-x-2 ">
