@@ -21,7 +21,7 @@ const container = {
     },
 };
 
-export const Navbar = ({ collapsed }: props) => {
+const Navbar = ({ collapsed }: props) => {
     return (
         <nav
             className={cn({
@@ -53,3 +53,4 @@ export const Navbar = ({ collapsed }: props) => {
         </nav>
     );
 };
+export default Navbar;

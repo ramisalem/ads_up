@@ -4,6 +4,8 @@ import { useRouter, usePathname } from "next/navigation";
 import { createPortal } from "react-dom";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { FaArrowRightToBracket } from "react-icons/fa6";
+import { Cross1Icon, Cross2Icon } from "@radix-ui/react-icons";
+import { motion } from "framer-motion";
 
 export function AdsModal({ children }: { children: React.ReactNode }) {
     const router = useRouter();
@@ -31,16 +33,19 @@ export function AdsModal({ children }: { children: React.ReactNode }) {
                 justify-center   bg-opacity-50  bg-transparent"
                 onClose={onDismiss}
             >
-                <div className="absolute top-30 right-34 flex flex-row space-x-6 items-end justify-end">
-                    <FaArrowRightToBracket
-                        onClick={onDismiss}
-                        className="absolute top-5 cursor-alias w-6 text-blue-600 h-6   z-50 hover:w-8 hover:text-blue-300 "
-                    />
+                <motion.div
+                    drag
+                    className="absolute top-[14rem] right-[23rem] p-2 w-24 rounded-md bg-white flex z-50 flex-row space-x-6 items-center justify-between"
+                >
                     <FaExternalLinkAlt
                         onClick={openInPage}
-                        className="absolute top-5 right-12 cursor-alias w-6 text-blue-600 h-6   z-50 hover:w-8 hover:text-blue-300 "
+                        className="relative  cursor-alias w-6 text-blue-600 h-6   z-50 hover:w-8 hover:text-blue-300 "
                     />
-                </div>
+                    <Cross2Icon
+                        onClick={onDismiss}
+                        className="relative cursor-alias w-6 text-red-600 h-6   z-50 hover:w-8 hover:text-red-700 "
+                    />
+                </motion.div>
                 <div className="relative shadow-xs m-auto w-96 rounded-lg  bg-transparent p-4 dark:bg-slate-800 ">
                     {children}
                 </div>

@@ -1,7 +1,7 @@
 "use client";
 import clsx from "clsx";
 import React, { useState } from "react";
-import { Navbar } from "./_components/navbar";
+import Navbar from "./_components/navbar";
 import SideNav from "@/components/dashboard/sidebar";
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {

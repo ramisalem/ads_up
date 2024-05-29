@@ -40,8 +40,8 @@ export const getOneAdvertisment = createAsyncThunk<any, any>(
     "ads/getOneAdvertisment",
     async (payload: any) => {
         try {
-            const data = await api.get(`/ads?id=${payload}`);
-            return data.data;
+            const data = await fetchOneAd(payload); //await api.get(`/ads?id=${payload}`);
+            return data;
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 console.log("errors in fetch one ads", error.response?.status);
