@@ -23,6 +23,7 @@ import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
 import { login } from "@/actions/auth/login";
 import { useI18n, useCurrentLocale } from "@/locales/client";
+import Loader from "../dashboard/loader";
 export const LoginForm = () => {
     const t = useI18n();
     const searchParams = useSearchParams();
@@ -146,9 +147,10 @@ export const LoginForm = () => {
                         </div>
                         <FormError message={error || urlError} />
                         <FormSuccess message={success} />
-                        <Button disabled={isPending} type="submit" className="w-full">
+                        {isPending===true?(<Loader  />):(<Button disabled={isPending} type="submit" className="w-full">
                             {"Login"}
-                        </Button>
+                        </Button>)
+}
                     </form>
                 </Form>
             </div>

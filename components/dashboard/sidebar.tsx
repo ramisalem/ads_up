@@ -85,7 +85,7 @@ export default function SideNav({ collapsed, setCollapsed, shown }: props) {
                         {collapsed ? (
                             <motion.div
                                 animate={{ rotate: 180 }}
-                                transition={{ repeat: 1, duration: 1 }}
+                                transition={{ repeat: 2, duration: 2 }}
                                 whileHover={{ scale: 1.1 }}
                             >
                                 <ChevronLeftIcon className="p-0 w-6  rounded-full bg-blue-900 hover:bg-blue-700  text-slate-50" />
@@ -93,7 +93,7 @@ export default function SideNav({ collapsed, setCollapsed, shown }: props) {
                         ) : (
                             <motion.div
                                 animate={{ rotate: 180 }}
-                                transition={{ repeat: 1, duration: 1 }}
+                                transition={{ repeat: 2, duration: 2 }}
                                 whileHover={{ scale: 1.1 }}
                             >
                                 <ChevronRightIcon className="p-0 w-6  rounded-full bg-blue-900 hover:bg-blue-700   text-slate-50 md:block" />
