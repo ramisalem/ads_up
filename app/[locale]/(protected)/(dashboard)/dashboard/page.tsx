@@ -39,8 +39,11 @@ export default function Page() {
                         Icon={<CaretUpIcon className="w-12 h-12" />}
                     >
                         <div className="flex flex-row justify-between items-center p-4">
-                            <span>Total Tickets</span>
-                            <span className="text-green-400 ">^%83.98</span>
+                            <span className="text-muted">Total Tickets</span>
+                            <div className="flex flex-row gap-2 items-end justify-end">
+                                <span className="h-0 w-0 border-b-[20px] border-l-[15px] border-r-[15px] border-b-green-400 border-l-transparent border-r-transparent" />
+                                <span className="text-green-400 "> %83.98</span>
+                            </div>
                         </div>
                     </DashboardCardWrapper>
                     <DashboardCardWrapper
@@ -48,17 +51,23 @@ export default function Page() {
                         Icon={<FaMoneyBill className="w-8 h-8" />}
                     >
                         <div className="flex flex-row justify-between items-center p-4">
-                            <span>Total Coupons</span>
-                            <span className="text-green-400 ">^%83.98</span>
+                            <span className="text-muted">Total Coupons</span>
+                            <div className="flex flex-row gap-2 items-end justify-end">
+                                <span className="h-0 w-0 border-b-[20px] border-l-[15px] border-r-[15px] border-b-green-400 border-l-transparent border-r-transparent" />
+                                <span className="text-green-400 "> %83.98</span>
+                            </div>
                         </div>
                     </DashboardCardWrapper>
                     <DashboardCardWrapper
                         headerLabel="Report"
                         Icon={<FcAnswers className="w-8 h-8" />}
                     >
-                        <div className="flex flex-row justify-between items-center p-4">
-                            <span>Total Reports</span>
-                            <span className="text-red-600 ">%23.9</span>
+                        <div className="flex flex-row gap-2 justify-between items-center p-4">
+                            <span className="text-muted">Total Reports</span>
+                            <div className="flex flex-row gap-2 items-end justify-end">
+                                <span className="inline h-0 w-0 border-t-[20px] border-l-[15px] border-r-[15px] border-t-red-600 border-l-transparent border-r-transparent" />
+                                <span className="text-red-600 ">%23.9</span>
+                            </div>
                         </div>
                     </DashboardCardWrapper>
                     <DashboardCardWrapper
@@ -66,8 +75,11 @@ export default function Page() {
                         Icon={<FaUsers className="w-8 h-8" />}
                     >
                         <div className="flex flex-row justify-between items-center p-4">
-                            <span>Total Users</span>
-                            <span className="text-green-600 ">^%93.9</span>
+                            <span className="text-muted">Total Users</span>
+                            <div className="flex flex-row gap-2 items-end justify-end">
+                                <span className="h-0 w-0 border-b-[20px] border-l-[15px] border-r-[15px] border-b-green-400 border-l-transparent border-r-transparent" />
+                                <span className="text-green-400 "> %93.9</span>
+                            </div>
                         </div>
                     </DashboardCardWrapper>
                 </div>

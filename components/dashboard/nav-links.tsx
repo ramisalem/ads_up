@@ -84,7 +84,10 @@ const MenuItem: React.FC<MenuItemProps> = ({ item, isSidebarCollapsed }) => {
                                 {isSidebarCollapsed ? (
                                     <button onClick={toggleSubMenu}>
                                         <div className="flex flex-row">
-                                            <LinkIcon className="w-10 h-6" icon={item.icon} />
+                                            <LinkIcon
+                                                className="w-10 h-6 text-muted/20"
+                                                icon={item.icon}
+                                            />
                                             <p className="hidden text-base md:block">
                                                 {t(`${item.name}`)}
                                             </p>
@@ -167,7 +170,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ item, isSidebarCollapsed }) => {
                     >
                         {isSidebarCollapsed ? (
                             <span className="flex flex-row">
-                                <LinkIcon className="w-10 h-6" icon={item.icon} />
+                                <LinkIcon className="w-10 h-6 text-muted" icon={item.icon} />
                                 <p className="hidden text-base md:block">
                                     {t(`${item.name}`)}
                                 </p>

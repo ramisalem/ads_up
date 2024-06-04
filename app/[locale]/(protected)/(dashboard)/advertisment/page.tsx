@@ -27,9 +27,15 @@ export default function Advertisment() {
                 ) : adsList && adsList.length >= 1 ? (
                     <DataTable columns={columns} data={adsList} />
                 ) : hasError ? (
-                    <span>{hasError && <p>{error}</p>}</span>
+                    <span>
+                        {hasError && (
+                            <p className="text-center bg-destructive/15 p-3 rounded-md flex justify-center items-center  text-sm text-destructive">
+                                Error: {error}
+                            </p>
+                        )}
+                    </span>
                 ) : (
-                    <p>No Data</p>
+                    <Loader />
                 )}
             </div>
         </div>

@@ -7,7 +7,7 @@ import { FaArrowRightToBracket } from "react-icons/fa6";
 import { Cross1Icon, Cross2Icon } from "@radix-ui/react-icons";
 import { motion } from "framer-motion";
 
-export function AdsModal({ children }: { children: React.ReactNode }) {
+export const AdsModal = ({ children }: { children: React.ReactNode }) => {
     const router = useRouter();
 
     const dialogRef = useRef<ElementRef<"dialog">>(null);
@@ -29,13 +29,13 @@ export function AdsModal({ children }: { children: React.ReactNode }) {
         <div className=" flex items-center justify-center overflow-hidden  z-40 top-0 left-0 right-0 bottom-0 bg-transparent">
             <dialog
                 ref={dialogRef}
-                className=" relative w-auto h-auto   flex   items-center 
+                className=" absolute w-auto  h-auto   flex   items-center 
                 justify-center   bg-opacity-50  bg-transparent"
                 onClose={onDismiss}
             >
                 <motion.div
                     drag
-                    className="absolute top-[14rem] right-[23rem] p-2 w-24 rounded-md bg-white flex z-50 flex-row space-x-6 items-center justify-between"
+                    className="absolute top-[11rem] right-[30%] p-2 w-24 rounded-md bg-white flex z-50 flex-row space-x-6 items-center justify-between"
                 >
                     <FaExternalLinkAlt
                         onClick={openInPage}
@@ -43,14 +43,14 @@ export function AdsModal({ children }: { children: React.ReactNode }) {
                     />
                     <Cross2Icon
                         onClick={onDismiss}
-                        className="relative cursor-alias w-6 text-red-600 h-6   z-50 hover:w-8 hover:text-red-700 "
+                        className="relative  w-6 text-red-600 h-6   z-50 hover:w-8 hover:text-red-700 "
                     />
                 </motion.div>
-                <div className="relative shadow-xs m-auto w-96 rounded-lg  bg-transparent p-4 dark:bg-slate-800 ">
+                <div className="relative shadow-xs m-auto md:max-w-max rounded-lg  bg-transparent p-4 dark:bg-slate-800 ">
                     {children}
                 </div>
             </dialog>
         </div>,
         document.getElementById("modal-root")!,
     );
-}
+};
